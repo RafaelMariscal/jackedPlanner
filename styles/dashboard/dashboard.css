@@ -1,0 +1,126 @@
+#dashboard {
+  height: 100%;
+  margin: 0 auto;
+  max-width: 2000px;
+  max-height: 950px;
+  overflow: hidden;
+}
+
+#images img {
+  position: absolute;
+  z-index: -1;
+}
+
+img[alt="top"] {
+  top: -200px;
+  left: -200px;
+  width: 30vw;
+}
+
+img[alt="esfere"] {
+  top: 30px;
+  right: 0px;
+  width: 15vw;
+}
+
+img[alt="littleCube"] {
+  left: 10px;
+  bottom: 40px;
+  width: 10vw;
+}
+
+img[alt="bottomRight"] {
+  bottom: 0px;
+  right: 0;
+  width: 28vw;
+}
+
+img[alt="center"] {
+  top: 45%;
+  left: 45%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  width: 6vw
+}
+
+#dashboard-glass {
+  height: 800px;
+  margin: 70px 40px 0;
+  border-radius: 20px;
+  border: 1px solid rgba(20, 20, 20, 0.15);
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, .45), 60%, rgba(100, 100, 100, 0.45));
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 2;
+}
+
+#dashboard-content::-webkit-scrollbar {
+  width: 10px;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+aside {
+  height: 100%;
+  width: 100px;
+  border-radius: 20px 0 0 20px;
+  background-color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+aside>nav {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+#menu-icons {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 70px;
+}
+
+#menu-icons li {
+  padding: 0 15px;
+
+}
+
+#exit:hover,
+#menu-icons li:hover {
+  cursor: pointer;
+}
+
+#menu-icons li:not(l#exit):hover * {
+  fill: var(--orange);
+}
+
+img[alt='logo'] {
+  width: 140%;
+  margin: 40px 0 0 20px;
+}
+
+#nav-selector {
+  position: absolute;
+  right: -10px;
+  top: 150px;
+  transition: 300ms ease;
+  z-index: 0;
+}
+
+#dashboard-content {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  padding: 50px 50px 40px 180px;
+  z-index: -1;
+  overflow-y: scroll;
+}

@@ -1,0 +1,98 @@
+.right {
+  width: 90%;
+  overflow: hidden;
+}
+
+#exercise-plan {
+  max-width: 100%
+}
+
+#exercise-plan>.card {
+  display: flex;
+  gap: 10px;
+  min-height: 175px;
+  overflow-x: scroll;
+  width: 100%;
+  padding-bottom: 13px;
+}
+
+#label,
+.sets-area {
+  display: flex;
+  flex-direction: column;
+}
+
+.sets {
+  align-self: center;
+  display: flex;
+  gap: 15px;
+}
+
+#label {
+  font-size: 12px;
+  font-weight: 300;
+  gap: 13px;
+  margin-top: 17px;
+}
+
+.sets-area {
+  align-items: center;
+  border-radius: 10px 10px 4px 4px;
+  overflow: hidden;
+}
+
+.set,
+.weight,
+.used {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  color: var(--dark);
+  padding: 4px 0;
+}
+
+.set {
+  background-color: var(--orange);
+}
+
+.weight {
+  background-color: var(--light);
+}
+
+.used {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--light);
+  font-weight: 400;
+  font-size: 16px;
+  max-width: 100px;
+  outline: none;
+  border: none;
+  border-left: 1px solid var(--orange);
+  border-right: 1px solid var(--orange);
+  border-bottom: 1px solid var(--orange);
+  margin-bottom: 5px;
+}
+
+.sets form>button {
+  width: 100%;
+  height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+#add-set .set {
+  background-color: var(--blue);
+}
+
+#add-set .used {
+  border-left: 1px solid var(--blue);
+  border-right: 1px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
+}
+
+#add-set .weight {
+  width: 100px;
+  max-height: 40px;
+  border: none;
+  font-size: 16px;
+}

@@ -1,0 +1,85 @@
+:root {
+  --light: #EEF4F6;
+  --blue: #72D6FD;
+  --orange: #FE9016;
+  --dark: #343c3f;
+  --facebook-bg: #3B5998;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: var(--light);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--light);
+}
+
+span {
+  color: var(--orange);
+  font-weight: 600;
+}
+
+body>header {
+  background-color: var(--dark);
+  width: 100vw;
+  height: 50px;
+  position: fixed;
+  z-index: 20;
+}
+
+.max-area {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+}
+
+nav ul {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#configs {
+  transform: scale(0.95);
+  margin-top: 5px;
+}
+
+#profile:hover *,
+#configs:hover * {
+  fill: var(--orange)
+}
+
+a:hover {
+  color: var(--orange);
+  text-shadow: 0 0 10px black !important;
+}
+
+header a:hover {
+  color: var(--blue);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: var(--dark);
+}
+
+::-webkit-scrollbar-track {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--orange);
+  border-radius: 10px;
+}

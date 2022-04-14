@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/dashboard/style.css">
+  <link rel="stylesheet" href="../styles/dashboard/dashboard.css">
+  <link rel="stylesheet" href="../styles/dashboard/topLeftCards.css">
+  <link rel="stylesheet" href="../styles/dashboard/calendar.css">
+  <link rel="stylesheet" href="../styles/dashboard/trainingSec.css">
+  <link rel="stylesheet" href="../styles/dashboard/personalNotes.css">
+  <link rel="stylesheet" href="../styles/dashboard/expercisePlan.css">
+  <link rel="stylesheet" href="../styles/dashboard/jpPro.css">
+  <link rel="stylesheet" href="../styles/dashboard/weightHistory.css">
+  <title>Jacked Planner</title>
+</head>
+
+<body>
+  <header>
+    <div class="max-area">
+      <div>
+        <a href="#standard-call-btns">Get <span>PRO</span> for more features </a>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#standard-call-btns"><span>PRO</span>section</a></li>
+          <li>
+            <a href="#">
+              <svg id="profile" width="20" height="20" viewBox="0 0 29 31" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path opacity="1"
+                  d="M0.199117 27.9352C-0.575023 29.1738 1.0687 30.9787 2.37303 30.9787H26.5035C27.8078 30.9787 29.5905 29.8917 28.6774 27.9352C27.1557 24.6743 20.3834 22.0331 14.3296 22.0656C8.35423 22.0978 2.37309 24.4569 0.199117 27.9352Z"
+                  fill="#EEF4F6" />
+                <ellipse opacity="1" cx="14.4638" cy="9.89474" rx="8.26087" ry="8.91304" fill="#EEF4F6" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg id="configs" width="29" height="29" viewBox="0 0 29 29" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1634)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M27.2426 13.4761L24.4541 14.2653C24.2236 15.4729 23.7534 16.5953 23.0948 17.5813L24.5112 20.1159C24.7338 20.5142 24.6647 21.0118 24.3421 21.3344C24.0195 21.6571 23.5218 21.7261 23.1236 21.5036L20.5911 20.0884C19.6035 20.7499 18.4784 21.2223 17.2679 21.4538L16.4742 24.2579C16.35 24.6969 15.9493 25 15.493 25C15.0368 25 14.6361 24.6969 14.5118 24.2579L13.7106 21.427C12.5245 21.1815 11.4233 20.7041 10.4564 20.0442L7.87342 21.4877C7.47514 21.7103 6.9775 21.6412 6.65488 21.3186C6.33227 20.996 6.2632 20.4983 6.48577 20.1L7.95055 17.4789C7.33275 16.5262 6.88908 15.4502 6.6646 14.2958L3.74201 13.4687C3.30301 13.3444 2.99995 12.9437 2.99995 12.4875C2.99995 12.0312 3.30301 11.6305 3.74201 11.5063L6.6944 10.6707C6.93332 9.54243 7.38225 8.49173 7.99835 7.5614L6.49384 4.86912C6.27128 4.47085 6.34034 3.9732 6.66296 3.65059C6.98557 3.32798 7.48322 3.25891 7.88149 3.48148L10.5773 4.98794C11.507 4.37507 12.5563 3.92891 13.6827 3.69201L14.5176 0.742143C14.6418 0.303142 15.0425 8.90797e-05 15.4988 8.90996e-05C15.955 8.91196e-05 16.3558 0.303142 16.48 0.742143L17.3078 3.66718C18.4611 3.89311 19.536 4.33787 20.4875 4.95647L23.1124 3.48961C23.5107 3.26705 24.0083 3.33611 24.3309 3.65873C24.6535 3.98134 24.7226 4.47899 24.5 4.87726L23.052 7.46839C23.7089 8.43414 24.184 9.53346 24.4281 10.7172L27.2426 11.5137C27.6816 11.638 27.9846 12.0387 27.9846 12.4949C27.9846 12.9512 27.6816 13.3519 27.2426 13.4761ZM8.99628 12.5565C8.99628 8.93343 11.9334 5.99636 15.5564 5.99636C19.1795 5.99636 22.1166 8.93343 22.1166 12.5565C22.1166 16.1796 19.1795 19.1166 15.5564 19.1166C11.9334 19.1166 8.99628 16.1796 8.99628 12.5565Z"
+                    fill="#EEF4F6" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1634" x="0" y="6.10352e-05" width="28.9846" height="28.9999"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1634" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1634" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="dashboard">
+    <div id="images">
+      <img src="../assets/images/CubeTop.png" alt="top">
+      <img src="../assets/images/esfere.png" alt="esfere">
+      <img src="../assets/images/cubeBottomLeft.png" alt="littleCube">
+      <img src="../assets/images/3cubes.png" alt="bottomRight">
+      <img src="../assets/images/centerPolygon.png" alt="center">
+    </div>
+
+    <div id="dashboard-glass">
+      <aside>
+
+        <svg id="nav-selector" width="20" height="40" viewBox="0 0 14 34" fill="none"
+          xmlns="http://www.w3.org/2000/svg">
+          <g filter="url(#filter0_d_9_1649)">
+            <rect x="2" y="2" width="10" height="30" rx="5" fill="#FE9016" />
+          </g>
+          <defs>
+            <filter id="filter0_d_9_1649" x="0" y="0" width="14" height="34" filterUnits="userSpaceOnUse"
+              color-interpolation-filters="sRGB">
+              <feFlood flood-opacity="0" result="BackgroundImageFix" />
+              <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                result="hardAlpha" />
+              <feOffset />
+              <feGaussianBlur stdDeviation="1" />
+              <feComposite in2="hardAlpha" operator="out" />
+              <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+              <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1649" />
+              <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1649" result="shape" />
+            </filter>
+          </defs>
+
+        </svg>
+
+        <img src="../assets/images/JACKED-PLANNER.svg" alt="logo">
+        <nav>
+          <ul id="menu-icons">
+            <li id="home" class="selected">
+              <svg class="selec-size" width="30" height="30" viewBox="0 0 24 26" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1578)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M14.4455 0.614578C14.5652 0.688774 14.6742 0.761161 14.7682 0.826075L16.525 2.14603L19.9028 4.68395C20.0087 4.76839 20.1116 4.84996 20.2115 4.92923L20.2116 4.92934C21.2537 5.75597 21.9791 6.33143 22.5826 7.27949C22.9183 7.80681 22.9864 8.75337 23 9.06762V18.5829C22.9936 18.7999 22.9442 19.8646 22.5802 20.4363C21.9077 21.4929 21.14 21.6981 19.6315 21.6981H23V21.6996H17.9504C17.1296 21.695 16.7048 21.5718 16.3316 20.9855C16.1405 20.6853 16.1026 20.145 16.0952 19.9702V15.2712H9.90475L9.90475 19.9141C9.90475 19.9141 9.89681 20.6239 9.66666 20.9855C9.2935 21.5718 8.86861 21.695 8.0478 21.6996H3V5.98535H3.07394L3 6.01769V9.1722C3 9.1722 3.01404 7.91826 3.42066 7.27949C4.02416 6.33143 4.7496 5.75597 5.79165 4.92935C5.91092 4.83474 6.03433 4.73684 6.16219 4.63471L6.13674 4.64584L8.04967 3.10768L10.4058 1.21317L10.4298 1.19382C10.424 1.2005 10.421 1.20401 10.421 1.20401C10.5169 1.12777 10.61 1.05154 10.7016 0.976538C10.7313 0.952195 10.7609 0.927981 10.7904 0.903939L11.01 0.727329C11.5317 0.317045 12.0512 -0.00496433 12.8163 -1.68621e-05C13.2623 0.0028668 13.7874 0.234184 14.2237 0.482614L14.4455 0.614578ZM23 5.98535V6.01625L22.9294 5.98535H23ZM10.738 21.6996H15.2602L15.2602 21.6997H10.7381L10.738 21.6996ZM3.00001 21.6981H6.36942C4.86095 21.6981 4.09324 21.4929 3.42066 20.4363C3.01404 19.7976 3.00001 18.5436 3.00001 18.5436V21.6981Z"
+                    fill="#EEF4F6" />
+                  <path
+                    d="M9.90215 17.056L9.90215 15.2614L12.6272 15.2614C11.9063 15.2614 10.8757 15.3778 10.4855 15.772C10.0953 16.1662 9.90215 16.5558 9.90215 17.056Z"
+                    fill="#FE9016" />
+                  <path
+                    d="M16.155 17.056L16.155 15.2614L13.4299 15.2614C14.1508 15.2614 15.1814 15.3778 15.5716 15.772C15.9618 16.1662 16.155 16.5558 16.155 17.056Z"
+                    fill="#FE9016" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1578" x="0" y="-7.62939e-05" width="24" height="25.6998"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1578" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1578" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </li>
+            <li id="notes">
+              <svg width="31" height="26" viewBox="0 0 31 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1609)">
+                  <path
+                    d="M3 2C3 0.89543 3.89543 0 5 0H16C17.1046 0 18 0.895431 18 2V2.5C18 3.60457 17.1046 4.5 16 4.5H10.5C9.39543 4.5 8.5 5.39543 8.5 6.5V13C8.5 14.1046 7.60457 15 6.5 15H5C3.89543 15 3 14.1046 3 13V2Z"
+                    fill="#FE9016" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M8 2C6.34315 2 5 3.34315 5 5V19C5 20.6569 6.34315 22 8 22H27C28.6569 22 30 20.6569 30 19V5C30 3.34315 28.6569 2 27 2H8ZM10.5 7C10.2239 7 10 7.22386 10 7.5C10 7.77614 10.2239 8 10.5 8H16.5C16.7761 8 17 7.77614 17 7.5C17 7.22386 16.7761 7 16.5 7H10.5ZM10 10.5C10 10.2239 10.2239 10 10.5 10H24.5C24.7761 10 25 10.2239 25 10.5C25 10.7761 24.7761 11 24.5 11H10.5C10.2239 11 10 10.7761 10 10.5ZM10.5 12C10.2239 12 10 12.2239 10 12.5C10 12.7761 10.2239 13 10.5 13H24.5C24.7761 13 25 12.7761 25 12.5C25 12.2239 24.7761 12 24.5 12H10.5ZM10 14.5C10 14.2239 10.2239 14 10.5 14H24.5C24.7761 14 25 14.2239 25 14.5C25 14.7761 24.7761 15 24.5 15H10.5C10.2239 15 10 14.7761 10 14.5ZM10.5 16C10.2239 16 10 16.2239 10 16.5C10 16.7761 10.2239 17 10.5 17H24.5C24.7761 17 25 16.7761 25 16.5C25 16.2239 24.7761 16 24.5 16H10.5Z"
+                    fill="#EEF4F6" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1609" x="0" y="0" width="31" height="26" filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1609" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1609" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </li>
+            <li id="pro">
+              <svg width="34" height="17" viewBox="0 0 34 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1594)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M3 0.101013H7.28829C10.0233 0.101013 11.6103 1.5192 11.6103 3.74775C11.6103 5.97631 9.85451 7.39448 7.28829 7.39448H5.36362V11.9191H3V7.39448V4.96333V0.101013ZM5.36367 1.9917H7.28079C8.50351 1.9917 9.213 2.6614 9.213 3.71377C9.213 4.76615 8.63898 5.43584 7.28079 5.43584H5.36367V1.9917Z"
+                    fill="#FE9016" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M16.3454 0.101013H12.0571V4.96333H12.0571V11.9191H14.4208V7.39448H15.5884L18.1346 11.9052H20.8854L18.0955 7.14056C19.6766 6.63877 20.6675 5.42194 20.6675 3.74775C20.6675 1.5192 19.0805 0.101013 16.3454 0.101013ZM16.338 1.9917H14.4209V5.43584H16.338C17.6962 5.43584 18.2702 4.76615 18.2702 3.71377C18.2702 2.6614 17.5608 1.9917 16.338 1.9917Z"
+                    fill="#FE9016" />
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M26.9898 12.0539C30.3091 12.0539 32.9999 9.35552 32.9999 6.02694C32.9999 2.69835 30.3091 0 26.9898 0C23.6706 0 20.9797 2.69835 20.9797 6.02694C20.9797 9.35552 23.6706 12.0539 26.9898 12.0539ZM26.9898 10.0673C28.9888 10.0673 30.6094 8.27346 30.6094 6.06061C30.6094 3.84775 28.9888 2.05387 26.9898 2.05387C24.9908 2.05387 23.3703 3.84775 23.3703 6.06061C23.3703 8.27346 24.9908 10.0673 26.9898 10.0673Z"
+                    fill="#FE9016" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1594" x="0" y="0" width="34" height="16.0539" filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1594" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1594" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </li>
+            <li id="shop">
+              <svg width="24" height="23" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1618)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M7.322 4.78011H7.70789C7.97433 2.09618 10.2388 0 12.9928 0C15.7469 0 18.0113 2.09618 18.2778 4.78011H18.7114C19.1747 4.78712 19.4812 4.82269 19.6902 5.00318C19.9107 5.19366 20.3472 6.61364 20.6623 7.74551L22.6527 15.0547L22.6148 14.9302C22.6312 14.9843 22.6472 15.0382 22.6628 15.092L22.7823 15.5308C23.0499 16.5913 23.1226 17.5424 22.7 18.0766C22.4228 18.427 22.0371 18.5498 21.6065 18.5891H4.39355C3.96295 18.5498 3.5772 18.427 3.29997 18.0766C2.89379 17.5631 2.94518 16.6644 3.18749 15.6535L5.71574 6.5689C5.95428 5.80074 6.19654 5.1299 6.34326 5.00318C6.55222 4.82269 6.85876 4.78712 7.322 4.78011ZM12.9955 0.902832C15.2298 0.902832 17.067 2.60295 17.284 4.78011H8.70695C8.92399 2.60295 10.7612 0.902832 12.9955 0.902832ZM10.1195 8.65721C10.4861 8.65721 10.7834 8.35998 10.7834 7.99332C10.7834 7.62666 10.4861 7.32943 10.1195 7.32943C9.75283 7.32943 9.4556 7.62666 9.4556 7.99332C9.4556 8.35998 9.75283 8.65721 10.1195 8.65721ZM16.546 7.99332C16.546 8.35998 16.2487 8.65721 15.8821 8.65721C15.5154 8.65721 15.2182 8.35998 15.2182 7.99332C15.2182 7.62666 15.5154 7.32943 15.8821 7.32943C16.2487 7.32943 16.546 7.62666 16.546 7.99332Z"
+                    fill="#EEF4F6" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1618" x="0" y="0" width="24" height="22.5891" filterUnits="userSpaceOnUse"
+                    color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1618" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1618" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </li>
+            <li id="config">
+              <svg width="29" height="29" viewBox="0 0 29 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g filter="url(#filter0_d_9_1634)">
+                  <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M27.2426 13.4761L24.4541 14.2653C24.2236 15.4729 23.7534 16.5953 23.0948 17.5813L24.5112 20.1159C24.7338 20.5142 24.6647 21.0118 24.3421 21.3344C24.0195 21.6571 23.5218 21.7261 23.1236 21.5036L20.5911 20.0884C19.6035 20.7499 18.4784 21.2223 17.2679 21.4538L16.4742 24.2579C16.35 24.6969 15.9493 25 15.493 25C15.0368 25 14.6361 24.6969 14.5118 24.2579L13.7106 21.427C12.5245 21.1815 11.4233 20.7041 10.4564 20.0442L7.87342 21.4877C7.47514 21.7103 6.9775 21.6412 6.65488 21.3186C6.33227 20.996 6.2632 20.4983 6.48577 20.1L7.95055 17.4789C7.33275 16.5262 6.88908 15.4502 6.6646 14.2958L3.74201 13.4687C3.30301 13.3444 2.99995 12.9437 2.99995 12.4875C2.99995 12.0312 3.30301 11.6305 3.74201 11.5063L6.6944 10.6707C6.93332 9.54243 7.38225 8.49173 7.99835 7.5614L6.49384 4.86912C6.27128 4.47085 6.34034 3.9732 6.66296 3.65059C6.98557 3.32798 7.48322 3.25891 7.88149 3.48148L10.5773 4.98794C11.507 4.37507 12.5563 3.92891 13.6827 3.69201L14.5176 0.742143C14.6418 0.303142 15.0425 8.90797e-05 15.4988 8.90996e-05C15.955 8.91196e-05 16.3558 0.303142 16.48 0.742143L17.3078 3.66718C18.4611 3.89311 19.536 4.33787 20.4875 4.95647L23.1124 3.48961C23.5107 3.26705 24.0083 3.33611 24.3309 3.65873C24.6535 3.98134 24.7226 4.47899 24.5 4.87726L23.052 7.46839C23.7089 8.43414 24.184 9.53346 24.4281 10.7172L27.2426 11.5137C27.6816 11.638 27.9846 12.0387 27.9846 12.4949C27.9846 12.9512 27.6816 13.3519 27.2426 13.4761ZM8.99628 12.5565C8.99628 8.93343 11.9334 5.99636 15.5564 5.99636C19.1795 5.99636 22.1166 8.93343 22.1166 12.5565C22.1166 16.1796 19.1795 19.1166 15.5564 19.1166C11.9334 19.1166 8.99628 16.1796 8.99628 12.5565Z"
+                    fill="#EEF4F6" />
+                </g>
+                <defs>
+                  <filter id="filter0_d_9_1634" x="0" y="6.10352e-05" width="28.9846" height="28.9999"
+                    filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                    <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                    <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                      result="hardAlpha" />
+                    <feOffset dx="-1" dy="2" />
+                    <feGaussianBlur stdDeviation="1" />
+                    <feComposite in2="hardAlpha" operator="out" />
+                    <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                    <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1634" />
+                    <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1634" result="shape" />
+                  </filter>
+                </defs>
+              </svg>
+            </li>
+          </ul>
+          <svg id="exit" width="30" height="30" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d_9_1646)">
+              <rect x="3" width="18" height="30" rx="3" fill="#FE9016" />
+            </g>
+            <g filter="url(#filter1_d_9_1646)">
+              <path
+                d="M23.1687 19.2808L27.275 15.4213L12.036 15.4213C11.5347 15.4213 11 14.9494 11 14.4461C11 14.0057 11.4345 13.5024 12.0026 13.5024L27.275 13.5024L23.1687 9.64291C22.7677 9.26543 22.7899 8.68001 23.1687 8.29028C23.5828 7.86429 24.3718 7.94425 24.7395 8.29028L30.2494 13.471C30.2494 13.471 31 14.1497 31 14.4611C31 14.7725 30.2494 15.4213 30.2494 15.4213L24.7395 20.602C24.2047 21.1053 23.67 21.1368 23.1353 20.6649C22.7354 20.312 22.7343 19.6898 23.1687 19.2808Z"
+                fill="#EEF4F6" />
+              <path
+                d="M23.0659 19.1716L23.066 19.1715L26.8964 15.5713L12.036 15.5713C11.7405 15.5713 11.4466 15.4338 11.2284 15.2328C11.0104 15.0319 10.85 14.7507 10.85 14.4461C10.85 14.1789 10.98 13.9067 11.1818 13.7034C11.3854 13.4985 11.6729 13.3524 12.0026 13.3524L26.8964 13.3524L23.066 9.75221L23.0659 9.75214C22.597 9.31076 22.6307 8.62854 23.0612 8.18573C23.3055 7.9344 23.652 7.83986 23.9766 7.85086C24.2999 7.86181 24.6265 7.978 24.8422 8.181L23.0659 19.1716ZM23.0659 19.1716C22.5742 19.6344 22.5629 20.3598 23.0361 20.7774C23.3232 21.0307 23.6269 21.163 23.944 21.149C24.2592 21.1351 24.559 20.9778 24.8423 20.7112L30.3501 15.5326L30.3501 15.5325L30.3569 15.5266L30.3817 15.5046C30.4029 15.4857 30.433 15.4584 30.4691 15.4247C30.5411 15.3575 30.6375 15.2641 30.7344 15.1603C30.8307 15.0571 30.9305 14.9402 31.0072 14.8262C31.0788 14.7197 31.15 14.5878 31.15 14.4611C31.15 14.3352 31.0795 14.2016 31.0082 14.0928C30.9319 13.9763 30.8324 13.8558 30.7362 13.749C30.6395 13.6414 30.5432 13.5444 30.4713 13.4744C30.4353 13.4394 30.4052 13.4109 30.3841 13.3911L30.3593 13.3682L30.3526 13.3621L30.3522 13.3617L30.3508 13.3604L30.3503 13.3599L30.3501 13.3598L30.3501 13.3598L24.8423 8.18105L23.0659 19.1716Z"
+                stroke="#EEF4F6" stroke-width="0.3" />
+            </g>
+            <defs>
+              <filter id="filter0_d_9_1646" x="0" y="0" width="22" height="34" filterUnits="userSpaceOnUse"
+                color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha" />
+                <feOffset dx="-1" dy="2" />
+                <feGaussianBlur stdDeviation="1" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1646" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1646" result="shape" />
+              </filter>
+              <filter id="filter1_d_9_1646" x="8.69995" y="5.70001" width="24.6001" height="17.6"
+                filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+                  result="hardAlpha" />
+                <feOffset />
+                <feGaussianBlur stdDeviation="1" />
+                <feComposite in2="hardAlpha" operator="out" />
+                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0" />
+                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_9_1646" />
+                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_9_1646" result="shape" />
+              </filter>
+            </defs>
+          </svg>
+        </nav>
+      </aside>
+
+      <div id="dashboard-content">
+        <section id="sec-top" class="cards-area">
+          <div class="left">
+            <div id="planners">
+              <span>My Jacked Planners</span>
+              <div class="card">
+                <button id="plan1" class="planner-card">
+                  <strong>1</strong>
+                  <p>PUSH PULL LEGS by Jeff Nippard</p>
+                </button>
+                <button id="plan2" class="planner-card">
+                  <strong>2</strong>
+                  <p>Juice John - Real Results Plan</p>
+                </button>
+                <button id="plan3" class="planner-card add">
+                  <strong>3</strong>
+                  <p>Add a new planner</p>
+                </button>
+                <button class="pro-btn">
+                  Get<span style="color: var(--orange); text-decoration: none;">PRO</span> to add new Planners
+                </button>
+                <div class="pro-price">
+                  <img src="../assets/images/JACKED PLANNER PRO.svg" alt="logoPRO">
+                  <div class="price">
+                    <strong>$4,99</strong>
+                    <p>month</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="calendar">
+              <span>Calendar</span>
+              <div class="card">
+
+              </div>
+            </div>
+          </div>
+
+          <div class=" right">
+            <div id="workout-sec">
+              <span>Workout Section:</span><span id="w-day">CHEST / SHOULDER</span>
+              <div class="card card-area">
+                <div id="exerc1" class="exercises">
+                  <button id="exerc1-index" class="exercise-card">1</button>
+                  <button id="exerc1-name" class="exercise-card">Supino Reto (H)</button>
+                  <button id="exerc1-sets" class="exercise-card">3</button>
+                  <strong>X</strong>
+                  <button id="exerc1-reps" class="exercise-card">12</button>
+                  <button id="exerc1-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc1-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc2" class="exercises">
+                  <button id="exerc2-index" class="exercise-card">1</button>
+                  <button id="exerc2-name" class="exercise-card">Crucifixo com Cabos</button>
+                  <button id="exerc2-sets" class="exercise-card">3</button>
+                  <strong>X</strong>
+                  <button id="exerc2-reps" class="exercise-card">12</button>
+                  <button id="exerc2-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc2-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc3" class="exercises">
+                  <button id="exerc3-index" class="exercise-card">2</button>
+                  <button id="exerc3-name" class="exercise-card">Supino Inclinado (Guiado)</button>
+                  <button id="exerc3-sets" class="exercise-card">4</button>
+                  <strong>X</strong>
+                  <button id="exerc3-reps" class="exercise-card">12</button>
+                  <button id="exerc3-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc3-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc4" class="exercises">
+                  <button id="exerc4-index" class="exercise-card">3</button>
+                  <button id="exerc4-name" class="exercise-card">Crossover (Bi-articulado)</button>
+                  <button id="exerc4-sets" class="exercise-card">4</button>
+                  <strong>X</strong>
+                  <button id="exerc4-reps" class="exercise-card">12</button>
+                  <button id="exerc4-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc4-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc5" class="exercises">
+                  <button id="exerc5-index" class="exercise-card">4</button>
+                  <button id="exerc5-name" class="exercise-card">Elevação Lateral (Cabos)</button>
+                  <button id="exerc5-sets" class="exercise-card">3</button>
+                  <strong>X</strong>
+                  <button id="exerc5-reps" class="exercise-card">12</button>
+                  <button id="exerc5-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc5-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc6" class="exercises">
+                  <button id="exerc6-index" class="exercise-card">5</button>
+                  <button id="exerc6-name" class="exercise-card">Desenvolvimento Militar</button>
+                  <button id="exerc6-sets" class="exercise-card">4</button>
+                  <strong>X</strong>
+                  <button id="exerc6-reps" class="exercise-card">8</button>
+                  <button id="exerc6-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc6-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <div id="exerc7" class="exercises">
+                  <button id="exerc7-index" class="exercise-card">6</button>
+                  <button id="exerc7-name" class="exercise-card">Elevação Frontal (Banco 45°)</button>
+                  <button id="exerc7-sets" class="exercise-card">3</button>
+                  <strong>X</strong>
+                  <button id="exerc7-reps" class="exercise-card">15</button>
+                  <button id="exerc7-disc" class="exercise-card">Discrip.</button>
+                  <button id="exerc7-done" class="exercise-card done-btn">DONE</button>
+                </div>
+
+                <form action="#" id="add-exercise" class="exercises">
+                  <input required type="text" name="index" id="exerc-index" class="exercise-card" placeholder="n"
+                    autocomplete="off">
+                  <input required type="text" name="name" id="exerc-name" class="exercise-card"
+                    placeholder="New exercise name" autocomplete="off">
+                  <input required type="text" name="sets" id="exerc-sets" class="exercise-card" placeholder="Set">
+                  <strong>X</strong>
+                  <input required type="text" name="reps" id="exerc-reps" class="exercise-card" placeholder="Rep">
+                  <button id="exerc-disc" class="exercise-card">Discrip</button>
+                  <button required type="submit" id="exerc-add" class="exercise-card">ADD</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="sec-mid" class="cards-area">
+          <div class="left">
+            <div id="personal-notes">
+              <span>Personal Notes:</span>
+              <div class="card">
+                <form action="#">
+                  <div>
+                    <p for="cardio">Cardio:</p>
+                    <div style="display: flex; gap: 10px;">
+                      <div id="cardios" style="display: flex;flex-direction: column;gap: 5px;">
+                        <div class="notes-card cardio" name="cadio-1">4.5 km / 45 min</div>
+                      </div>
+                      <input id="add-cardio" class="notes-card" type="button" name="cardio" value="+">
+                    </div>
+
+                    <p>Rate Workout:</p>
+                    <div id="radio-list" style="display: flex; gap: 10px;">
+                      <label for="bad" class="notes-card">
+                        <input type="radio" id="bad" name="workoutRate" value=" bad"
+                          style="position: absolute; opacity: 0;">
+                        BAD
+                      </label>
+                      <label for="ok" class="notes-card">
+                        <input type="radio" id="ok" name="workoutRate" value="ok"
+                          style="position: absolute; opacity: 0;">
+                        OK
+                      </label>
+                      <label for="good" class="notes-card">
+                        <input type="radio" id="good" name="workoutRate" value="good"
+                          style="position: absolute; opacity: 0;">
+                        GOOD
+                      </label>
+                      <label for="great" class="notes-card">
+                        <input type="radio" id="great" name="workoutRate" value="great"
+                          style="position: absolute; opacity: 0;">
+                        GREAT
+                      </label>
+                    </div>
+                  </div>
+
+                  <div style="flex-grow: 1;display: flex;flex-direction: column;">
+                    <label for="notes">Notes:</label>
+                    <textarea name="notes" id="notes" class="notes-card" required
+                      placeholder="Take notes here!"></textarea>
+                    <button type="submit" class="notes-card">Send</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="right">
+            <div id="exercise-plan">
+              <span>Exercise plan:</span>
+              <div class="card">
+                <div id="label">
+                  <p>Set:</p>
+                  <p>W8:</p>
+                  <p>Used:</p>
+                </div>
+
+                <div class="sets">
+                  <form id="set1" action="#" class="sets-area">
+                    <p class="set">SET 1</p>
+                    <p class="weight">3 plc</p>
+                    <input required type="text" name="wl-1" id="wl-1" class="used" placeholder="3 plc">
+                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
+                  </form>
+
+                  <form id="set2" action="#" class="sets-area">
+                    <p class="set">SET 2</p>
+                    <p class="weight">3 plc</p>
+                    <input required type="text" name="wl-2" id="wl-2" class="used" placeholder="3 plc">
+                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
+                  </form>
+
+                  <form id="set3" action="#" class="sets-area">
+                    <p class="set">SET 3</p>
+                    <p class="weight">3 plc</p>
+                    <input required type="text" name="wl-3" id="wl-3" class="used" placeholder="3 plc">
+                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
+                  </form>
+
+                  <form id="set4" action="#" class="sets-area">
+                    <p class="set">SET 4</p>
+                    <p class="weight">3 plc</p>
+                    <input required type="text" name="wl-4" id="wl-4" class="used" placeholder="3 plc">
+                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
+                  </form>
+
+                  <form id="add-set" action="#" class="sets-area">
+                    <p class="set">New Set</p>
+                    <input type="text" class="weight" placeholder="W8 und" required>
+                    <input disabled class="used">
+                    <button class="exercise-card add-btn" type="submit">ADD</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <section id="sec-bottom" class="cards-area">
+          <div class="left">
+            <div id="jp-pro">
+              <span>Jacked Planner PRO:</span>
+              <div class="pro-call">
+                <div id="pro-left">
+                  <p>With <span style="color:var(--orange); text-decoration:none;">Jacked Planner
+                      PRO</span>, you can
+                    access:</p>
+                  <ul>
+                    <li>All the Jacked Planners in the plataform</li>
+                    <li>Unlimited Jacked Planners</li>
+                    <li>Track your workout progress</li>
+                    <li>Get workout data, section by section!</li>
+                  </ul>
+                </div>
+                <div id="pro-right">
+                  <img src="../assets/images/JACKED PLANNER PRO.svg" alt="logoPRO">
+                  <div class="price">
+                    <strong>$4,99</strong>
+                    <p>month</p>
+                  </div>
+                  <button class="pro-btn">
+                    Get<span style="color: var(--orange); text-decoration: none;">PRO</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="right">
+            <span>Weight History:</span>
+            <div class="card wh-card">
+              <div id="grafic-box">
+
+              </div>
+              <div id="grafic-info-box">
+                <div id="pr-label">
+                  <p style="color: var(--dark);">PERSONAL RECORD</p>
+                </div>
+                <div id="pr">
+                  <p><span id="pr-weight">--</span><span id="pr-und">kg</span> for</p>
+                  <p><span id="pr-reps">--</span> reps</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script src="/scripts/menuHandle.js"></script>
+  <script src="/scripts/exerciseDone.js"></script>
+  <script src="/scripts/personalNotes.js"></script>
+</body>
+
+</html>

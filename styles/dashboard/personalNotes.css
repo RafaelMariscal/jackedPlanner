@@ -1,0 +1,92 @@
+#personal-notes {
+  min-width: 790px;
+}
+
+#personal-notes>.card {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.notes-card {
+  height: 40px;
+  min-width: 45px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark);
+  background-color: var(--light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 100ms ease;
+}
+
+#personal-notes form {
+  display: flex;
+  gap: 40px;
+}
+
+#personal-notes label:not([for='notes']) {
+  cursor: pointer;
+}
+
+#personal-notes label:not([for='notes']):hover {
+  color: var(--orange);
+}
+
+.radio-selected {
+  border: 2px solid white;
+  background-color: var(--orange);
+  font-weight: 900;
+  color: var(--dark) !important;
+}
+
+#personal-notes p,
+label[for='notes'] {
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+
+#personal-notes p:not(p[for='cardio']) {
+  margin-top: 10px;
+}
+
+#add-cardio {
+  text-align: center;
+  max-width: 30px;
+  border: 3px solid var(--orange);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--light);
+  font-size: 16px;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+#add-cardio {
+  text-align: center;
+  max-width: 20px;
+}
+
+.cardio {
+  cursor: pointer;
+}
+
+#add-cardio:hover {
+  box-shadow: 0 0 8px var(--orange);
+}
+
+#personal-notes form button {
+  margin-top: 10px;
+  cursor: pointer;
+  background-color: var(--orange);
+  width: 100%;
+}
+
+#personal-notes textarea {
+  width: 100%;
+  margin-top: 5px;
+  flex-grow: 1;
+}

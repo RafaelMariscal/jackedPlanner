@@ -1,0 +1,127 @@
+:root {
+  --gold: #cd6e01;
+}
+
+footer {
+  margin-top: 80px;
+  background-color: var(--dark);
+  padding: 30px;
+}
+
+#footer-area {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+}
+
+#footer-left {
+  align-self: center;
+  padding: 0 80px;
+}
+
+#footer-left img {
+  width: 250px;
+}
+
+#footer-left p:nth-of-type(1) {
+  font-size: 20px
+}
+
+#footer-left p:nth-of-type(2) {
+  font-size: 22.5px;
+  margin-top: -5px
+}
+
+#footer-right .socials {
+  justify-content: start;
+  margin-top: 10px;
+}
+
+input[type='submit']:active,
+button:active {
+  background-color: var(--gold) !important;
+}
+
+#top-btn-fix {
+  position: fixed;
+  z-index: 20;
+  right: 10px;
+  bottom: 20px;
+}
+
+#top-btn {
+  position: relative;
+  background-color: var(--dark);
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--orange);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--orange);
+}
+
+#top-btn:active {
+  background-color: #323232 !important;
+}
+
+#top-btn span {
+  margin-top: 15px;
+}
+
+#top-btn span::before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-image: url(/assets/icons/Chevron-Up.png);
+  background-size: contain;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media screen and (max-width:992px) {
+  #footer-left img {
+    width: 200px;
+  }
+
+  #footer-left p:nth-of-type(1) {
+    font-size: 16px
+  }
+
+  #footer-left p:nth-of-type(2) {
+    font-size: 18px;
+    margin-top: -5px
+  }
+}
+
+@media screen and (max-width:768px) {
+  #footer-area {
+    justify-content: space-between
+  }
+
+  #footer-left {
+    padding: 0 40px;
+  }
+
+  #footer-right p:nth-child(1) {
+    display: none;
+  }
+}
+
+@media screen and (max-width:576px) {
+  footer {
+    margin-top: 50px;
+  }
+
+  #footer-area {
+    flex-direction: column;
+  }
+
+  #footer-right p:nth-child(1) {
+    display: block;
+    margin: 20px 0;
+  }
+}

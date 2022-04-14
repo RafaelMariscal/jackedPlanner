@@ -1,0 +1,208 @@
+#get-pro {
+  background-color: var(--orange);
+  height: 250px;
+  width: 100%;
+  margin: 50px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 0;
+}
+
+#pro-card::before {
+  content: '';
+  background-color: var(--dark);
+  width: 1000px;
+  height: 280px;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: -1;
+}
+
+#pro-card,
+#pro-price,
+.price-tag {
+  display: flex;
+  z-index: 1;
+}
+
+#pro-card {
+  justify-content: space-around;
+  width: 900px;
+  height: 300px;
+}
+
+#pro-price {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#pro-price img {
+  width: 330px;
+}
+
+.price-tag {
+  align-items: end;
+  margin-top: 10px;
+  position: relative;
+}
+
+.price-tag h2 {
+  font-size: 46px;
+  position: relative;
+}
+
+.price-tag h2::after {
+  content: '';
+  width: 30px;
+  height: 40px;
+  background-image: url(/assets/images/Rectangle\ 40.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: absolute;
+  bottom: 15px;
+}
+
+.price-tag p {
+  margin-bottom: 15px;
+  margin-left: -5px;
+}
+
+.pro-btn {
+  margin-top: 10px;
+  width: 95%;
+  height: 40px;
+  font-size: 16px;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.20);
+  border: 2px solid var(--orange);
+  border-radius: 8px;
+  background-color: var(--dark);
+  box-shadow: 0 0 6px var(--orange);
+}
+
+#pro-card h2,
+#pro-texts h3,
+#pro-texts p {
+  font-weight: 400;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.20);
+}
+
+#pro-texts {
+  align-self: center;
+}
+
+#pro-texts h3 {
+  max-width: 280px;
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+#pro-texts li {
+  position: relative;
+}
+
+#pro-texts p::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--orange);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.20);
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#pro-texts p {
+  margin-left: 20px;
+  font-size: 18px;
+}
+
+@media screen and (max-width:992px) {
+  #pro-card::before {
+    width: 100%;
+    height: 280px;
+    top: -15px;
+    z-index: -1;
+  }
+
+  #pro-price img {
+    width: 250px;
+  }
+
+  .price-tag {
+    margin-top: 10px;
+  }
+
+  .price-tag h2 {
+    font-size: 34px;
+  }
+
+  .price-tag h2::after {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    bottom: 13px;
+  }
+
+  .price-tag p {
+    margin-bottom: 8px;
+    margin-left: -12px;
+  }
+}
+
+@media screen and (max-width:768px) {
+
+  #pro-card {
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    height: max-content;
+    padding: 30px 0;
+  }
+
+  #pro-card::before {
+    display: none;
+  }
+
+  #get-pro {
+    height: auto;
+    background-color: var(--dark);
+  }
+
+  #pro-price {
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+}
+
+@media screen and (max-width:576px) {
+  #pro-texts {
+    padding: 0 35px;
+  }
+
+  #pro-texts h3 {
+    max-width: 280px;
+    font-size: 18px;
+  }
+
+  #pro-texts>ul>li:nth-of-type(1)>p::before,
+  #pro-texts>ul>li:nth-of-type(4)>p::before,
+  #pro-texts>ul>li:nth-of-type(5)>p::before {
+    left: 0;
+    top: 12px;
+  }
+
+  #pro-texts p {
+    margin-left: 20px;
+    font-size: 16px;
+  }
+
+  #get-pro {
+    margin-bottom: 40px;
+  }
+}
