@@ -44,7 +44,7 @@ img[alt="center"] {
 }
 
 #dashboard-glass {
-  height: 800px;
+  height: 850px;
   margin: 70px 40px 0;
   border-radius: 20px;
   border: 1px solid rgba(20, 20, 20, 0.15);
@@ -120,7 +120,7 @@ img[alt='logo'] {
   width: 100%;
   position: absolute;
   top: 0;
-  padding: 50px 50px 40px 180px;
+  padding: 35px 50px 40px 180px;
   z-index: -1;
   overflow-y: scroll;
 }
