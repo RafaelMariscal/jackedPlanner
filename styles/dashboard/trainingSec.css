@@ -67,7 +67,8 @@
 }
 
 .exercises .exercise-card:nth-child(6),
-.exercises .exercise-card:nth-child(7) {
+.exercises .exercise-card:nth-child(7),
+.exercises .exercise-card:nth-child(8) {
   width: 100px;
   margin-left: 10px;
   background-color: var(--dark);
@@ -97,6 +98,21 @@
 
 .exercise-card:nth-child(5) {
   max-width: 65px;
+}
+
+.edit {
+  margin-left: 10px;
+  border: none !important;
+  min-width: 20px;
+  max-width: 30px;
+}
+
+.edit * {
+  fill: var(--orange);
+}
+
+#remove {
+  display: none;
 }
 
 .exercises *:hover {
