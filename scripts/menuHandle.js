@@ -24,7 +24,6 @@ menuElements.forEach((element) => {
       default:
         break;
     }
-    console.log(`${element.id} dashboard selected`)
   })
 })
 

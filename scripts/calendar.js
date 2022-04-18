@@ -58,7 +58,6 @@ month_names.forEach((e, index) => {
   month.innerHTML = `<div data-month="${index}">${e}</div>`
   month.querySelector('div').onclick = () => {
     month_list.classList.remove('show')
-    console.log(curr_year)
     curr_month.value = index
     generateCalendar(index, curr_year.value)
   }
@@ -66,7 +65,6 @@ month_names.forEach((e, index) => {
 })
 
 let date_area = document.querySelectorAll('.date-area')[0]
-console.log(date_area)
 
 date_area.onclick = () => {
   month_list.classList.add('show')

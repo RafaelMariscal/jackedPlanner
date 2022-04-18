@@ -15,6 +15,10 @@
   width: 420px;
 }
 
+#sec-top {
+  margin-bottom: 10px;
+}
+
 #sec-top,
 .left,
 .rigth,
@@ -110,8 +114,4 @@ img[alt='logoPRO'] {
   align-self: flex-end;
   margin-bottom: 8px;
   margin-left: -8px;
-}
-
-.add * {
-  color: rgb(150, 150, 150) !important;
 }
