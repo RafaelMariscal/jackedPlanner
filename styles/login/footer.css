@@ -60,6 +60,7 @@ button:active {
   border: 1px solid var(--orange);
   border-radius: 50%;
   box-shadow: 0 0 8px var(--orange);
+  cursor: pointer;
 }
 
 #top-btn:active {

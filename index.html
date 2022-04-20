@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./styles/login/getpro.css">
   <link rel="stylesheet" href="./styles/login/procall.css">
   <link rel="stylesheet" href="./styles/login/footer.css">
+  <link rel="stylesheet" href="./styles/login/createAccount.css">
   <title>Jacked Planner</title>
 </head>
 
@@ -23,6 +24,40 @@
       <span>TOP</span>
     </button>
   </a>
+
+  <!-- make it work for both forms -->
+  <div id="forgot-box" class="form-display hide">
+    <form id="forgot-form" action="#" method="" autocomplete="on">
+      <div style="display: flex; justify-content: space-between;">
+        <p>Forgot your password?</p>
+        <p class="close">x</p>
+      </div>
+      <label for=" userNameCheck">Name:</label>
+      <input type="text" name="userNameCheck" id="userNameCheck" placeholder="John Wick" required>
+      <label for="emailCheck">Email:</label>
+      <input type="email" name="emailCheck" id="userEmailCheck" placeholder="johnwick@hightable.com" required>
+      <button type="submit" id="forgot-btn" class="form-display-btn">Send Instructions</button>
+      <p id="forgot-msg" class="hide" style="align-self: center;">Email de confirmação enviado!</p>
+    </form>
+  </div>
+
+  <div id="create-box" class="form-display hide">
+    <form id="create-form" action="/" method="" autocomplete="on">
+      <div style="display: flex; justify-content: space-between;">
+        <p>Create new account</p>
+        <p class="close">x</p>
+      </div>
+      <label for=" userName">Name:</label>
+      <input type="text" name="userName" id="userName" placeholder="John Wick" required>
+      <label for="userEmail">Email:</label>
+      <input type="email" name="userEmail" id="userEmail" placeholder="johnwick@hightable.com" required>
+      <label for="userPassword">Password:</label>
+      <input type="password" name="userPassword" id="userPassword" placeholder="xxxxxx" style="color: var(--dark);"
+        required>
+      <button type="submit" id="create-submit" class="form-display-btn">Create Account</button>
+      <p id="create-msg" class="hide" style="align-self: center;">Usuário criado com sucesso!</p>
+    </form>
+  </div>
 
   <header>
     <div>
@@ -73,8 +108,8 @@
           <label for="password">Password</label></br>
           <input type="password" name="password" required id="password">
           <div id="links">
-            <a href="#">Forgot password</a>
-            <a href="#">Create account</a>
+            <a href="" id="forgot">Forgot password</a>
+            <a href="" id="create">Create account</a>
           </div>
           <input type="submit" value="Login">
 
@@ -241,6 +276,8 @@
 
 
   </footer>
+
+  <script src="./scripts/landing.js"></script>
 
 </body>
 
