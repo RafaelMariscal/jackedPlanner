@@ -13,6 +13,10 @@
   opacity: 0;
 }
 
+::-webkit-scrollbar {
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .card-area::-webkit-scrollbar-thumb {
   background: var(--orange);
   border-radius: 10px;
@@ -53,7 +57,6 @@
   align-items: center;
   justify-content: center;
   color: var(--dark);
-  font-size: 14px;
   transition: 100ms ease;
   font-size: 16px;
   font-weight: 600;
@@ -179,3 +182,74 @@
 #rep-label {
   margin-left: 34px !important;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .exercise-card {
+    height: 35px;
+    min-width: 35px;
+    font-size: 14px;
+  }
+
+  .exercise-card {
+    padding: 0;
+  }
+
+  .exercise-card:nth-child(2) {
+    text-indent: 20px;
+  }
+
+  .exercise-card:nth-child(1) {
+    max-width: 36px;
+  }
+
+  .exercise-card::placeholder {
+    font-size: 14px;
+    text-align: center;
+    text-indent: 0;
+  }
+
+  .card-area {
+    max-width: 720px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .exercise-card {
+    height: 35px;
+    min-width: 35px;
+    font-size: 14px;
+  }
+
+  .exercise-card {
+    padding: 0;
+  }
+
+  .exercise-card:nth-child(2) {
+    text-indent: 20px;
+  }
+
+  .exercise-card:nth-child(1) {
+    max-width: 36px;
+  }
+
+  .exercise-card::placeholder {
+    font-size: 14px;
+    text-align: center;
+    text-indent: 0;
+  }
+
+  .card-area {
+    width: 450px !important;
+  }
+
+  .right {
+    margin: 0 auto;
+    min-width: 0;
+    width: 450px !important;
+  }
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 576px) {}

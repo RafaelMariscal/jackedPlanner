@@ -90,3 +90,34 @@ label[for='notes'] {
   margin-top: 5px;
   flex-grow: 1;
 }
+
+@media screen and (max-width: 992px) {
+  #personal-notes {
+    min-width: 450px;
+    margin: 0 auto;
+  }
+
+  #personal-notes form {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #personal-notes .card {
+    max-height: none;
+    width: 450px;
+    height: max-content;
+    margin: 0 !important;
+  }
+
+  #personal-notes .card * {
+    font-size: 14px !important;
+  }
+
+  #personal-notes textarea {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 576px) {}

@@ -1,3 +1,5 @@
+import { dbStructure } from "./dbManager.js";
+
 const firebaseConfig = {
   apiKey: "AIzaSyC6VYT4VLAsguid-o5qIv7ZQVMRu-BdLNM",
   authDomain: "jackedplanner.firebaseapp.com",
@@ -21,10 +23,11 @@ function login(x, y) {
 
 function createNewAccount(x, y, z) {
   auth.createUserWithEmailAndPassword(x, y).then(cred => {
-    return db.collection('users').doc(cred.user.uid).set({
+    db.collection('users').doc(cred.user.uid).set({
       userEmail: x,
       userName: z
     })
+    dbStructure(cred.user.uid)
   }).then(() => {
     console.log('new user created')
   }).catch(err => {
@@ -46,4 +49,9 @@ auth.onAuthStateChanged(user => {
   } else { console.log('ninguém loggado!') }
 })
 
+
 export { createNewAccount, login, logout }
+export { firebaseConfig, db }
+
+
+/* CRIAR UM CAMINHO PARA ESTRUTURAR O DATA BASE!! */

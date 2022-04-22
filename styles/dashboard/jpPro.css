@@ -44,3 +44,42 @@
 .add-btn {
   cursor: pointer;
 }
+
+@media screen and (max-width: 1200px) {
+  #jp-pro {
+    min-width: 720px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #jp-pro {
+    margin-top: 15px;
+    min-width: 450px;
+  }
+
+  .pro-call {
+    flex-direction: column;
+    height: 320px;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #pro-left {
+    margin-top: -50px;
+  }
+
+  #pro-right {
+    display: flex;
+    position: relative;
+  }
+
+  #pro-right .pro-btn {
+    position: absolute;
+    bottom: -50px;
+    z-index: 2;
+  }
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 576px) {}

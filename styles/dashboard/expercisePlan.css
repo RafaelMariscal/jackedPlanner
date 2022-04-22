@@ -96,3 +96,24 @@
   border: none;
   font-size: 16px;
 }
+
+@media screen and (max-width: 1200px) {
+  .card {
+    max-width: 720px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .sets-area * {
+    font-size: 14px;
+  }
+
+  .weight::placeholder {
+    font-size: 14px;
+  }
+}
+
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 576px) {}

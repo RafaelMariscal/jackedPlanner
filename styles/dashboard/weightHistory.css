@@ -23,7 +23,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -25%);
   cursor: pointer;
 }
 
@@ -72,3 +72,28 @@
   text-decoration: none !important;
   font-weight: 700 !important;
 }
+
+@media screen and (max-width: 1200px) {
+  .right::before {
+    max-width: 720px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  #pr-label {
+    font-size: 22px;
+  }
+
+  #pr {
+    font-size: 20px;
+  }
+
+  #sec-bottom>.right::after {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {}
+
+@media screen and (max-width: 576px) {}
