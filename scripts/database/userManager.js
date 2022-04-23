@@ -49,9 +49,5 @@ auth.onAuthStateChanged(user => {
   } else { console.log('ninguém loggado!') }
 })
 
-
 export { createNewAccount, login, logout }
 export { firebaseConfig, db }
-
-
-/* CRIAR UM CAMINHO PARA ESTRUTURAR O DATA BASE!! */
