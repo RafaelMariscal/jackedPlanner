@@ -1,4 +1,4 @@
-import { createNewAccount, login } from "./database/userManager.js";
+import { createNewAccount, login, ifUserLogged } from "./database/userManager.js";
 
 const loginForm = document.getElementById('loginForm')
 const userInput = document.getElementById('user')
@@ -7,10 +7,16 @@ var user = ''
 userInput.oninput = () => user = userInput.value
 var password = ''
 passwordInput.oninput = () => password = passwordInput.value
-
 loginForm.onsubmit = (event) => {
   event.preventDefault()
   login(user, password)
+  if (login(user, password)) {
+    setTimeout(() => {
+      loginForm.submit()
+    }, 2000)
+  } else (
+    alert('usuário não cadastrado.')
+  )
 }
 
 const newUserBox = document.getElementById('create-box')
@@ -66,3 +72,5 @@ forgotForm.onsubmit = (event) => {
 const close = document.getElementsByClassName('close')
 close[0].onclick = () => forgotBox.classList.toggle('hide')
 close[1].onclick = () => newUserBox.classList.toggle('hide')
+
+document.addEventListener('DOMContentLoaded', ifUserLogged)

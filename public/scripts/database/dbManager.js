@@ -46,9 +46,6 @@ function createExerciseStructure() {
     liftedReps: [],
   }
 }
-
-console.log(createPlannerStructure())
-
 function dbStructure(uid) {
   return db.collection('users').doc(uid).update({
     planners: {
@@ -384,10 +381,3 @@ function dbStructure(uid) {
 }
 
 export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure }
-
-
-/* 
-
-2. COMEÇAR OS ROUTES: 
-
-*/

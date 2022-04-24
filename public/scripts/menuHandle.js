@@ -1,3 +1,5 @@
+import { logout, ifUserLogged } from "./database/userManager.js"
+
 const menuElements = Array.from(document.getElementById('menu-icons').children)
 
 menuElements.forEach((element) => {
@@ -33,3 +35,6 @@ function position(id) {
   return top
 }
 
+const logoutIcon = document.getElementById('exit')
+
+logoutIcon.onclick = logout

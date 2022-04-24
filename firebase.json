@@ -1,0 +1,30 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "hosting": {
+    "cleanUrls": true,
+    "redirects": [
+      {
+        "source": "/index",
+        "destination": "/index.html",
+        "type": "301"
+      },
+      {
+        "source": "/dashboard",
+        "destination": "/pages/dashboard.html",
+        "type": "301"
+      }
+    ],
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "storage": {
+    "rules": "storage.rules"
+  }
+}

@@ -32,7 +32,6 @@ var atualList = []
 for (let i = 0; i <= localStorage.length - 1; i++) {
   exercList.push(JSON.parse(localStorage.getItem(i)))
 }
-console.log(exercList)
 let exercises = document.getElementById('exercises-card')
 let exerciseId = `exerc${exercises.children.length + 1}`
 function populate() {

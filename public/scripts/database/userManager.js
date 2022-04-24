@@ -14,7 +14,7 @@ const db = firebase.firestore()
 const auth = firebase.auth()
 
 function login(x, y) {
-  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
+  return auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
     auth.signInWithEmailAndPassword(x, y).then(() => {
       console.log(`user logged in: ${auth.currentUser}`)
     }).catch(err => console.log(err))
@@ -38,16 +38,32 @@ function createNewAccount(x, y, z) {
 function logout() {
   auth.signOut().then(() => {
     console.log('User logged Out!')
+    location.href = '/'
+
   }).catch(err => {
     console.error(err)
   })
 }
 
-auth.onAuthStateChanged(user => {
-  if (user) {
-    console.log(user.currentUser)
-  } else { console.log('ninguém loggado!') }
-})
+function ifUserLogged() {
+  auth.onAuthStateChanged(user => {
+    if (user) {
+      console.log(`usuário ' ${user.email} ' está logado.`)
+      if (location.pathname !== '/pages/dashboard.html') {
+        setTimeout(() => {
+          location.href = '/dashboard'
+        }, 1000)
+      }
+    } else {
+      console.log('ninguém loggado!')
+      if (location.pathname == '/pages/dashboard.html') {
+        location.href = '/'
+      }
+    }
+  })
 
-export { createNewAccount, login, logout }
+}
+
+export { createNewAccount, login, logout, ifUserLogged }
 export { firebaseConfig, db }
+
