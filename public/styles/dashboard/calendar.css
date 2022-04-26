@@ -3,8 +3,6 @@
 }
 
 #calendar .card {
-  width: 350px;
-  height: 100%;
   position: relative;
   overflow: hidden;
 }
@@ -13,14 +11,18 @@
   color: var(--light);
   text-decoration: none;
   font-weight: 300;
+}
 
+.calendar-header,
+.calendar-days {
+  display: flex;
+  align-items: center;
 }
 
 .calendar-header {
-  display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
+  font-size: 1.25em;
+  margin-top: 10px;
 }
 
 .calendar-week-day,
@@ -32,34 +34,30 @@
 .calendar-week-day div {
   display: grid;
   place-items: center;
-  padding: 8px 0px;
-  margin-right: 5px;
+  padding: .75em 0;
   color: var(--orange) !important;
+  font-size: 2em;
   font-weight: 900 !important;
   text-shadow: 0 0 4px rgba(0, 0, 0, .35);
 }
 
 .calendar-days div {
-  width: 35px;
-  height: 30px;
-  font-size: 14px !important;
+  width: 100%;
+  font-size: 1.5em;
+  text-align: center;
   text-shadow: 0 0 6px rgba(0, 0, 0, .85);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-left: 5px;
+  justify-self: center;
+  padding: .3em;
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   animation: to-top 500ms forwards;
 }
 
-.date-area {
-  padding-right: 5px;
-  cursor: pointer;
-}
-
-.month-picker {
+.calendar-days div,
+.date-area,
+.month-picker,
+.year-change,
+.month-list>div>div {
   cursor: pointer;
 }
 
@@ -87,12 +85,10 @@
 }
 
 .year-change {
-  height: 30px;
-  width: 30px;
-  font-size: 20px;
+  width: 1.5em;
+  font-size: 2em !important;
   display: grid;
   place-items: center;
-  cursor: pointer;
 }
 
 .year-change:hover *,
@@ -111,7 +107,7 @@
 
 .calendar-days div span:nth-child(1),
 .calendar-days div span:nth-child(3) {
-  width: 2px;
+  width: .25rem;
   height: 0;
   background-color: var(--orange);
 }
@@ -134,7 +130,7 @@
 .calendar-days div span:nth-child(2),
 .calendar-days div span:nth-child(4) {
   width: 0;
-  height: 2px;
+  height: .25rem;
   background-color: var(--orange);
 }
 
@@ -150,7 +146,7 @@
 
 .calendar-days div:hover span:nth-child(2),
 .calendar-days div:hover span:nth-child(4) {
-  width: 83%;
+  width: 90%;
 }
 
 .calendar-days div:hover span:nth-child(1) {
@@ -170,15 +166,11 @@
 }
 
 .calendar-days div.curr-date {
-  height: 90;
   background-color: var(--orange);
   color: var(--dark) !important;
   text-shadow: none;
-  font-size: 14px !important;
   font-weight: 900 !important;
-  padding-left: 0;
   box-shadow: inset 0 0 0 4px var(--dark);
-  margin-left: 2px;
 }
 
 .calendar-days div.curr-date span {
@@ -192,7 +184,8 @@
   top: 0;
   left: 0;
   background-color: var(--dark);
-  padding: 10px;
+  font-size: 1.5em;
+  padding: 1em;
   display: grid;
   grid-template-columns: repeat(3, auto);
   transform: translateY(-100%);
@@ -217,7 +210,6 @@
   padding: 5px 8px;
   border-radius: 4px;
   text-align: center;
-  cursor: pointer;
 }
 
 .month-list>div>div:hover {

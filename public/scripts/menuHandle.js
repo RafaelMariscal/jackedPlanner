@@ -1,10 +1,8 @@
 import { logout, ifUserLogged } from "./database/userManager.js"
 
 const menuElements = Array.from(document.getElementById('menu-icons').children)
-
+var selector = document.querySelector('#nav-selector')
 menuElements.forEach((element) => {
-  let selector = document.querySelector('#nav-selector')
-
   element.addEventListener('click', () => {
     switch (element.id) {
       case 'home':
@@ -29,9 +27,14 @@ menuElements.forEach((element) => {
   })
 })
 
+document.addEventListener('DOMContentLoaded', () => {
+  selector.style.top = `calc(${position('home')}px - 78px)`
+})
+
 function position(id) {
   let metrics = document.getElementById(id).getBoundingClientRect()
   let top = metrics.y
+  selector.style.height = metrics.height
   return top
 }
 

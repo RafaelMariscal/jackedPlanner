@@ -1,7 +1,11 @@
+#workout-sec {
+  width: 100%;
+  height: 100%;
+}
+
 #workout-sec .card-area {
   overflow: scroll;
   width: 100%;
-  height: 320px;
 }
 
 ::-webkit-scrollbar {
@@ -35,22 +39,9 @@
   cursor: pointer;
 }
 
-.exercise-card:nth-child(2) {
-  min-width: 300px;
-}
-
-.exercise-card:nth-child(6) {
-  min-width: 100px;
-}
-
-.exercise-card:nth-child(7) {
-  min-width: 80px;
-}
-
 .exercise-card {
-  height: 40px;
-  min-width: 45px;
-  padding: 5px 15px;
+  min-width: 2.25em;
+  padding: .25em .75em;
   border: none;
   border-radius: 6px;
   display: flex;
@@ -58,12 +49,11 @@
   justify-content: center;
   color: var(--dark);
   transition: 100ms ease;
-  font-size: 16px;
+  font-size: 1.5em;
   font-weight: 600;
 }
 
 .exercises .exercise-card:nth-child(2) {
-  min-width: none;
   justify-content: left;
   flex-grow: 1;
 }
@@ -71,27 +61,29 @@
 .exercises .exercise-card:nth-child(6),
 .exercises .exercise-card:nth-child(7),
 .exercises .exercise-card:nth-child(8) {
-  width: 100px;
+  width: 8ch;
   margin-left: 10px;
   background-color: var(--dark);
-  border: 2px solid var(--orange);
+  box-shadow: 0 0 0 2px var(--orange);
   font-weight: 300;
   color: var(--light);
 }
 
 #add-exercise {
-  margin: 20px 0 0;
+  margin: 1.5em 0 0;
+  font-size: 1em;
+  position: relative;
 }
 
 #add-exercise *:not(strong) {
   background-color: rgba(0, 0, 0, 0);
   color: var(--light);
   font-weight: 300;
-  border: 2px solid var(--orange);
+  box-shadow: 0 0 0 2px var(--orange);
 }
 
 #add-exercise>#remove {
-  opacity: 0;
+  display: none;
 }
 
 .exercise-card:nth-child(1) {
@@ -163,24 +155,32 @@
   outline: none;
 }
 
-#exercises-labels {
-  width: 470px;
+#exerc-index {
+  position: relative;
 }
 
-#i-label {
-  margin-left: 16px !important;
+#exerc-index::after {
+  position: absolute;
+  content: 'N';
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  z-index: 10;
+  top: 0;
 }
 
-#name-label {
-  margin-left: 30px !important;
+#index-label,
+#name-label,
+#reps-label,
+#sets-label {
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--orange);
 }
 
-#set-label {
-  margin-left: 259px !important;
-}
-
-#rep-label {
-  margin-left: 34px !important;
+.labelHiden {
+  font-size: 1.5em;
+  width: 9.6ch;
+  opacity: 0;
 }
 
 

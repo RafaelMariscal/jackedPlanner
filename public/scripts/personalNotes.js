@@ -12,6 +12,6 @@ radioList.forEach(element => {
 
 function wipeBoxes(i) {
   i.forEach((element) => {
-    element.classList = ['notes-card']
+    element.classList = ['content-card']
   })
 }

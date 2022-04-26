@@ -1,11 +1,9 @@
 #dashboard {
-  max-height: 2016px !important;
   height: 100vh;
-  margin: 0 auto;
-  max-width: 2000px;
-  max-height: 950px;
+  width: 100vw;
   overflow: hidden;
   display: flex;
+  justify-content: center;
 }
 
 #images img {
@@ -14,27 +12,27 @@
 }
 
 img[alt="top"] {
-  top: -200px;
-  left: -200px;
-  width: 30vw;
+  top: -5em;
+  left: -5em;
+  width: 20vw;
 }
 
 img[alt="esfere"] {
-  top: 30px;
-  right: 0px;
-  width: 15vw;
+  top: 1em;
+  right: 0;
+  width: 14vw;
 }
 
 img[alt="littleCube"] {
-  left: 10px;
-  bottom: 40px;
+  left: 1em;
+  bottom: 1em;
   width: 10vw;
 }
 
 img[alt="bottomRight"] {
-  bottom: 0px;
+  bottom: 0;
   right: 0;
-  width: 28vw;
+  width: 22vw;
 }
 
 img[alt="center"] {
@@ -42,12 +40,13 @@ img[alt="center"] {
   left: 45%;
   transform: translateX(-50%);
   transform: translateY(-50%);
-  width: 6vw
+  width: 5vw
 }
 
 #dashboard-glass {
-  height: 90vh;
-  width: 96vw;
+  height: 93vh;
+  width: 100vw;
+  max-width: 2640px;
   margin: 70px 40px 0;
   border-radius: 20px;
   border: 1px solid rgba(20, 20, 20, 0.15);
@@ -61,7 +60,7 @@ img[alt="center"] {
 
 aside {
   height: 100%;
-  width: 100px;
+  width: 150px;
   border-radius: 20px 0 0 20px;
   background-color: var(--dark);
   display: flex;
@@ -88,8 +87,17 @@ aside>nav {
 }
 
 #menu-icons li {
-  padding: 0 15px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+#menu-icons li>svg,
+#exit {
+  width: 50px;
+  height: 50px;
 }
 
 #exit:hover,
@@ -103,13 +111,13 @@ aside>nav {
 
 img[alt='logo'] {
   width: 140%;
-  margin: 40px 0 0 20px;
+  margin: 40px 0 0 20%;
 }
 
 #nav-selector {
   position: absolute;
   right: -10px;
-  top: 150px;
+  top: 180px;
   transition: 300ms ease;
   z-index: 0;
 }
@@ -122,7 +130,7 @@ img[alt='logo'] {
   justify-content: space-between;
   position: absolute;
   top: 0;
-  padding: 35px 0px 40px 180px;
+  padding: 35px 0px 40px 280px;
   z-index: -1;
   overflow-y: scroll;
 }
@@ -132,19 +140,42 @@ img[alt='logo'] {
   background-color: rgba(0, 0, 0, 0);
 }
 
-@media screen and (max-width: 1200px) {}
 
-@media screen and (max-width: 768px) {
-  aside {
-    display: none;
+@media (max-width: 2670px) {}
+
+@media (min-width: 2561px) {}
+
+@media (max-width: 1240px) {}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {}
+
+
+/* --------------  height related -------------------- */
+
+@media (max-height: 1080px) {
+  body {
+    background-color: red;
   }
-
-  #dashboard-content {
-    padding: 10px;
-  }
-
-  /* desenvolver menu hamburguer!! */
-
 }
 
-@media screen and (max-width: 576px) {}
+@media (max-height: 800px) {
+  #menu-icons {
+    gap: 45px;
+  }
+
+  #menu-icons>li>* {
+    max-width: 30px;
+  }
+}
+
+@media (max-height: 650px) {
+  #menu-icons {
+    gap: 30px;
+  }
+
+  #menu-icons>li>* {
+    max-width: 30px;
+  }
+}

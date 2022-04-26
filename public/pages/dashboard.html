@@ -283,31 +283,78 @@
       </aside>
 
       <div id="dashboard-content">
+
         <section id="sec-top" class="cards-area">
           <div class="left">
             <div id="planners">
               <span>My Jacked Planners</span>
               <div class="card">
-                <button style="box-shadow: inset 0 0 0 2px var(--orange);" id="plan1" class="planner-card">
-                  <strong>1</strong>
-                  <p>PUSH PULL LEGS</p>
-                </button>
-                <button disabled id="plan2" class="planner-card">
-                  <strong>2</strong>
-                  <p>GET PRO FOR MORE PLANNERS</p>
-                </button>
-                <button disabled id="plan3" class="planner-card">
-                  <strong>3</strong>
-                  <p>GET PRO FOR MORE PLANNERS</p>
-                </button>
-                <button class="pro-btn">
-                  Get<span style="color: var(--orange); text-decoration: none;">PRO</span> to add new Planners
-                </button>
-                <div class="pro-price">
-                  <img src="../assets/images/JACKED PLANNER PRO.svg" alt="logoPRO">
-                  <div class="price">
-                    <strong>$4,99</strong>
-                    <p>month</p>
+                <div>
+                  <button id="plan1" class="content-card">
+                    <strong>1</strong>
+                    <p>PUSH PULL LEGS</p>
+                    <svg class="floating-icon" width="30" height="30" viewBox="0 0 800 800" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M52.9742 59.7678H456.991V115.352H53.9031V745.203H686.399V345.759H743.983V745.203C743.983 757.966 739.724 774.071 727.598 786.46C715.162 799.165 703.047 803.716 685.47 803.716H53.9031C40.8826 803.716 27.4521 798.082 16.1522 786.46C5.26196 775.259 0.0341072 759.4 0.0341797 749.847C0.0360599 502.061 0.0356056 363.138 0.0341797 115.352C0.034092 100.105 3.66029 89.73 13.9856 78.1462C25.1861 65.5806 38.1945 59.7678 52.9742 59.7678Z"
+                        fill="black" />
+                      <path
+                        d="M196.964 602.284L240.434 468.011C239.79 458.673 241.014 437.583 251.06 427.923C253.428 425.646 253.428 423.112 253.428 422.041C275.614 441.24 305.459 472.807 315.326 483.922C326.439 493.788 358.008 523.634 377.208 545.82C376.137 545.82 373.603 545.82 371.326 548.189C361.666 558.235 340.575 559.459 331.237 558.814L196.964 602.284Z"
+                        fill="black" />
+                      <path d="M418.925 500.84L298.297 380.212L579.762 102.836L699.027 222.101L418.925 500.84Z"
+                        fill="black" />
+                      <path
+                        d="M743.326 177.803L622.125 56.6016C622.125 56.6016 646.589 32.2608 662.225 16.6246C670.273 8.57729 682.793 1.42598 698.085 0.814765C714.915 0.142077 729.285 7.69499 738.214 16.6246L789.669 68.0789C796.676 75.0865 799.131 86.3669 799.298 99.021C799.471 112.234 796.923 124.205 789.669 131.46L743.326 177.803Z"
+                        fill="black" />
+                    </svg>
+                  </button>
+                  <button disabled id="plan2" class="content-card">
+                    <strong>2</strong>
+                    <p>GET PRO FOR MORE PLANNERS</p>
+                    <svg class="floating-icon" width="30" height="30" viewBox="0 0 800 800" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M52.9742 59.7678H456.991V115.352H53.9031V745.203H686.399V345.759H743.983V745.203C743.983 757.966 739.724 774.071 727.598 786.46C715.162 799.165 703.047 803.716 685.47 803.716H53.9031C40.8826 803.716 27.4521 798.082 16.1522 786.46C5.26196 775.259 0.0341072 759.4 0.0341797 749.847C0.0360599 502.061 0.0356056 363.138 0.0341797 115.352C0.034092 100.105 3.66029 89.73 13.9856 78.1462C25.1861 65.5806 38.1945 59.7678 52.9742 59.7678Z"
+                        fill="black" />
+                      <path
+                        d="M196.964 602.284L240.434 468.011C239.79 458.673 241.014 437.583 251.06 427.923C253.428 425.646 253.428 423.112 253.428 422.041C275.614 441.24 305.459 472.807 315.326 483.922C326.439 493.788 358.008 523.634 377.208 545.82C376.137 545.82 373.603 545.82 371.326 548.189C361.666 558.235 340.575 559.459 331.237 558.814L196.964 602.284Z"
+                        fill="black" />
+                      <path d="M418.925 500.84L298.297 380.212L579.762 102.836L699.027 222.101L418.925 500.84Z"
+                        fill="black" />
+                      <path
+                        d="M743.326 177.803L622.125 56.6016C622.125 56.6016 646.589 32.2608 662.225 16.6246C670.273 8.57729 682.793 1.42598 698.085 0.814765C714.915 0.142077 729.285 7.69499 738.214 16.6246L789.669 68.0789C796.676 75.0865 799.131 86.3669 799.298 99.021C799.471 112.234 796.923 124.205 789.669 131.46L743.326 177.803Z"
+                        fill="black" />
+                    </svg>
+                  </button>
+                  <button disabled id="plan3" class="content-card">
+                    <strong>3</strong>
+                    <p>GET PRO FOR MORE PLANNERS</p>
+                    <svg class="floating-icon" width="30" height="30" viewBox="0 0 800 800" fill="none"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M52.9742 59.7678H456.991V115.352H53.9031V745.203H686.399V345.759H743.983V745.203C743.983 757.966 739.724 774.071 727.598 786.46C715.162 799.165 703.047 803.716 685.47 803.716H53.9031C40.8826 803.716 27.4521 798.082 16.1522 786.46C5.26196 775.259 0.0341072 759.4 0.0341797 749.847C0.0360599 502.061 0.0356056 363.138 0.0341797 115.352C0.034092 100.105 3.66029 89.73 13.9856 78.1462C25.1861 65.5806 38.1945 59.7678 52.9742 59.7678Z"
+                        fill="black" />
+                      <path
+                        d="M196.964 602.284L240.434 468.011C239.79 458.673 241.014 437.583 251.06 427.923C253.428 425.646 253.428 423.112 253.428 422.041C275.614 441.24 305.459 472.807 315.326 483.922C326.439 493.788 358.008 523.634 377.208 545.82C376.137 545.82 373.603 545.82 371.326 548.189C361.666 558.235 340.575 559.459 331.237 558.814L196.964 602.284Z"
+                        fill="black" />
+                      <path d="M418.925 500.84L298.297 380.212L579.762 102.836L699.027 222.101L418.925 500.84Z"
+                        fill="black" />
+                      <path
+                        d="M743.326 177.803L622.125 56.6016C622.125 56.6016 646.589 32.2608 662.225 16.6246C670.273 8.57729 682.793 1.42598 698.085 0.814765C714.915 0.142077 729.285 7.69499 738.214 16.6246L789.669 68.0789C796.676 75.0865 799.131 86.3669 799.298 99.021C799.471 112.234 796.923 124.205 789.669 131.46L743.326 177.803Z"
+                        fill="black" />
+                    </svg>
+                  </button>
+                </div>
+                <div>
+                  <button class="pro-btn">
+                    Get<span style="color: var(--orange); text-decoration: none;">PRO</span> to add new Planners
+                  </button>
+                  <div class="pro-price">
+                    <img src="../assets/images/JACKED PLANNER PRO.svg" alt="logoPRO">
+                    <div class="price">
+                      <strong>$4,99</strong>
+                      <p>month</p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -357,11 +404,21 @@
             <div id="workout-sec">
               <span>Workout Section:</span><span id="w-day">CHEST / SHOULDER</span>
               <div class="card card-area">
-                <div id="exercises-labels">
+                <!-- <div id="exercises-labels">
                   <span id="i-label" style="color: var(--orange); text-decoration: none;">N</span>
                   <span id="name-label" style="color: var(--orange); text-decoration: none;">NAME</span>
                   <span id="set-label" style="color: var(--orange); text-decoration: none;">SET</span>
                   <span id="rep-label" style="color: var(--orange); text-decoration: none;">REP</span>
+                </div> -->
+                <div id="exercises-labels" class="exercises">
+                  <button id="index-label" class="exercise-card">N</button>
+                  <button id="name-label" class="exercise-card">Name</button>
+                  <button id="sets-label" class="exercise-card">Set</button>
+                  <strong style="opacity: 0;;">X</strong>
+                  <button id="reps-label" class="exercise-card">Rep</button>
+                  <button class="labelHiden" disabled>Discrip.</button>
+                  <button class="labelHiden" disabled>DONE</button>
+
                 </div>
                 <div id="exercises-card"></div>
 
@@ -401,29 +458,29 @@
                     <p for="cardio">Cardio:</p>
                     <div style="display: flex; gap: 10px;">
                       <div id="cardios" style="display: flex;flex-direction: column;gap: 5px;">
-                        <div class="notes-card cardio" name="cadio-1">4.5 km / 45 min</div>
+                        <div class="content-card cardio" name="cadio-1">4.5 km / 45 min</div>
                       </div>
-                      <input id="add-cardio" class="notes-card" type="button" name="cardio" value="+">
+                      <input id="add-cardio" class="content-card" type="button" name="cardio" value="+">
                     </div>
 
                     <p>Rate Workout:</p>
                     <div id="radio-list" style="display: flex; gap: 10px;">
-                      <label for="bad" class="notes-card">
+                      <label for="bad" class="content-card">
                         <input type="radio" id="bad" name="workoutRate" value=" bad"
                           style="position: absolute; opacity: 0;">
                         BAD
                       </label>
-                      <label for="ok" class="notes-card">
+                      <label for="ok" class="content-card">
                         <input type="radio" id="ok" name="workoutRate" value="ok"
                           style="position: absolute; opacity: 0;">
                         OK
                       </label>
-                      <label for="good" class="notes-card">
+                      <label for="good" class="content-card">
                         <input type="radio" id="good" name="workoutRate" value="good"
                           style="position: absolute; opacity: 0;">
                         GOOD
                       </label>
-                      <label for="great" class="notes-card">
+                      <label for="great" class="content-card">
                         <input type="radio" id="great" name="workoutRate" value="great"
                           style="position: absolute; opacity: 0;">
                         GREAT
@@ -433,9 +490,9 @@
 
                   <div style="flex-grow: 1;display: flex;flex-direction: column;">
                     <label for="notes">Notes:</label>
-                    <textarea name="notes" id="notes" class="notes-card" required
+                    <textarea name="notes" id="notes" class="content-card" required
                       placeholder="Take notes here!"></textarea>
-                    <button type="submit" class="notes-card">Send</button>
+                    <button type="submit" class="content-card">Send</button>
                   </div>
                 </form>
               </div>
@@ -450,47 +507,50 @@
                   <p>Set:</p>
                   <p>W8:</p>
                   <p>Used:</p>
+                  <p>Reps:</p>
                 </div>
 
                 <div class="sets">
                   <form id="set1" action="#" class="sets-area">
                     <p class="set">SET 1</p>
                     <p class="weight">3 plc</p>
-                    <input required type="text" name="wl-1" id="wl-1" class="used" placeholder="3 plc">
+                    <input required type="text" name="w8Lifted-1" id="wl-1" class="used" placeholder="3 plc">
+                    <input required type="text" name="repsDone-1" id="wl-1" class="used" placeholder="3 plc">
                     <button disabled class="exercise-card done-btn" type="submit">DONE</button>
                   </form>
 
                   <form id="set2" action="#" class="sets-area">
                     <p class="set">SET 2</p>
                     <p class="weight">3 plc</p>
-                    <input required type="text" name="wl-2" id="wl-2" class="used" placeholder="3 plc">
+                    <input required type="text" name="w8Lifted-2" id="wl-2" class="used" placeholder="3 plc">
+                    <input required type="text" name="repsDone-2" id="wl-2" class="used" placeholder="3 plc">
                     <button disabled class="exercise-card done-btn" type="submit">DONE</button>
                   </form>
 
                   <form id="set3" action="#" class="sets-area">
                     <p class="set">SET 3</p>
                     <p class="weight">3 plc</p>
-                    <input required type="text" name="wl-3" id="wl-3" class="used" placeholder="3 plc">
+                    <input required type="text" name="w8Lifted-3" id="wl-3" class="used" placeholder="3 plc">
+                    <input required type="text" name="repsDone-3" id="wl-3" class="used" placeholder="3 plc">
                     <button disabled class="exercise-card done-btn" type="submit">DONE</button>
                   </form>
 
-                  <form id="set4" action="#" class="sets-area">
-                    <p class="set">SET 4</p>
-                    <p class="weight">3 plc</p>
-                    <input required type="text" name="wl-4" id="wl-4" class="used" placeholder="3 plc">
-                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
-                  </form>
+                  <button id="add-set-btn" type="button">+</button>
 
-                  <form id="add-set" action="#" class="sets-area">
+                  <form id="add-set" action="#" class="sets-area hide">
                     <p class="set">New Set</p>
-                    <input type="text" class="weight" placeholder="W8 und" required>
-                    <input disabled class="used">
+                    <input type="text" name="WeightUnit" id="WeightUnit" class="weight" placeholder="und" required>
+                    <input type="text" name="newSetWeight" id="newSetWeight" class="weight" placeholder="Weight"
+                      required>
                     <button class="exercise-card add-btn" type="submit">ADD</button>
                   </form>
                 </div>
 
               </div>
+
             </div>
+
+
           </div>
 
         </section>
@@ -514,7 +574,7 @@
                 <div id="pro-right">
                   <img src="../assets/images/JACKED PLANNER PRO.svg" alt="logoPRO">
                   <div class="price">
-                    <strong>$4,99</strong>
+                    <strong>Only $4,99</strong>
                     <p>month</p>
                   </div>
                   <button class="pro-btn">
@@ -543,6 +603,7 @@
             </div>
           </div>
         </section>
+
       </div>
     </div>
   </main>
@@ -553,6 +614,7 @@
   <script src="/scripts/calendar.js"></script>
   <script src="/scripts/exercise.js"></script>
   <script src="/scripts/personalNotes.js"></script>
+  <script src="/scripts/exercisePlan.js"></script>
 </body>
 
 </html>

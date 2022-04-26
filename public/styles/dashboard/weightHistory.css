@@ -1,5 +1,6 @@
 #sec-bottom>.right {
   position: relative;
+  font-size: 1em;
 }
 
 #sec-bottom>.right::before {
@@ -19,6 +20,7 @@
   border-radius: 4px;
   background-color: var(--light);
   color: var(--dark);
+  font-size: 1.5em;
   font-weight: 600;
   position: absolute;
   top: 50%;
@@ -32,6 +34,7 @@
   min-height: 215px;
   width: 100%;
   padding: 0;
+  font-size: 1em;
 }
 
 #grafic-box {
@@ -51,9 +54,9 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  font-size: 30px;
+  font-size: 2em;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1em;
 }
 
 #pr-label {
@@ -63,8 +66,8 @@
 #pr {
   flex-direction: column;
   border-left: 2px solid var(--orange);
-  font-size: 28px;
-  gap: 10px;
+  font-size: 1.75em;
+  gap: 1em;
 }
 
 #pr * {

@@ -4,16 +4,18 @@
 }
 
 #exercise-plan {
-  max-width: 100%
+  width: 100%;
+  height: 100%;
+}
+
+#exercise-plan * {
+  font-size: 1em;
 }
 
 #exercise-plan>.card {
   display: flex;
-  gap: 10px;
-  min-height: 175px;
+  gap: 1em;
   overflow-x: scroll;
-  width: 100%;
-  padding-bottom: 13px;
 }
 
 #label,
@@ -23,22 +25,21 @@
 }
 
 .sets {
-  align-self: center;
   display: flex;
-  gap: 15px;
+  gap: 1em;
 }
 
 #label {
-  font-size: 12px;
+  margin-top: 1.5em;
+  font-size: 1em;
   font-weight: 300;
-  gap: 13px;
-  margin-top: 17px;
+  gap: 1.5em;
 }
 
 .sets-area {
-  align-items: center;
-  border-radius: 10px 10px 4px 4px;
   overflow: hidden;
+  justify-content: center;
+  animation: apear 150ms ease-in-out;
 }
 
 .set,
@@ -46,12 +47,14 @@
 .used {
   width: 100%;
   text-align: center;
+  font-size: 1.25em !important;
   font-weight: 700;
   color: var(--dark);
-  padding: 4px 0;
+  padding: .5em 0;
 }
 
 .set {
+  border-radius: 10px 10px 0 0;
   background-color: var(--orange);
 }
 
@@ -63,21 +66,45 @@
   background-color: rgba(0, 0, 0, 0);
   color: var(--light);
   font-weight: 400;
-  font-size: 16px;
-  max-width: 100px;
+  max-width: 10ch;
   outline: none;
   border: none;
   border-left: 1px solid var(--orange);
   border-right: 1px solid var(--orange);
   border-bottom: 1px solid var(--orange);
-  margin-bottom: 5px;
 }
 
-.sets form>button {
+.used:nth-of-type(2) {
+  border-radius: 0 0 6px 6px;
+}
+
+#exercise-plan .done-btn,
+#exercise-plan .add-btn {
+  max-width: none !important;
   width: 100%;
-  height: 30px;
-  padding-top: 0;
-  padding-bottom: 0;
+  margin-top: 1em;
+  font-size: 1.25em !important;
+}
+
+.add-btn {
+  margin-top: .5em;
+}
+
+#add-set {
+  margin-bottom: 3em;
+  animation: apear 150ms ease-in-out;
+}
+
+@keyframes apear {
+  0% {
+    opacity: 0;
+    transform: scale(1.1) translateX(-20%)
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1)
+  }
 }
 
 #add-set .set {
@@ -88,13 +115,32 @@
   border-left: 1px solid var(--blue);
   border-right: 1px solid var(--blue);
   border-bottom: 1px solid var(--blue);
+  width: 100%;
 }
 
 #add-set .weight {
-  width: 100px;
-  max-height: 40px;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 16px;
+  border-left: 1px solid var(--blue);
+  border-right: 1px solid var(--blue);
+  border-bottom: 1px solid var(--blue);
+  max-width: 10ch;
+  font-size: 1.25em !important;
+}
+
+#add-set-btn {
+  width: 3em;
+  height: 3em;
+  align-self: center;
+  margin-bottom: 3em;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: inset 0 0 0 .2em var(--blue), 0 0 .2em var(--blue);
+}
+
+.hide {
+  display: none;
 }
 
 @media screen and (max-width: 1200px) {
