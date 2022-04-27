@@ -171,6 +171,11 @@ img[alt='logo'] {
   #sec-bottom {
     max-width: 350px;
   }
+
+  img[alt='logo'] {
+    width: 100%;
+    margin: 40px 0 0 20%;
+  }
 }
 
 @media (max-width: 576px) {}
@@ -201,5 +206,19 @@ img[alt='logo'] {
     width: 3em;
     height: 3em;
     margin-bottom: 2em;
+  }
+}
+
+@media only screen and (max-height: 850px) {
+  #menu-icons {
+    margin-top: 5em;
+    gap: 5em;
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  #menu-icons {
+    margin-top: 3em;
+    gap: 3em;
   }
 }

@@ -93,6 +93,10 @@
     width: max-content;
     font-size: 3em !important;
   }
+
+  #pro-right .pro-btn {
+    padding: .5em 2em;
+  }
 }
 
 @media screen and (max-width: 576px) {}
