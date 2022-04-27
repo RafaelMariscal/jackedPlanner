@@ -98,3 +98,21 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+@media screen and (max-width: 460px) {
+
+  .max-area>div {
+    display: none;
+  }
+
+  #toggle-menu {
+    display: block;
+    margin-top: .3em;
+  }
+
+  #toggle-menu * {
+    stroke: var(--orange);
+    fill: var(--orange);
+  }
+
+}

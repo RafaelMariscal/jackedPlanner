@@ -83,7 +83,11 @@ label[for='notes'] {
   }
 }
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+  #personal-notes .card {
+    min-width: 300px;
+  }
+}
 
 /* --------------  height related -------------------- */
 

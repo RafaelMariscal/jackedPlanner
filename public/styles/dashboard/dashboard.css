@@ -94,6 +94,11 @@ aside>nav {
   justify-content: center;
 }
 
+
+.off * {
+  stroke: var(--dark) !important;
+}
+
 #menu-icons li>svg,
 #exit {
   width: 4em;
@@ -151,7 +156,6 @@ img[alt='logo'] {
   #dashboard-content {
     padding: 35px 1em 40px 18em;
   }
-
 }
 
 @media (max-width: 1200px) {
@@ -178,8 +182,42 @@ img[alt='logo'] {
   }
 }
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+  #dashboard-glass {
+    margin: 70px 20px 0 10px;
+  }
 
+  #dashboard-content {
+    padding: 1em 0 1em 10em;
+  }
+
+  #sec-top,
+  #sec-mid,
+  #sec-bottom {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 460px) {
+  aside {
+    width: 0;
+    transition: 200ms ease;
+    overflow: hidden;
+  }
+
+  #nav-selector {
+    display: none;
+  }
+
+  #dashboard-content {
+    padding: 1em 1em 1em 1em;
+  }
+
+  .show {
+    width: 10em;
+    overflow: visible;
+  }
+}
 
 /* --------------  height related -------------------- */
 
