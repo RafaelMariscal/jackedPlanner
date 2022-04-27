@@ -49,7 +49,7 @@
 }
 
 .right {
-  min-width: 800px;
+  min-width: 10ch;
 }
 
 
@@ -69,6 +69,12 @@
 .content-card * {
   color: var(--dark);
   font-weight: 500 !important;
+}
+
+.content-card p {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
 #planners .content-card {
@@ -149,7 +155,7 @@ img[alt='logoPRO'] {
 }
 
 .price strong {
-  font-size: 3.5em;
+  font-size: 3em;
   font-weight: 500;
 }
 
@@ -174,13 +180,60 @@ img[alt='logoPRO'] {
   margin-left: 1em;
 }
 
-@media (max-width: 2300px) {
-  body {
-    background-color: red;
+@media (max-width: 2560px) {
+
+  html {
+    font-size: 15px;
+  }
+
+  .content-card p {
+    max-width: 80%;
+  }
+
+  .pro-price {
+    justify-content: space-around;
+  }
+
+  img[alt='logoPRO'] {
+    width: 45%;
   }
 }
 
-@media screen and (max-width: 1200px) {
+@media (max-width: 2400px) {
+  html {
+    font-size: 14px;
+  }
+
+  .pro-btn {
+    padding: .5em 0;
+  }
+}
+
+@media (max-width: 2400px) {
+  html {
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 1800px) {
+  html {
+    font-size: 11px !important;
+  }
+}
+
+@media (max-width: 1600px) {
+  html {
+    font-size: 10px !important;
+  }
+}
+
+@media (max-width: 1400px) {
+  html {
+    font-size: 9px !important;
+  }
+}
+
+@media (max-width: 1200px) {
 
   #sec-top,
   #sec-bottom {
@@ -191,47 +244,65 @@ img[alt='logoPRO'] {
     flex-direction: column-reverse;
   }
 
-  .left,
-  #workout-sec {
-    width: max-content;
+  #sec-top .right,
+  #sec-mid .left,
+  #sec-mid .right,
+  #sec-bottom .right {
+    width: 100% !important;
   }
 
-  #planners {
-    max-width: max-content;
+  .card,
+  .card-area,
+  .rigth {
+    max-width: none !important;
   }
 
-  #planners .card {
-    min-width: 350px;
-    max-width: 400px;
+  #sec-top .left,
+  #sec-bottom .right {
+    width: 100%;
   }
 
-  .planner-card {
-    height: 35px;
+  .right,
+  #personal-notes {
+    margin-bottom: 3em;
   }
-
-  .planner-card * {
-    font-size: 14px;
-  }
-
-  .pro-price {
-    transform: translate(-25px) scale(.85);
-  }
-
 }
 
-@media screen and (max-width: 992px) {
-  .left {
+@media (max-width: 992px) {
+  html {
+    font-size: 8px !important;
+  }
+
+  .remove-btn * {
+    width: 2em;
+    height: 2em;
+  }
+
+  #remove {
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: 810px) {
+  html {
+    font-size: 7.5px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #sec-top .left {
     flex-direction: column;
-    margin: 0 auto;
   }
 
+
   #planners .card {
-    min-width: 350px;
-    max-width: 450px;
-    width: 450px;
+    padding: 2em 1.5em 3em;
   }
 }
 
-@media screen and (max-width: 768px) {}
+@media (max-width: 576px) {}
 
-@media screen and (max-width: 576px) {}
+
+/* --------------  height related -------------------- */
+
+@media only screen and (min-height: 2000px) {}

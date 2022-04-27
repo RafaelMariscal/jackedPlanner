@@ -30,10 +30,11 @@
 }
 
 #label {
-  margin-top: 1.5em;
+  align-self: center;
   font-size: 1em;
   font-weight: 300;
   gap: 1.5em;
+  margin-bottom: 3.5em;
 }
 
 .sets-area {
@@ -160,6 +161,39 @@
 }
 
 
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+  #exercise-plan .card {
+    padding: 2em 1.5em 1.5em;
+  }
+
+  #add-set-btn {
+    width: 3em;
+    height: 3em;
+    padding-top: 2px;
+    margin-left: 1em;
+    margin-bottom: 3em;
+    border-radius: 4px;
+
+  }
+}
 
 @media screen and (max-width: 576px) {}
+
+/* --------------  height related -------------------- */
+
+@media only screen and (min-height: 2000px) {
+
+  .sets-area *,
+  .weight::placeholder {
+    font-size: 1.5em !important;
+  }
+
+  #label {
+    align-self: center;
+    font-size: 1.2em;
+    font-weight: 300;
+    gap: 1.7em;
+    margin-bottom: 3em;
+  }
+
+}

@@ -13,13 +13,13 @@ menuElements.forEach((element) => {
         selector.style.top = `calc(${position('notes')}px - 78px)`
         break;
       case 'pro':
-        selector.style.top = `calc(${position('pro')}px - 85px)`
+        selector.style.top = `calc(${position('pro')}px - 78px)`
         break;
       case 'shop':
-        selector.style.top = `calc(${position('shop')}px - 82px)`
+        selector.style.top = `calc(${position('shop')}px - 78px)`
         break;
       case 'config':
-        selector.style.top = `calc(${position('config')}px - 80px)`
+        selector.style.top = `calc(${position('config')}px - 78px)`
         break;
       default:
         break;
@@ -35,6 +35,7 @@ function position(id) {
   let metrics = document.getElementById(id).getBoundingClientRect()
   let top = metrics.y
   selector.style.height = metrics.height
+  console.log(metrics.height)
   return top
 }
 

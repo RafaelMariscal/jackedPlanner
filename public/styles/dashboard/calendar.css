@@ -230,36 +230,48 @@
   }
 }
 
-@media screen and (max-width: 1200px) {
-  #calendar {
-    max-width: max-content;
+
+@media (max-width: 2200px) {
+  .calendar {
+    min-width: 45ch;
   }
 
-  #calendar .card {
-    width: 300px;
-    height: 262px
-  }
-
-  .calendar-week-day div {
-    font-weight: 600 !important;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  #calendar {
-    max-width: max-content;
-  }
-
-  #calendar .card {
-    width: 450px;
-    height: 255px
+  .calendar-header {
+    font-size: 1em;
   }
 
   .calendar-week-day div {
-    font-weight: 600 !important;
+    padding: .75em 0;
+    font-size: 1.5em;
+  }
+
+  .calendar-days div {
+    font-size: 1.5em;
+    padding: .3em;
+  }
+
+  .year-change {
+    width: 1.5em;
+    font-size: 2em !important;
+    display: grid;
+    place-items: center;
+  }
+
+  .month-list {
+    font-size: 1.5em;
+    padding: 1em;
   }
 }
 
-@media screen and (max-width: 768px) {}
+@media (max-width: 768px) {
+  #calendar .card {
+    padding: 0em 1.5em 3em;
 
-@media screen and (max-width: 576px) {}
+  }
+}
+
+@media (max-width: 576px) {}
+
+/* --------------  height related -------------------- */
+
+@media only screen and (min-height: 2000px) {}

@@ -56,6 +56,9 @@
 .exercises .exercise-card:nth-child(2) {
   justify-content: left;
   flex-grow: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
 }
 
 .exercises .exercise-card:nth-child(6),
@@ -96,6 +99,10 @@
 
 .exercise-card:nth-child(5) {
   max-width: 30px;
+}
+
+#exerc-name {
+  margin: 0 .4em;
 }
 
 #exerc-add {
@@ -155,18 +162,9 @@
   outline: none;
 }
 
+
 #exerc-index {
   position: relative;
-}
-
-#exerc-index::after {
-  position: absolute;
-  content: 'N';
-  height: 100px;
-  width: 100px;
-  background-color: red;
-  z-index: 10;
-  top: 0;
 }
 
 #index-label,
@@ -183,73 +181,48 @@
   opacity: 0;
 }
 
-
-@media screen and (max-width: 1200px) {
-  .exercise-card {
-    height: 35px;
-    min-width: 35px;
-    font-size: 14px;
-  }
-
-  .exercise-card {
-    padding: 0;
-  }
-
-  .exercise-card:nth-child(2) {
-    text-indent: 20px;
-  }
-
-  .exercise-card:nth-child(1) {
-    max-width: 36px;
-  }
-
-  .exercise-card::placeholder {
-    font-size: 14px;
-    text-align: center;
-    text-indent: 0;
-  }
-
-  .card-area {
-    max-width: 720px;
+@media screen and (max-width: 2400px) {
+  .labelHiden {
+    width: 10ch;
   }
 }
 
-@media screen and (max-width: 992px) {
-  .exercise-card {
-    height: 35px;
-    min-width: 35px;
-    font-size: 14px;
+@media screen and (max-width: 1600px) {
+  .labelHiden {
+    width: 10.5ch;
+  }
+}
+
+@media screen and (max-width: 1500px) {
+  .exercises .exercise-card:nth-child(2) {
+    min-width: 30ch;
   }
 
-  .exercise-card {
-    padding: 0;
+  .exercises .exercise-card:nth-child(6) {
+    min-width: 8ch;
   }
 
-  .exercise-card:nth-child(2) {
-    text-indent: 20px;
+  .exercises .exercise-card:nth-child(7),
+  .exercises .exercise-card:nth-child(8) {
+    min-width: max-content;
   }
 
-  .exercise-card:nth-child(1) {
-    max-width: 36px;
+  .labelHiden {
+    width: 11ch;
   }
+}
 
-  .exercise-card::placeholder {
-    font-size: 14px;
-    text-align: center;
-    text-indent: 0;
-  }
+@media screen and (max-width: 1200px) {
 
-  .card-area {
-    width: 450px !important;
-  }
-
-  .right {
-    margin: 0 auto;
-    min-width: 0;
-    width: 450px !important;
+  #workout-sec .card-area {
+    min-height: 250px !important;
   }
 }
 
 @media screen and (max-width: 768px) {}
 
 @media screen and (max-width: 576px) {}
+
+/* --------------  height related -------------------- */
+
+@media only screen and (min-height: 2000px) {}

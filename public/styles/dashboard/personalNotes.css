@@ -65,32 +65,26 @@ label[for='notes'] {
   flex-grow: 1;
 }
 
-@media screen and (max-width: 992px) {
-  #personal-notes {
-    min-width: 450px;
-    margin: 0 auto;
-  }
-
-  #personal-notes form {
-    flex-direction: column;
-    gap: 15px;
-  }
-
+@media (max-width: 2200px) {
   #personal-notes .card {
-    max-height: none;
-    width: 450px;
-    margin: 0 !important;
-  }
-
-  #personal-notes .card * {
-    font-size: 14px !important;
-  }
-
-  #personal-notes textarea {
-    height: 100px;
+    min-width: 95ch;
   }
 }
 
-@media screen and (max-width: 768px) {}
+@media (max-width: 768px) {
+  #personal-notes form {
+    flex-direction: column;
+    gap: 0;
+  }
 
-@media screen and (max-width: 576px) {}
+  #personal-notes .card {
+    min-width: 350px;
+    padding: 1em 1.5em 3em;
+  }
+}
+
+@media (max-width: 576px) {}
+
+/* --------------  height related -------------------- */
+
+@media only screen and (min-height: 2000px) {}

@@ -44,7 +44,7 @@ img[alt="center"] {
 }
 
 #dashboard-glass {
-  height: 93vh;
+  height: 90vh;
   width: 100vw;
   max-width: 2640px;
   margin: 70px 40px 0;
@@ -60,7 +60,7 @@ img[alt="center"] {
 
 aside {
   height: 100%;
-  width: 150px;
+  width: 10em;
   border-radius: 20px 0 0 20px;
   background-color: var(--dark);
   display: flex;
@@ -87,8 +87,8 @@ aside>nav {
 }
 
 #menu-icons li {
-  width: 60px;
-  height: 60px;
+  width: 4em;
+  height: 4em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,8 +96,8 @@ aside>nav {
 
 #menu-icons li>svg,
 #exit {
-  width: 50px;
-  height: 50px;
+  width: 4em;
+  height: 4em;
 }
 
 #exit:hover,
@@ -130,7 +130,7 @@ img[alt='logo'] {
   justify-content: space-between;
   position: absolute;
   top: 0;
-  padding: 35px 0px 40px 280px;
+  padding: 35px 1em 40px 280px;
   z-index: -1;
   overflow-y: scroll;
 }
@@ -140,42 +140,66 @@ img[alt='logo'] {
   background-color: rgba(0, 0, 0, 0);
 }
 
+@media (max-width: 2200px) {
 
-@media (max-width: 2670px) {}
+  #menu-icons li>svg,
+  #exit {
+    width: 3em;
+    height: 3em;
+  }
 
-@media (min-width: 2561px) {}
+  #dashboard-content {
+    padding: 35px 1em 40px 18em;
+  }
 
-@media (max-width: 1240px) {}
+}
 
-@media (max-width: 768px) {}
+@media (max-width: 1200px) {
+  #dashboard-content {
+    padding: 35px 7em 40px 22em;
+  }
+}
+
+@media (max-width: 768px) {
+  #dashboard-content {
+    padding: 35px 0 3em 10em;
+    align-items: center;
+  }
+
+  #sec-top,
+  #sec-mid,
+  #sec-bottom {
+    max-width: 350px;
+  }
+}
 
 @media (max-width: 576px) {}
 
 
 /* --------------  height related -------------------- */
 
-@media (max-height: 1080px) {
-  body {
-    background-color: red;
+@media only screen and (min-height: 2000px) {
+  html {
+    font-size: 22px;
   }
-}
 
-@media (max-height: 800px) {
+  #dashboard-glass {
+    max-width: 3640px;
+  }
+
+  #dashboard-content {
+    padding: 35px 1em 40px 18em;
+  }
+
   #menu-icons {
-    gap: 45px;
+    margin-top: 5em;
+    gap: 5em;
   }
 
-  #menu-icons>li>* {
-    max-width: 30px;
-  }
-}
-
-@media (max-height: 650px) {
-  #menu-icons {
-    gap: 30px;
-  }
-
-  #menu-icons>li>* {
-    max-width: 30px;
+  #menu-icons li,
+  #exit {
+    width: 3em;
+    height: 3em;
+    margin-bottom: 2em;
   }
 }
