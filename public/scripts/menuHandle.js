@@ -35,7 +35,6 @@ function position(id) {
   let metrics = document.getElementById(id).getBoundingClientRect()
   let top = metrics.y
   selector.style.height = metrics.height
-  console.log(metrics.height)
   return top
 }
 
@@ -68,7 +67,5 @@ menuToggle.addEventListener('click', () => {
         </svg>`
     menuToggle.innerHTML = close
     dashArea.style.padding = '1em 0 1em 12em'
-
   }
-
 })

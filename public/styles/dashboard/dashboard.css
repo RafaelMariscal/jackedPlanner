@@ -94,6 +94,10 @@ aside>nav {
   justify-content: center;
 }
 
+#menu-icons li:hover,
+#exit:hover {
+  animation: shake 300ms ease-in-out;
+}
 
 .off * {
   stroke: var(--dark) !important;

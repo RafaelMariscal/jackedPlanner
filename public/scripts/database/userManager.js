@@ -61,9 +61,8 @@ function ifUserLogged() {
       }
     }
   })
-
 }
 
 export { createNewAccount, login, logout, ifUserLogged }
-export { firebaseConfig, db }
+export { firebaseConfig, db, auth }
 
