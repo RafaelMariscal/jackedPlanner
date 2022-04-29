@@ -1,7 +1,7 @@
 import { firebaseConfig, db, auth } from "./database/userManager.js";
 
 var userData = null
-async function getData() {
+function getData() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
       var uid = user.uid;
@@ -19,26 +19,33 @@ async function getData() {
     }
   });
 }
-await getData()
+getData()
 
+const planDisplay = document.getElementById('planners-display')
 function populateDashboard(doc) {
+
   let greetings = document.getElementById('greetings')
   const greet = `<a href="#">Helo again, <span>${doc.userName}</span>!</a>`
   greetings.innerHTML = greet;
 
-  let planDisplay = document.getElementById('planners-display')
+  let plannersList = getPlannersList(doc)
+  var plannerSelected = undefined
+  plannerSelector(plannersList, plannerSelected)
+}
+
+function getPlannersList(doc) {
   let plan1 = doc.planners.planner1
   let plan2 = doc.planners.planner2
   let plan3 = doc.planners.planner3
-  let planners = [plan1, plan2, plan3]
+  let plannersList = [plan1, plan2, plan3]
 
-  planners.forEach(element => {
-    let i = planners.indexOf(element) + 1
-    let name = planners[i - 1].name
+  plannersList.forEach(element => {
+    let i = plannersList.indexOf(element) + 1
+    let name = plannersList[i - 1].name
     if (!name) {
       name = 'Add a new planner'
     }
-    planDisplay.innerHTML += `
+    const code = `
     <button id="plan${i}" class="content-card">
       <strong>${i}</strong>
       <p>${name}</p>
@@ -57,5 +64,64 @@ function populateDashboard(doc) {
       </svg>
     </button>
     `
+    planDisplay.innerHTML += code
   });
+  return plannersList
+}
+
+function plannerSelector(i, planner) {
+  let plannersButtons = Array.from(planDisplay.children)
+  plannersButtons.forEach(element => {
+    element.onclick = () => {
+      let content = element.children[1].innerText
+      plannersButtons.forEach(element => {  /* wipe the unselected classes */
+        element.classList = 'content-card'
+      })
+      switch (content) {
+        case i[0].name:
+          element.classList.add('selected-planner')
+          planner = i[0]
+          splitsCalendar(planner)
+          getFirstMonday(planner)   /* here ?? */
+
+          /* splitsCalendar(planner) RELACIONANDO O CALENDÁRIO COM OS SPLITS*/
+
+          return console.log(planner)
+        case i[1].name:
+          element.classList.add('selected-planner')
+          planner = i[1]
+          return console.log(planner)
+        case i[2].name:
+          planner = i[2]
+          element.classList.add('selected-planner')
+          return console.log(planner)
+        default:
+          console.log('No Planner found.')
+          return null
+      }
+    }
+  });
+}
+
+function getFirstMonday(planner) {
+  let startDate = new Date(Date(planner.startDate.seconds))
+  let firstMonday = startDate.getDate() - startDate.getDay() + 1
+  let curr_month = startDate.getMonth()
+  let curr_year = startDate.getFullYear()
+  let startDay = new Date(curr_year, curr_month, firstMonday)
+  console.log(startDay)
+  return startDay
+}
+
+function splitsCalendar(planner) {
+  const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+  let splits = planner.split
+  let schedule = planner.schedule
+  let tags = []
+  for (let i = 0; i < Object.keys(splits).length; i++) {
+    tags.push(abc[i])
+  }
+
+  /* INICIAR A LÓGICA */
+
 }

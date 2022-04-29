@@ -57,6 +57,7 @@ function dbStructure(uid) {
           daysOff1: 1,
           daysOff2: 1,
         },
+        startDate: firebase.firestore.Timestamp.fromDate(new Date()),
         split: {
           a: {
             title: 'Chest / Shoulders',
