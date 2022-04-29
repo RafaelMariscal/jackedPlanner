@@ -1,4 +1,4 @@
-import { firebaseConfig, db, auth } from "./database/userManager.js";
+import { db } from "./database/userManager.js";
 
 var userData = null
 function getData() {
@@ -31,6 +31,7 @@ function populateDashboard(doc) {
   let plannersList = getPlannersList(doc)
   var plannerSelected = undefined
   plannerSelector(plannersList, plannerSelected)
+
 }
 
 function getPlannersList(doc) {
@@ -68,7 +69,6 @@ function getPlannersList(doc) {
   });
   return plannersList
 }
-
 function plannerSelector(i, planner) {
   let plannersButtons = Array.from(planDisplay.children)
   plannersButtons.forEach(element => {
@@ -77,30 +77,84 @@ function plannerSelector(i, planner) {
       plannersButtons.forEach(element => {  /* wipe the unselected classes */
         element.classList = 'content-card'
       })
+      let splitsCalendar = undefined
       switch (content) {
         case i[0].name:
           element.classList.add('selected-planner')
           planner = i[0]
-          splitsCalendar(planner)
-          getFirstMonday(planner)   /* here ?? */
+          splitsCalendar = createSplitsCalendar(planner)
 
-          /* splitsCalendar(planner) RELACIONANDO O CALENDÁRIO COM OS SPLITS*/
-
-          return console.log(planner)
+          /* objecto {date: split, date: split} criado, até maximumLengh->getSplitsLists*/
+          /* 
+          agora, deve-se criar a lógica que receba o evento de click no calendario, para
+          receber a data clicada e comparála com as keys do objeto, retornando o split.
+           
+          ARRUMAR UM JEITO DE EXPORTAR O RESULTADO DE CLICK DO CALENDAR.JS -> getDaySplit()
+          */
+          console.log(planner)
+          return splitsCalendar
         case i[1].name:
           element.classList.add('selected-planner')
           planner = i[1]
-          return console.log(planner)
+          splitsCalendar = createSplitsCalendar(planner)
+          console.log(planner)
+          return splitsCalendar
         case i[2].name:
-          planner = i[2]
           element.classList.add('selected-planner')
-          return console.log(planner)
+          planner = i[2]
+          splitsCalendar = createSplitsCalendar(planner)
+          console.log(planner)
+          return splitsCalendar
         default:
           console.log('No Planner found.')
-          return null
+          splitsCalendar = 'No Planner found.'
+          return splitsCalendar
       }
     }
   });
+}
+
+function createSplitsCalendar(planner) {
+  const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+  let splits = planner.split
+  let tags = []
+  for (let i = 0; i < Object.keys(splits).length; i++) {
+    tags.push(abc[i])
+  }
+  let splitsList = getSplitsLists(planner, tags)
+  console.log(splitsList)
+
+  let splitsSchedule = {}
+  let firstDay = getFirstMonday(planner)
+  for (let day = 0; day < splitsList.length; day++) {
+    let date = new Date()
+    let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
+    let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
+    splitsSchedule[nextDate] = splitsList[day]
+  }
+  console.log(splitsSchedule)
+  return splitsSchedule
+}
+
+function getSplitsLists(planner, tags) {
+  let splitsListInput = document.getElementById('splitsSchedule')
+  if (!splitsListInput) {
+    tags.push('rest')
+    splitsListInput = tags.join(',')
+  }
+  if (planner.name == 'PUSH PULL LEGS by Jeff') {
+    splitsListInput = 'a,b,c,rest,d,c,rest'
+  }
+  let treatData = splitsListInput.replace(/\s+/g, '')
+  let splitsList = treatData.split(',')
+  let trainingDays = []
+  let maximumLength = 10
+  while (trainingDays.length < maximumLength) {
+    splitsList.forEach((day) => {
+      trainingDays.push(day)
+    })
+  }
+  return trainingDays
 }
 
 function getFirstMonday(planner) {
@@ -109,19 +163,5 @@ function getFirstMonday(planner) {
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()
   let startDay = new Date(curr_year, curr_month, firstMonday)
-  console.log(startDay)
   return startDay
-}
-
-function splitsCalendar(planner) {
-  const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-  let splits = planner.split
-  let schedule = planner.schedule
-  let tags = []
-  for (let i = 0; i < Object.keys(splits).length; i++) {
-    tags.push(abc[i])
-  }
-
-  /* INICIAR A LÓGICA */
-
 }

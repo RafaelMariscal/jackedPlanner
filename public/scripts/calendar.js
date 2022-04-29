@@ -7,6 +7,7 @@ let getFebDays = (year) => {
   return isLeapYear(year) ? 29 : 28
 }
 
+let clickedDate = null
 let month_picker = calendar.querySelector('#month-picker')
 let generateCalendar = (month, year) => {
   let calendar_days = calendar.querySelector('.calendar-days')
@@ -20,7 +21,6 @@ let generateCalendar = (month, year) => {
   let curr_month = `${month_names[month]}`
   month_picker.innerHTML = curr_month
   calendar_header_year.innerHTML = year
-
   // get first day of month
   let first_day = new Date(year, month, 1)
   for (let i = 0; i <= days_of_month[month] + first_day.getDay() - 1; i++) {
@@ -87,8 +87,6 @@ document.querySelector('#next-year').onclick = () => {
 
 function getDaySplit(e) {
   let day = Number(e.innerText)
-  let weekdaySelected = new Date(curr_year.value, curr_month.value, day).toLocaleString(
-    'default', { weekday: 'short' }
-  )
+  let weekdaySelected = new Date(curr_year.value, curr_month.value, day)
   console.log(weekdaySelected)
 }
