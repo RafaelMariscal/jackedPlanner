@@ -1,6 +1,11 @@
 import { db } from "./database/userManager.js";
-
+import { generateCalendar } from "./calendar.js";
+import { populateExercisesList } from "./exercise.js";
 var userData = null
+var splitsCalendar = undefined
+var daySplit = null
+let maximumLength = 180 /* base of days to have a split registered */
+
 function getData() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
@@ -23,18 +28,15 @@ getData()
 
 const planDisplay = document.getElementById('planners-display')
 function populateDashboard(doc) {
-
   let greetings = document.getElementById('greetings')
   const greet = `<a href="#">Helo again, <span>${doc.userName}</span>!</a>`
   greetings.innerHTML = greet;
-
-  let plannersList = getPlannersList(doc)
+  let plannersList = populatePlannersList(doc)
   var plannerSelected = undefined
   plannerSelector(plannersList, plannerSelected)
-
 }
 
-function getPlannersList(doc) {
+function populatePlannersList(doc) {
   let plan1 = doc.planners.planner1
   let plan2 = doc.planners.planner2
   let plan3 = doc.planners.planner3
@@ -69,7 +71,7 @@ function getPlannersList(doc) {
   });
   return plannersList
 }
-function plannerSelector(i, planner) {
+async function plannerSelector(i, planner) {
   let plannersButtons = Array.from(planDisplay.children)
   plannersButtons.forEach(element => {
     element.onclick = () => {
@@ -77,21 +79,25 @@ function plannerSelector(i, planner) {
       plannersButtons.forEach(element => {  /* wipe the unselected classes */
         element.classList = 'content-card'
       })
-      let splitsCalendar = undefined
+
       switch (content) {
         case i[0].name:
           element.classList.add('selected-planner')
           planner = i[0]
-          splitsCalendar = createSplitsCalendar(planner)
-
-          /* objecto {date: split, date: split} criado, até maximumLengh->getSplitsLists*/
-          /* 
-          agora, deve-se criar a lógica que receba o evento de click no calendario, para
-          receber a data clicada e comparála com as keys do objeto, retornando o split.
-           
-          ARRUMAR UM JEITO DE EXPORTAR O RESULTADO DE CLICK DO CALENDAR.JS -> getDaySplit()
-          */
           console.log(planner)
+          createSplitsCalendar(planner).then((object) => {
+            splitsCalendar = object.splitsSchedule
+            let curr_month = object.curr_month.value
+            let curr_year = object.curr_year.value
+            handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
+
+            /*
+            criar a lógica que receba o evento de click no calendario, para
+            receber a data clicada e comparála com as keys do objeto, retornando o split.
+ 
+            ARRUMAR UM JEITO DE EXPORTAR O RESULTADO DE CLICK DO CALENDAR.JS -> getDaySplit()
+            */
+          })
           return splitsCalendar
         case i[1].name:
           element.classList.add('selected-planner')
@@ -112,9 +118,9 @@ function plannerSelector(i, planner) {
       }
     }
   });
+  return splitsCalendar
 }
-
-function createSplitsCalendar(planner) {
+async function createSplitsCalendar(planner) {
   const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
   let splits = planner.split
   let tags = []
@@ -125,19 +131,20 @@ function createSplitsCalendar(planner) {
   console.log(splitsList)
 
   let splitsSchedule = {}
-  let firstDay = getFirstMonday(planner)
+  let firstDay = getFirstMonday(planner).startDay
+  let curr_month = getFirstMonday(planner).curr_month
+  let curr_year = getFirstMonday(planner).curr_year
   for (let day = 0; day < splitsList.length; day++) {
     let date = new Date()
     let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
     let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
     splitsSchedule[nextDate] = splitsList[day]
   }
-  console.log(splitsSchedule)
-  return splitsSchedule
+  return { splitsSchedule, curr_month, curr_year }
 }
 
 function getSplitsLists(planner, tags) {
-  let splitsListInput = document.getElementById('splitsSchedule')
+  let splitsListInput = document.getElementById('splitsSchedule')  /* scheduleInput */
   if (!splitsListInput) {
     tags.push('rest')
     splitsListInput = tags.join(',')
@@ -148,7 +155,6 @@ function getSplitsLists(planner, tags) {
   let treatData = splitsListInput.replace(/\s+/g, '')
   let splitsList = treatData.split(',')
   let trainingDays = []
-  let maximumLength = 10
   while (trainingDays.length < maximumLength) {
     splitsList.forEach((day) => {
       trainingDays.push(day)
@@ -163,5 +169,73 @@ function getFirstMonday(planner) {
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()
   let startDay = new Date(curr_year, curr_month, firstMonday)
-  return startDay
+
+  let currDate = new Date()
+  curr_month = { value: currDate.getMonth() }
+  curr_year = { value: currDate.getFullYear() }
+
+  let dateSelected = addMonthDaysClickEvent(curr_year, curr_month)
+  if (!dateSelected) {
+    let date = new Date()
+    let day = date.getDate()
+    let month = date.getMonth()
+    let year = date.getFullYear()
+    dateSelected = new Date(year, month, day)
+  }
+  return { startDay, curr_month, curr_year }
+}
+
+function addMonthDaysClickEvent(curr_year, curr_month) {
+  let monthDays = Array.from(document.getElementsByClassName('calendar-day-hover'))
+  monthDays.forEach(element => {
+    element.addEventListener('click', (e) => {
+      return getDateSelected(element, curr_year, curr_month)
+    })
+  });
+}
+function getDateSelected(e, curr_year, curr_month) {
+  let day = Number(e.innerText)
+  let selected = new Date(curr_year.value, curr_month.value, day)
+  return selected
+}
+
+async function handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner) {
+  document.querySelector('#prev-year').onclick = () => {
+    --curr_month
+    if (curr_month == -1) {
+      curr_month = 11
+      --curr_year
+    }
+    generateCalendar(curr_month, curr_year)
+    return clickEvent(splitsCalendar, curr_year, curr_month, planner)
+  }
+  document.querySelector('#next-year').onclick = () => {
+    ++curr_month
+    if (curr_month == 12) {
+      curr_month = 0
+      ++curr_year
+    }
+    generateCalendar(curr_month, curr_year)
+    return clickEvent(splitsCalendar, curr_year, curr_month, planner)
+  }
+  return clickEvent(splitsCalendar, curr_year, curr_month, planner)
+}
+function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
+  let calendar = Array.from(document.getElementsByClassName('calendar-day-hover'))
+  calendar.forEach(element => {
+    element.addEventListener('click', () => {
+      let day = element.innerText
+      let date = new Date(curr_year, curr_month, day)
+      Object.keys(splitsCalendar).forEach((key) => {
+        if (key == date) {
+          daySplit = splitsCalendar[key]
+          let daySplitDoc = planner.split[daySplit]
+          populateExercisesList(daySplitDoc)
+        }
+      })
+      if (!daySplit) {
+        return console.log('no day split found')
+      }
+    })
+  })
 }

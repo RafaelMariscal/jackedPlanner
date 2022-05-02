@@ -7,7 +7,6 @@ let getFebDays = (year) => {
   return isLeapYear(year) ? 29 : 28
 }
 
-let clickedDate = null
 let month_picker = calendar.querySelector('#month-picker')
 let generateCalendar = (month, year) => {
   let calendar_days = calendar.querySelector('.calendar-days')
@@ -38,13 +37,6 @@ let generateCalendar = (month, year) => {
     }
     calendar_days.appendChild(day)
   }
-
-  let monthDays = Array.from(document.getElementsByClassName('calendar-day-hover'))
-  monthDays.forEach(element => {
-    element.addEventListener('click', (e) => {
-      getDaySplit(element)
-    })
-  });
 }
 
 let month_list = calendar.querySelector('.month-list')
@@ -85,8 +77,5 @@ document.querySelector('#next-year').onclick = () => {
   generateCalendar(curr_month.value, curr_year.value)
 }
 
-function getDaySplit(e) {
-  let day = Number(e.innerText)
-  let weekdaySelected = new Date(curr_year.value, curr_month.value, day)
-  console.log(weekdaySelected)
-}
+
+export { generateCalendar }

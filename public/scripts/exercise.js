@@ -1,5 +1,10 @@
 import { firebaseConfig, db, auth } from "./database/userManager.js";
 
+function populateExercisesList(daySplitDoc) {
+  console.log(daySplitDoc)
+}
+
+
 const form = Array.from(document.getElementById('add-exercise').children)
 const formValues = { index: '', name: '', sets: '', reps: '', discription: '' }
 form.forEach((element) => {
@@ -8,8 +13,8 @@ form.forEach((element) => {
   }
 })
 
-
-
-
 const addBtn = document.getElementById('exerc-add')
 addBtn.onclick = () => { }
+
+
+export { populateExercisesList }
