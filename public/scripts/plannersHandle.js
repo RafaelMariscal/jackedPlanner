@@ -1,16 +1,15 @@
 import { db } from "./database/userManager.js";
 import { generateCalendar } from "./calendar.js";
-import { populateExercisesList } from "./exercise.js";
+import { handleExercisesList } from "./exercise.js";
 var userData = null
 var splitsCalendar = undefined
 var daySplit = null
 let maximumLength = 180 /* base of days to have a split registered */
-
 function getData() {
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-      var uid = user.uid;
-      var userDoc = db.collection('users').doc(uid)
+      let uid = user.uid;
+      let userDoc = db.collection('users').doc(uid)
       userDoc.get().then((doc) => {
         if (doc.exists) {
           userData = doc.data()
@@ -41,7 +40,6 @@ function populatePlannersList(doc) {
   let plan2 = doc.planners.planner2
   let plan3 = doc.planners.planner3
   let plannersList = [plan1, plan2, plan3]
-
   plannersList.forEach(element => {
     let i = plannersList.indexOf(element) + 1
     let name = plannersList[i - 1].name
@@ -76,7 +74,7 @@ async function plannerSelector(i, planner) {
   plannersButtons.forEach(element => {
     element.onclick = () => {
       let content = element.children[1].innerText
-      plannersButtons.forEach(element => {  /* wipe the unselected classes */
+      plannersButtons.forEach(element => {
         element.classList = 'content-card'
       })
 
@@ -84,32 +82,34 @@ async function plannerSelector(i, planner) {
         case i[0].name:
           element.classList.add('selected-planner')
           planner = i[0]
+          createSplitsCalendar(planner).then((object) => {
+            splitsCalendar = object.splitsSchedule
+            let curr_month = object.curr_month.value
+            let curr_year = object.curr_year.value
+            handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
+          })
+          return splitsCalendar
+        case i[1].name:
+          element.classList.add('selected-planner')
+          planner = i[1]
           console.log(planner)
           createSplitsCalendar(planner).then((object) => {
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
             let curr_year = object.curr_year.value
             handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
-
-            /*
-            criar a lógica que receba o evento de click no calendario, para
-            receber a data clicada e comparála com as keys do objeto, retornando o split.
- 
-            ARRUMAR UM JEITO DE EXPORTAR O RESULTADO DE CLICK DO CALENDAR.JS -> getDaySplit()
-            */
           })
-          return splitsCalendar
-        case i[1].name:
-          element.classList.add('selected-planner')
-          planner = i[1]
-          splitsCalendar = createSplitsCalendar(planner)
-          console.log(planner)
           return splitsCalendar
         case i[2].name:
           element.classList.add('selected-planner')
           planner = i[2]
-          splitsCalendar = createSplitsCalendar(planner)
           console.log(planner)
+          createSplitsCalendar(planner).then((object) => {
+            splitsCalendar = object.splitsSchedule
+            let curr_month = object.curr_month.value
+            let curr_year = object.curr_year.value
+            handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
+          })
           return splitsCalendar
         default:
           console.log('No Planner found.')
@@ -118,6 +118,14 @@ async function plannerSelector(i, planner) {
       }
     }
   });
+  let plan1 = document.getElementById('plan1')
+  let currentDate = document.getElementsByClassName('curr-date')[0]
+  setTimeout(() => {
+    plan1.click()
+  }, 100);
+  setTimeout(() => {
+    currentDate.click()
+  }, 100);
   return splitsCalendar
 }
 async function createSplitsCalendar(planner) {
@@ -128,8 +136,6 @@ async function createSplitsCalendar(planner) {
     tags.push(abc[i])
   }
   let splitsList = getSplitsLists(planner, tags)
-  console.log(splitsList)
-
   let splitsSchedule = {}
   let firstDay = getFirstMonday(planner).startDay
   let curr_month = getFirstMonday(planner).curr_month
@@ -220,17 +226,20 @@ async function handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, plan
   }
   return clickEvent(splitsCalendar, curr_year, curr_month, planner)
 }
-function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
+
+async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
   let calendar = Array.from(document.getElementsByClassName('calendar-day-hover'))
   calendar.forEach(element => {
     element.addEventListener('click', () => {
+
       let day = element.innerText
       let date = new Date(curr_year, curr_month, day)
       Object.keys(splitsCalendar).forEach((key) => {
         if (key == date) {
           daySplit = splitsCalendar[key]
-          let daySplitDoc = planner.split[daySplit]
-          populateExercisesList(daySplitDoc)
+          let daySplitDoc = null
+          daySplit == 'rest' ? daySplitDoc = 'rest' : daySplitDoc = planner.split[daySplit]
+          handleExercisesList(planner, splitsCalendar, daySplitDoc, date)
         }
       })
       if (!daySplit) {
