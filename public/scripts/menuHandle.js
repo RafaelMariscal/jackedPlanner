@@ -1,5 +1,6 @@
-import { logout, ifUserLogged } from "./database/userManager.js"
+import { logout } from "./database/userManager.js"
 
+let dashboardContent = null
 const menuElements = Array.from(document.getElementById('menu-icons').children)
 var selector = document.querySelector('#nav-selector')
 menuElements.forEach((element) => {
@@ -7,19 +8,38 @@ menuElements.forEach((element) => {
     switch (element.id) {
       case 'home':
         selector.style.top = `calc(${position('home')}px - 78px)`
+        if (dashboardContent) {
+          document.getElementById('dashboard-content').innerHTML = dashboardContent
+        }
         break;
       case 'notes':
         position('notes')
         selector.style.top = `calc(${position('notes')}px - 78px)`
+        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
+          dashboardContent = document.getElementById('dashboard-content').innerHTML
+        }
+        document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'pro':
         selector.style.top = `calc(${position('pro')}px - 78px)`
+        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
+          dashboardContent = document.getElementById('dashboard-content').innerHTML
+        }
+        document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'shop':
         selector.style.top = `calc(${position('shop')}px - 78px)`
+        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
+          dashboardContent = document.getElementById('dashboard-content').innerHTML
+        }
+        document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'config':
         selector.style.top = `calc(${position('config')}px - 78px)`
+        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
+          dashboardContent = document.getElementById('dashboard-content').innerHTML
+        }
+        document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       default:
         break;
@@ -27,24 +47,20 @@ menuElements.forEach((element) => {
   })
 })
 
-document.addEventListener('DOMContentLoaded', () => {
-  selector.style.top = `calc(${position('home')}px - 78px)`
-})
-
-function position(id) {
-  let metrics = document.getElementById(id).getBoundingClientRect()
-  let top = metrics.y
-  selector.style.height = metrics.height
-  return top
-}
+const loadinghtml = `
+<div id="building">
+  <p>Under</p>
+  <p>Construction!</p>
+  <p>This section will be</p>
+  <p>fully functional ASAP!!</p>
+</div>
+`
 
 const logoutIcon = document.getElementById('exit')
-
 logoutIcon.onclick = logout
 const menuToggle = document.getElementById('toggle-menu')
 const aside = document.getElementById('menu-area')
 const dashArea = document.getElementById('dashboard-content')
-
 menuToggle.addEventListener('click', () => {
   aside.classList.toggle('show')
 
@@ -69,3 +85,14 @@ menuToggle.addEventListener('click', () => {
     dashArea.style.padding = '1em 0 1em 12em'
   }
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  selector.style.top = `calc(${position('home')}px - 78px)`
+})
+
+function position(id) {
+  let metrics = document.getElementById(id).getBoundingClientRect()
+  let top = metrics.y
+  selector.style.height = metrics.height
+  return top
+}
