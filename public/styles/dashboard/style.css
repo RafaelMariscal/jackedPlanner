@@ -109,6 +109,10 @@ input[type=number] {
     0 2px 5px black
 }
 
+.selected-date {
+  color: var(--blue) !important;
+}
+
 #toggle-menu {
   display: none;
 }

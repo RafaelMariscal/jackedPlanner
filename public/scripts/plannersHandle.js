@@ -235,6 +235,13 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
   let calendar = Array.from(document.getElementsByClassName('calendar-day-hover'))
   calendar.forEach(element => {
     element.addEventListener('click', () => {
+      calendar.forEach(element => {
+        if (element.classList.value != 'calendar-day-hover curr-date'
+          && element.classList.value != 'calendar-day-hover curr-date selected-date') {
+          element.classList = 'calendar-day-hover'
+        }
+      });
+      element.classList.add('selected-date')
       let day = element.innerText
       let date = new Date(curr_year, curr_month, day)
       Object.keys(splitsCalendar).forEach((key) => {

@@ -14,7 +14,7 @@ function populateExercisePlan(exercise) {
         <p class="weight">${setsWeight[i]} ${weightUnd}</p>
         <input required type="text" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="${setsWeight[i]} ${weightUnd}">
         <input required type="text" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="${setsWeight[i]} ${weightUnd}">
-        <button disabled class="exercise-card done-btn" type="submit">DONE</button>
+        <button class="exercise-card done-btn" type="submit">DONE</button>
        </form>
     `
     setsCards.innerHTML += exercisePlanHtml

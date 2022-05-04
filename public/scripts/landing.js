@@ -40,8 +40,17 @@ var userPassword = ''
 newUserPasswordInput.oninput = () => {
   userPassword = newUserPasswordInput.value
 }
+const newUserPasswordConfirmInput = document.getElementById('userPasswordConfirm')
+var userPasswordConfirm = ''
+newUserPasswordConfirmInput.oninput = () => {
+  userPasswordConfirm = newUserPasswordConfirmInput.value
+}
+
 createForm.onsubmit = (event) => {
   event.preventDefault()
+  if (userPassword != userPasswordConfirm) {
+    return alert('Password confirmation has no match!')
+  }
   createMsg.classList.toggle('hide')
   setTimeout(() => {
     createMsg.classList.toggle('hide')
