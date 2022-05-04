@@ -155,7 +155,7 @@ function dbStructure(uid) {
             exercises: [
               {
                 index: 1,
-                name: 'Pull-ups',
+                name: 'Pull-ups (Body Weight)',
                 sets: 3,
                 reps: 10,
                 disc: 'Tight up the hams, gluts, and lowerback. When pull-up, the arms needs to be 90° with your body and reach the sternum.',

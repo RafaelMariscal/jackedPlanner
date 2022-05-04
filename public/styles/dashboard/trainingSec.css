@@ -6,6 +6,7 @@
 #workout-sec .card-area {
   overflow: scroll;
   width: 100%;
+  transition: all 200ms ease-in-out !important;
 }
 
 ::-webkit-scrollbar {
@@ -37,6 +38,7 @@
   gap: 5px;
   margin-bottom: 10px;
   cursor: pointer;
+  animation: to-top 150ms ease-in-out;
 }
 
 .exercise-card {

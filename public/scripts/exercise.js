@@ -1,22 +1,40 @@
 import { firebaseConfig, db, auth } from "./database/userManager.js";
+import { populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   const exercisesCards = document.getElementById('exercises-list')
   exercisesCards.innerHTML = ''
-
+  if (!planner) {
+    return console.log('no planner')
+  }
   if (daySplitDoc == 'rest') {
     console.log(daySplitDoc)
     return printRestDay(exercisesCards)
   }
   daySplitDoc.date = date
   daySplitDoc.schedule = splitsCalendar
-  console.log(daySplitDoc)
   const exercisesList = daySplitDoc.exercises /* array of objects */
   exercisesList.forEach((exercise, index) => {
     printExercisesList(exercise, index, exercisesCards)
   })
   let form = document.getElementById('add-exercise')
   form.style.display = 'flex'
+
+  const exercisesPrinted = Array.from(document.getElementById('exercises-list').children)
+  exercisesPrinted.forEach(exerciseCard => {
+    exerciseCard.addEventListener('click', () => {
+      exercisesPrinted.forEach(exerciseCard => {
+        exerciseCard.classList = 'exercises'
+      })
+      exerciseCard.classList.add('selected-exercise')
+      let elementId = exerciseCard.id
+      let positionInArray = elementId.substring(elementId.length - 1)
+      let exercise = exercisesList[positionInArray]
+      populateExercisePlan(exercise)
+    })
+  });
+  let firstExercise = document.getElementById('exerc0')
+  firstExercise.click()
 }
 
 function printExercisesList(exercise, i, exercisesCards) {
@@ -24,15 +42,7 @@ function printExercisesList(exercise, i, exercisesCards) {
   let name = exercise.name
   let sets = exercise.sets
   let reps = exercise.reps
-
-  /* PUSHAR PARA EXERCISE PLAN SECTION OS DADOS!! */
-
-  let setsWeight = exercise.setsWeight
-  let weightUnd = exercise.weightUnd
-  let liftedReps = exercise.liftedReps
-  let liftedWeight = exercise.LiftedWeight
-  let discription = exercise.disc
-
+  let discription = exercise.disc  /* string */
   const exerciseHtmlCode = `
   <div id="exerc${i}" class="exercises">
     <button id="exerc${i}-index" class="exercise-card">${index}</button>
@@ -80,7 +90,6 @@ function printRestDay(exercisesCards) {
   let form = document.getElementById('add-exercise')
   form.style.display = 'none'
 }
-
 
 
 

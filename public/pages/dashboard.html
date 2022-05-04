@@ -451,7 +451,7 @@
 
           <div class="right">
             <div id="exercise-plan">
-              <span>Exercise plan:</span>
+              <span>Sets Weight:</span>
               <div class="card">
                 <div id="label">
                   <p>Set:</p>
@@ -460,41 +460,15 @@
                   <p>Reps:</p>
                 </div>
 
-                <div class="sets">
-                  <form id="set1" action="#" class="sets-area">
-                    <p class="set">SET 1</p>
-                    <p class="weight">3 plc</p>
-                    <input required type="text" name="w8Lifted-1" id="wl-1" class="used" placeholder="3 plc">
-                    <input required type="text" name="repsDone-1" id="wl-1" class="used" placeholder="3 plc">
-                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
-                  </form>
+                <div class="sets"></div>
 
-                  <form id="set2" action="#" class="sets-area">
-                    <p class="set">SET 2</p>
-                    <p class="weight">3 plc</p>
-                    <input required type="text" name="w8Lifted-2" id="wl-2" class="used" placeholder="3 plc">
-                    <input required type="text" name="repsDone-2" id="wl-2" class="used" placeholder="3 plc">
-                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
-                  </form>
-
-                  <form id="set3" action="#" class="sets-area">
-                    <p class="set">SET 3</p>
-                    <p class="weight">3 plc</p>
-                    <input required type="text" name="w8Lifted-3" id="wl-3" class="used" placeholder="3 plc">
-                    <input required type="text" name="repsDone-3" id="wl-3" class="used" placeholder="3 plc">
-                    <button disabled class="exercise-card done-btn" type="submit">DONE</button>
-                  </form>
-
-                  <button id="add-set-btn" type="button">+</button>
-
-                  <form id="add-set" action="#" class="sets-area hide">
-                    <p class="set">New Set</p>
-                    <input type="text" name="WeightUnit" id="WeightUnit" class="weight" placeholder="und" required>
-                    <input type="text" name="newSetWeight" id="newSetWeight" class="weight" placeholder="Weight"
-                      required>
-                    <button class="exercise-card add-btn" type="submit">ADD</button>
-                  </form>
-                </div>
+                <button id="add-set-btn" type="button">+</button>
+                <form id="add-set" action="#" class="sets-area hide">
+                  <p class="set">New Set</p>
+                  <input type="text" name="WeightUnit" id="WeightUnit" class="weight" placeholder="und" required>
+                  <input type="text" name="newSetWeight" id="newSetWeight" class="weight" placeholder="Weight" required>
+                  <button class="exercise-card add-btn" type="submit">ADD</button>
+                </form>
 
               </div>
 
