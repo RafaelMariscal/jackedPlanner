@@ -1,6 +1,7 @@
 import { db } from "./database/userManager.js";
 import { generateCalendar } from "./calendar.js";
 import { handleExercisesList } from "./exercise.js";
+import { editPlanner } from "./editPlanner.js";
 var userData = null
 var splitsCalendar = undefined
 var daySplit = null
@@ -21,19 +22,31 @@ function getData() {
     } else {
       console.log('No user logged.')
     }
+    return userData
   });
 }
 getData()
 const planDisplay = document.getElementById('planners-display')
-function populateDashboard(doc) {
+async function populateDashboard(doc) {
   let greetings = document.getElementById('greetings')
   const greet = `<a href="#">Helo again, <span>${doc.userName}</span>!</a>`
   greetings.innerHTML = greet;
+
   let plannersList = populatePlannersList(doc)
   var plannerSelected = undefined
-  plannerSelector(plannersList, plannerSelected)
+  await plannerSelector(plannersList, plannerSelected)
+  setTimeout(() => {
+    let editPlannerIcons = Array.from(document.getElementsByClassName('floating-icon'))
+    editPlannerIcons.forEach((element) => {
+      let id = element.id
+      element.addEventListener('click', () => {
+        editPlanner(doc, id, splitsCalendar)
+      })
+    })
+  }, 300);
 }
 function populatePlannersList(doc) {
+  planDisplay.innerHTML = ''
   let plan1 = doc.planners.planner1
   let plan2 = doc.planners.planner2
   let plan3 = doc.planners.planner3
@@ -48,7 +61,7 @@ function populatePlannersList(doc) {
     <button id="plan${i}" class="content-card">
       <strong>${i}</strong>
       <p>${name}</p>
-      <svg class="floating-icon" width="30" height="30" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg id="edit${i}" class="floating-icon" width="30" height="30" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M52.9742 59.7678H456.991V115.352H53.9031V745.203H686.399V345.759H743.983V745.203C743.983 757.966 739.724 774.071 727.598 786.46C715.162 799.165 703.047 803.716 685.47 803.716H53.9031C40.8826 803.716 27.4521 798.082 16.1522 786.46C5.26196 775.259 0.0341072 759.4 0.0341797 749.847C0.0360599 502.061 0.0356056 363.138 0.0341797 115.352C0.034092 100.105 3.66029 89.73 13.9856 78.1462C25.1861 65.5806 38.1945 59.7678 52.9742 59.7678Z"
           fill="black" />
@@ -135,6 +148,7 @@ async function plannerSelector(i, planner) {
   setTimeout(() => {
     plan1.click()
   }, 100);
+
   return splitsCalendar
 }
 async function createSplitsCalendar(planner) {
@@ -258,3 +272,5 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
     })
   })
 }
+
+export { getData }

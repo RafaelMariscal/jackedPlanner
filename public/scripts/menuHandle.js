@@ -1,6 +1,5 @@
 import { logout } from "./database/userManager.js"
 
-let dashboardContent = null
 const menuElements = Array.from(document.getElementById('menu-icons').children)
 var selector = document.querySelector('#nav-selector')
 menuElements.forEach((element) => {
@@ -8,37 +7,23 @@ menuElements.forEach((element) => {
     switch (element.id) {
       case 'home':
         selector.style.top = `calc(${position('home')}px - 78px)`
-        if (dashboardContent) {
-          document.getElementById('dashboard-content').innerHTML = dashboardContent
-        }
+        window.location.replace("/dashboard"); /* the events do not work when renovate the html */
         break;
       case 'notes':
         position('notes')
         selector.style.top = `calc(${position('notes')}px - 78px)`
-        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
-          dashboardContent = document.getElementById('dashboard-content').innerHTML
-        }
         document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'pro':
         selector.style.top = `calc(${position('pro')}px - 78px)`
-        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
-          dashboardContent = document.getElementById('dashboard-content').innerHTML
-        }
         document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'shop':
         selector.style.top = `calc(${position('shop')}px - 78px)`
-        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
-          dashboardContent = document.getElementById('dashboard-content').innerHTML
-        }
         document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       case 'config':
         selector.style.top = `calc(${position('config')}px - 78px)`
-        if (document.getElementById('dashboard-content').innerHTML != loadinghtml) {
-          dashboardContent = document.getElementById('dashboard-content').innerHTML
-        }
         document.getElementById('dashboard-content').innerHTML = loadinghtml
         break;
       default:
@@ -49,8 +34,8 @@ menuElements.forEach((element) => {
 
 const loadinghtml = `
 <div id="building">
-  <p>Under</p>
-  <p>Construction!</p>
+  <p>503</p>
+  <p>Out of Reach...</p>
   <p>This section will be</p>
   <p>fully functional ASAP!!</p>
 </div>

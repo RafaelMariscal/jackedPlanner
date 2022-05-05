@@ -1,5 +1,4 @@
 function populateExercisePlan(exercise) {
-  console.log(exercise)
   let sets = exercise.sets
   let setsWeight = exercise.setsWeight      /* aray */
   let weightUnd = exercise.weightUnd        /* string */
