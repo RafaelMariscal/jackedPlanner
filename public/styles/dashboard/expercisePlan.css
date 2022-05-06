@@ -141,10 +141,6 @@
   cursor: pointer;
 }
 
-.hide {
-  display: none;
-}
-
 @media screen and (max-width: 1200px) {
   .card {
     max-width: 720px;

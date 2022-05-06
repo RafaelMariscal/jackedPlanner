@@ -7,30 +7,50 @@ menuElements.forEach((element) => {
     switch (element.id) {
       case 'home':
         selector.style.top = `calc(${position('home')}px - 78px)`
-        window.location.replace("/dashboard"); /* the events do not work when renovate the html */
+        showSection('home')
         break;
       case 'notes':
         position('notes')
         selector.style.top = `calc(${position('notes')}px - 78px)`
-        document.getElementById('dashboard-content').innerHTML = loadinghtml
+        showSection('notes')
         break;
       case 'pro':
         selector.style.top = `calc(${position('pro')}px - 78px)`
-        document.getElementById('dashboard-content').innerHTML = loadinghtml
+        showSection('pro')
         break;
       case 'shop':
         selector.style.top = `calc(${position('shop')}px - 78px)`
-        document.getElementById('dashboard-content').innerHTML = loadinghtml
+        showSection('shop')
         break;
       case 'config':
         selector.style.top = `calc(${position('config')}px - 78px)`
-        document.getElementById('dashboard-content').innerHTML = loadinghtml
+        showSection('config')
         break;
       default:
         break;
     }
   })
 })
+
+function showSection(i) {
+  let notDone = document.getElementById('building')
+  let secTop = document.getElementById('sec-top')
+  let secMid = document.getElementById('sec-mid')
+  let secBot = document.getElementById('sec-bottom')
+  let array = [secTop, secMid, secBot]
+  if (i === 'home') {
+    notDone.classList = 'hide'
+    array.forEach(element => {
+      element.classList.remove('hide')
+    });
+    return
+  } else {
+    notDone.classList.remove('hide')
+    array.forEach(element => {
+      element.classList = 'cards-area hide'
+    });
+  }
+}
 
 const loadinghtml = `
 <div id="building">
