@@ -70,6 +70,10 @@
   transition: 100ms ease;
 }
 
+.content-card::placeholder {
+  color: rgb(182, 182, 182);
+}
+
 .content-card * {
   color: var(--dark);
   font-weight: 500 !important;

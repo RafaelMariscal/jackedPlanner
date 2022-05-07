@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="../styles/dashboard/expercisePlan.css">
   <link rel="stylesheet" href="../styles/dashboard/jpPro.css">
   <link rel="stylesheet" href="../styles/dashboard/weightHistory.css">
+  <link rel="stylesheet" href="../styles/dashboard/plannersForm.css">
   <link rel="icon" type="image/x-icon" href="/assets/icons/dashboar-icons/notes.svg">
   <title>Jacked Planner</title>
 </head>
@@ -91,6 +92,31 @@
     </div>
 
     <div id="dashboard-glass">
+
+      <div id="planners-form-container" class="hide">
+        <form id="planners-form" action="#" method="get">
+          <span id="close-planners-form">x</span>
+          <fieldset class="card">
+            <legend id="planners-form-title">Edit Planner</legend>
+            <label for="plannerName">Name:</label>
+            <input type="text" name="plannerName" id="plannerName" class="content-card"
+              placeholder="Your Jacked Planner" required>
+            <div id="planners-form-splits"></div>
+
+            <div id="new-planner-splits"></div>
+
+            <label for="planner-split-schedule">Split's <span>Schedule</span> :</label>
+            <input type="text" name="planner-split-schedule" id="planner-split-schedule" class="content-card"
+              placeholder="a,b,c,rest,d,c" required>
+
+            <!-- maybe and input list for each schedule ? -->
+
+            <label for="planner-start-date">Start date:</label>
+            <input type="date" name="planner-start-date" id="planner-start-date" class="content-card" required>
+            <button type="submit" id="submit-planner" class="pro-btn">Create Planner</button>
+          </fieldset>
+        </form>
+      </div>
 
       <aside id="menu-area">
 
