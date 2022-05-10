@@ -179,6 +179,7 @@ function getSplitsLists(planner, tags) {
   }
   if (planner.name == 'PUSH PULL LEGS by Jeff') {
     splitsListInput = 'a,b,c,rest,d,c,rest'
+    db
   }
   let treatData = splitsListInput.replace(/\s+/g, '')
   let splitsList = treatData.split(',')

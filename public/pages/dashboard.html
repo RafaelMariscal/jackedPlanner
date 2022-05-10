@@ -105,15 +105,17 @@
 
             <div id="new-planner-splits"></div>
 
-            <label for="planner-split-schedule">Split's <span>Schedule</span> :</label>
-            <input type="text" name="planner-split-schedule" id="planner-split-schedule" class="content-card"
-              placeholder="a,b,c,rest,d,c" required>
+            <label for="plannerName">How many Rest Days:</label>
+            <input type="number" name="palnnerRestDays" id="plannerRestDays" class="content-card" max="10" required>
+
+            <label>Split's <span>Schedule</span> :</label></br>
+            <div id="planner-split-schedule"></div>
 
             <!-- maybe and input list for each schedule ? -->
 
-            <label for="planner-start-date">Start date:</label>
+            <label for="planner-start-date" style="margin-top: 2em;">Start date:</label>
             <input type="date" name="planner-start-date" id="planner-start-date" class="content-card" required>
-            <button type="submit" id="submit-planner" class="pro-btn">Create Planner</button>
+            <button type="submit" id="submit-planner" class="pro-btn"></button>
           </fieldset>
         </form>
       </div>

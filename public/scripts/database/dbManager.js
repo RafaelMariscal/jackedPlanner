@@ -3,12 +3,7 @@ import { db } from "./userManager.js";
 function createPlannerStructure() {
   return {
     name: '',
-    schedule: {
-      daysOn1: 0,
-      daysOn2: 0,
-      daysOff1: 0,
-      daysOff2: 0,
-    },
+    schedule: '',
     split: {
       a: createSplitStructure(),
     }
@@ -51,12 +46,7 @@ function dbStructure(uid) {
     planners: {
       planner1: {
         name: 'PUSH PULL LEGS by Jeff',
-        schedule: {
-          daysOn1: 3,
-          daysOn2: 2,
-          daysOff1: 1,
-          daysOff2: 1,
-        },
+        schedule: 'a,b,c,rest,d,c,rest',
         startDate: firebase.firestore.Timestamp.fromDate(new Date()),
         split: {
           a: {

@@ -32,6 +32,20 @@
   font-size: 1.25em;
 }
 
+#planner-split-schedule {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5em;
+}
+
+#planner-split-schedule * {
+  flex-basis: 10em;
+}
+
+#planner-split-schedule option {
+  color: var(--dark) !important;
+}
+
 #add-splits {
   display: flex;
   justify-content: space-between;
