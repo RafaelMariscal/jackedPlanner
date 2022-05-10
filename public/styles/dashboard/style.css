@@ -121,6 +121,10 @@ input[type=number] {
   display: none !important;
 }
 
+#planners-form-splits button {
+  margin: 0 auto;
+}
+
 @media screen and (max-width: 460px) {
 
   .max-area>div {

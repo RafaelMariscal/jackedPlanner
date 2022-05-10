@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+#planners-form {
+  max-height: 90%;
+}
+
 #planners-form-container form {
   position: relative;
   animation: apear 350ms ease-in-out;
@@ -24,7 +28,8 @@
 #planners-form-container fieldset {
   background-image: linear-gradient(to bottom right, var(--dark), 20%, rgba(0, 0, 0, 0.3));
   box-shadow: 0 0 3em rgba(0, 0, 0, 0.5);
-
+  max-height: 80vh;
+  overflow-y: scroll;
 }
 
 #planners-form-container label,
@@ -36,6 +41,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: .5em;
+  max-width: 450px;
 }
 
 #planner-split-schedule * {
@@ -71,10 +77,11 @@
 
 
 #close-planners-form {
-  font-size: 1.25em;
+  font-size: 2em;
   position: absolute;
-  top: -1.25em;
-  right: 1.75em;
+  top: -1.5em;
+  right: 1em;
   padding: .5em 1em;
+  text-shadow: 0 0 6px black;
   cursor: pointer;
 }
