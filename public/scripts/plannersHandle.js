@@ -106,7 +106,6 @@ async function plannerSelector(i, planner) {
         case i[1].name:
           element.classList.add('selected-item')
           planner = i[1]
-          console.log(planner)
           createSplitsCalendar(planner).then((object) => {
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value

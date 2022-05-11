@@ -12,14 +12,13 @@ const plannerRestDays = document.getElementById('plannerRestDays')
 const plannerSchedule = document.getElementById('planner-split-schedule')
 const startDate = document.getElementById('planner-start-date')
 const newSplitsNames = document.getElementById('new-planner-splits')
-const manySplits = document.getElementById('manySplits')
 const submitPlannerBtn = document.getElementById('submit-planner')
 
 async function editPlanner(doc, element, splitsCalendar) {
   togglePlannersForm()
   let position = element.substr(element.length - 1);
   let plannerSelected = doc.planners[`planner${position}`]
-  await buildPlannerForm(plannerSelected, doc)
+  await buildPlannerForm(plannerSelected, doc, position)
 }
 function togglePlannersForm() {
   formContainer.classList.toggle('hide')
@@ -29,8 +28,7 @@ function togglePlannersForm() {
     }
   }
 }
-
-async function buildPlannerForm(planner, doc) {
+async function buildPlannerForm(planner, doc, position) {
   if (planner.name) {
     formLegend.innerText = 'Edit Planner'
     formButtom.innerText = 'Confirm Changes'
@@ -38,12 +36,12 @@ async function buildPlannerForm(planner, doc) {
     newSplitsNames.innerHTML = ''
     plannerName.value = planner.name
     await generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames, doc).then(() => {
-      inputValuesRegister(planner, doc)
+      inputValuesRegister(planner, doc, position)
       removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
       let addButton = document.getElementById('addFormSplitsButtom')
       addButton.onclick = () => {
         addANewSplitOnForm(splitsContainer, plannerSchedule, planner, newSplitsNames).then(() => {
-          inputValuesRegister(planner, doc)
+          inputValuesRegister(planner, doc, position)
           removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
         })
       }
@@ -52,27 +50,154 @@ async function buildPlannerForm(planner, doc) {
   } else {
     formLegend.innerText = 'Create Planner'
     formButtom.innerText = 'Generate Planner'
-
+    splitsContainer.innerHTML = ''
+    newSplitsNames.innerHTML = ''
+    plannerSchedule.innerHTML = ''
     plannerName.value = ''
-    splitsContainer.innerHTML = `
-      <label for="manySplits">How many splits:</label>
-      <div id="add-splits">
-        <input type="number" name="manySplits" id="manySplits" class="content-card"
-          placeholder="(Max 10 planners)" required>
-        <button type="button" id="add-splits-btn" class="content-card">add</button>
-      </div>
-      <p>Info: Click on "add" button to generate splits inputs</p>
-    `
-    newSplitsNames.innerHTML = `
-      <label for="split-a-name">Name for split <span id="split-label">"a"</span> :
-        <input type="text" name="split-a-name" id="split-a-name" class="content-card" style="font-size: 1em"
-          placeholder="Chest and Shoulderss" required>
-      </label>
-    `
-
-    /* ações de criação */
+    await generateCreateInputs(planner, doc).then(() => {
+      manySplits.value = 0
+      plannerRestDays.value = 0
+      startDate.value = 0
+      plannerRestDays.onchange = updateScheduleInputs
+      getCrateInputsValues(planner, doc, position)
+    })
   }
 }
+
+/* -----------------  FOR CRATE FORM  ------------------- */
+async function generateCreateInputs() {
+  splitsContainer.innerHTML = `
+  <label for="manySplits">How many splits:</label>
+  <div id="add-splits">
+    <input type="number" name="manySplits" id="manySplits" class="content-card"
+      placeholder="(Max 10 planners)" value="0" required>
+    <button type="button" id="add-splits-btn" class="content-card" style="align-self: start">Set Up</button>
+  </div>
+  <p>Click on "add" button to generate splits inputs</p>
+  `
+  let splitsToCreate = []
+  const manySplits = document.getElementById('manySplits')
+  manySplits.value = 0
+  const addSplitsBtn = document.getElementById('add-splits-btn')
+  addSplitsBtn.onclick = () => {
+    if (manySplits.value == 0 || manySplits.value == '') {
+      alert('Many splits needs to be defined.')
+    }
+    if (manySplits.value > 10) {
+      manySplits.value = 10
+    }
+    splitsToCreate = []
+    newSplitsNames.innerHTML = ''
+    let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    for (let i = 0; i < manySplits.value; i++) {
+      newSplitsNames.innerHTML += `
+         <label for="split-${abc[i]}-name">Name for split <span id="split${abc[i]}-label">"${abc[i]}"</span> :
+           <input type="text" name="split-${abc[i]}-name" id="split-${abc[i]}-name" class="content-card" style="font-size: 1em"
+             placeholder="New split name" required>
+         </label>
+       `
+      splitsToCreate.push(abc[i])
+    }
+    for (let i = 0; i < plannerRestDays.value; i++) {
+      splitsToCreate.push('rest')
+    }
+    generateCreateSplitsInputs(splitsToCreate)
+  }
+}
+function generateCreateSplitsInputs(splits) {
+  plannerSchedule.innerHTML = ''
+  splits.forEach((splitTag, index) => {
+    plannerSchedule.innerHTML += `
+      <div style="display: grid;place-items: center;">
+        <label for="planner-split-schedule${index + 1}">Day <span>${index + 1}</span></label>
+        <select id="splits${index + 1}" class="exercise-card">
+        </select>
+      </div>
+    `
+  });
+  populateOptions(splits)
+}
+function updateScheduleInputs() {
+  plannerSchedule.innerHTML = ''
+  let abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+  let splitsCounter = manySplits.value
+  let list = []
+  for (let i = 0; i < splitsCounter; i++) {
+    list.push(abc[i])
+  }
+  let restDaysCounter = plannerRestDays.value
+  if (restDaysCounter > 10) {
+    restDaysCounter = 10
+    plannerRestDays.value = 10
+  }
+  for (let i = 0; i < restDaysCounter; i++) {
+    list.push('rest')
+  }
+  generateCreateSplitsInputs(list)
+}
+function getCrateInputsValues(planner, doc, position) {
+  let allInputs = []
+  submitPlannerBtn.onclick = (event) => {
+    if (confirm('Confirm changes?')) {
+      let name = plannerName.value
+      let abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+      let splitNames = []
+      let splitsTagsElements = newSplitsNames.children.length
+      for (let i = 0; i < splitsTagsElements; i++) {
+        let name = document.getElementById(`split-${abc[i]}-name`).value
+        splitNames.push(name)
+      }
+      let splitSchedule = []
+      let scheduleTagsElements = plannerSchedule.children.length
+      for (let i = 0; i < scheduleTagsElements; i++) {
+        let split = document.getElementById(`splits${i + 1}`).value
+        splitSchedule.push(split)
+      }
+      let passTest = testInputs(name, splitNames, startDate)
+      if (!passTest.result) {
+        alert(passTest)
+      } else {
+        allInputs.push(name, splitNames, splitSchedule, startDate.value)
+        console.log(allInputs)
+        console.log(planner)
+        console.log(doc)
+        formContainer.classList.toggle('hide')
+        setTimeout(() => {
+          updatePlannerDb(planner, allInputs, doc, position)
+        }, 200);
+        alert('Planner Created!!')
+        /* udpate planner and submit */
+      }
+    }
+  }
+}
+function testInputs(name, splitsNames, startDate) {
+  let abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+  let result = false
+  let alert = ''
+  if (name == '') {
+    return alert = 'Planner needs to be named!'
+  }
+  if (manySplits.value == 0) {
+    return alert = "There is no splits added. "
+  }
+  let splitsTagsElements = newSplitsNames.children.length
+  for (let i = 0; i < splitsTagsElements; i++) {
+    let name = document.getElementById(`split-${abc[i]}-name`).value
+    if (name == '') {
+      return alert = 'All the splits needs to be named'
+    }
+  }
+  if (startDate.value == '') {
+    return alert = 'Start Date needs to be defined!'
+  }
+  result = true
+  let obj = { result, alert }
+  return obj
+}
+
+
+/* -----------------  FOR EDIT FORM  ------------------- */
 async function generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames, doc) {
   let splits = Object.keys(planner.split).sort()
   splitsContainer.innerHTML = ''
@@ -202,7 +327,7 @@ function removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplits
     }
   }
 }
-function inputValuesRegister(planner, doc) {
+function inputValuesRegister(planner, doc, position) {
   let allInputs = []
   submitPlannerBtn.onclick = (event) => {
     if (confirm('Confirm changes?')) {
@@ -223,14 +348,12 @@ function inputValuesRegister(planner, doc) {
       }
       formContainer.classList.toggle('hide')
       setTimeout(() => {
-        updatePlannerDb(planner, allInputs, doc)
+        updatePlannerDb(planner, allInputs, doc, position)
       }, 200);
-      /* updatePlannerDb(planner, allInputs, doc) */
       alert('Planner Updated!!')
     }
   }
 }
-
 
 
 export { editPlanner }

@@ -371,7 +371,7 @@ function dbStructure(uid) {
   })
 }
 
-function updatePlannerDb(planner, inputsArray, doc) {
+function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}
   inputsArray[1].forEach((splitName, index) => {
@@ -380,25 +380,32 @@ function updatePlannerDb(planner, inputsArray, doc) {
   });
   let plannerEditedSchedule = inputsArray[2].join(',')
   let plannerEditedStartDate = inputsArray[3]
-
-  let plannerSelected = ''
-  for (let key in doc.planners) {
-    if (doc.planners[key].name == planner.name) {
-      plannerSelected = key
+  console.log(position)
+  let plannerSelected = `planner${position}`
+  let documentPlanner = doc.planners[plannerSelected]
+  if (!documentPlanner.name) {
+    createPlannerStructure()
+    documentPlanner.name = plannerEditedName
+    documentPlanner.schedule = plannerEditedSchedule
+    documentPlanner.split = {}
+    for (let key in plannerEditedSplitsName) {
+      documentPlanner.split[key] = createSplitStructure()
+      documentPlanner.split[key].title = plannerEditedSplitsName[key]
+    }
+  } else {
+    documentPlanner.name = plannerEditedName
+    documentPlanner.schedule = plannerEditedSchedule
+    for (let key in documentPlanner.split) {
+      documentPlanner.split[key].title = plannerEditedSplitsName[key]
     }
   }
-  let documentPlanner = doc.planners[plannerSelected]
-  documentPlanner.name = plannerEditedName
-  documentPlanner.schedule = plannerEditedSchedule
-  for (let key in documentPlanner.split) {
-    documentPlanner.split[key].title = plannerEditedSplitsName[key]
-  }
+
   documentPlanner.startDate = plannerEditedStartDate
 
   var uid = auth.currentUser.uid
   db.collection('users').doc(uid).update(doc).then(() => {
     console.log('Document updated successfully')
-    document.location.reload()
+    /* document.location.reload() */
   }).catch(err => {
     console.error(err)
   })
