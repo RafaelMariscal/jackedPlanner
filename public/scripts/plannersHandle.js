@@ -132,12 +132,10 @@ async function plannerSelector(i, planner) {
           }, 100);
           return splitsCalendar
         default:
-          splitsCalendar = 'No Planner found.'
           const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
           document.getElementById('exercises-list').innerHTML = addPlannerText
           element.classList.add('selected-planner')
           planner = null
-          console.log('No Planner found.')
           let setsCards = document.getElementsByClassName('sets')[0]
           setsCards.innerHTML = ''
           return splitsCalendar
@@ -274,4 +272,4 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
   })
 }
 
-export { getData }
+export { getData, populatePlannersList }

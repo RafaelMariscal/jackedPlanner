@@ -1,4 +1,4 @@
-import { db } from "./userManager.js";
+import { auth, db } from "./userManager.js";
 
 function createPlannerStructure() {
   return {
@@ -371,4 +371,37 @@ function dbStructure(uid) {
   })
 }
 
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure }
+function updatePlannerDb(planner, inputsArray, doc) {
+  let plannerEditedName = inputsArray[0]
+  let plannerEditedSplitsName = {}
+  inputsArray[1].forEach((splitName, index) => {
+    let abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
+    plannerEditedSplitsName[abc[index]] = splitName
+  });
+  let plannerEditedSchedule = inputsArray[2].join(',')
+  let plannerEditedStartDate = inputsArray[3]
+
+  let plannerSelected = ''
+  for (let key in doc.planners) {
+    if (doc.planners[key].name == planner.name) {
+      plannerSelected = key
+    }
+  }
+  let documentPlanner = doc.planners[plannerSelected]
+  documentPlanner.name = plannerEditedName
+  documentPlanner.schedule = plannerEditedSchedule
+  for (let key in documentPlanner.split) {
+    documentPlanner.split[key].title = plannerEditedSplitsName[key]
+  }
+  documentPlanner.startDate = plannerEditedStartDate
+
+  var uid = auth.currentUser.uid
+  db.collection('users').doc(uid).update(doc).then(() => {
+    console.log('Document updated successfully')
+    document.location.reload()
+  }).catch(err => {
+    console.error(err)
+  })
+}
+
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb }

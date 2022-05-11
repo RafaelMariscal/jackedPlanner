@@ -1,6 +1,4 @@
-import { createSplitStructure } from "./database/dbManager.js";
-import { db } from "./database/userManager.js";
-
+import { createSplitStructure, updatePlannerDb } from "./database/dbManager.js";
 
 const formContainer = document.getElementById('planners-form-container')
 const form = document.getElementById('planners-form')
@@ -19,9 +17,6 @@ const submitPlannerBtn = document.getElementById('submit-planner')
 
 async function editPlanner(doc, element, splitsCalendar) {
   togglePlannersForm()
-  console.log(splitsCalendar)
-  console.log(doc)
-
   let position = element.substr(element.length - 1);
   let plannerSelected = doc.planners[`planner${position}`]
   await buildPlannerForm(plannerSelected, doc)
@@ -43,19 +38,17 @@ async function buildPlannerForm(planner, doc) {
     newSplitsNames.innerHTML = ''
     plannerName.value = planner.name
     await generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames, doc).then(() => {
-      inputValuesRegister(planner)
+      inputValuesRegister(planner, doc)
       removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
-
       let addButton = document.getElementById('addFormSplitsButtom')
       addButton.onclick = () => {
         addANewSplitOnForm(splitsContainer, plannerSchedule, planner, newSplitsNames).then(() => {
-          inputValuesRegister(planner)
+          inputValuesRegister(planner, doc)
           removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
         })
       }
     })
     hendleStartDate(planner, startDate)
-
   } else {
     formLegend.innerText = 'Create Planner'
     formButtom.innerText = 'Generate Planner'
@@ -109,7 +102,6 @@ async function generateEditInputs(splitsContainer, plannerSchedule, planner, new
           value="${planner.split[split].title}" required>
     </div>
     `
-
   });
   newSplitsNames.innerHTML = ''
   newSplitsNames.innerHTML += `
@@ -210,10 +202,11 @@ function removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplits
     }
   }
 }
-function inputValuesRegister(planner) {
+function inputValuesRegister(planner, doc) {
   let allInputs = []
   submitPlannerBtn.onclick = (event) => {
     if (confirm('Confirm changes?')) {
+      let abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
       let splitNames = []
       Array.from(splitsContainer.children).forEach(element => {
         if (element.lastElementChild.value !== undefined) {
@@ -229,15 +222,15 @@ function inputValuesRegister(planner) {
         return alert('All the splits need to be named!')
       }
       formContainer.classList.toggle('hide')
-      updatePlannerDb(planner, allInputs)
+      setTimeout(() => {
+        updatePlannerDb(planner, allInputs, doc)
+      }, 200);
+      /* updatePlannerDb(planner, allInputs, doc) */
       alert('Planner Updated!!')
     }
   }
 }
-function updatePlannerDb(planner, inputsArray) {
-  console.log(planner)
-  console.log(inputsArray)
-}
+
 
 
 export { editPlanner }
