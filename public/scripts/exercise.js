@@ -10,6 +10,7 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   if (daySplitDoc == 'rest') {
     return printRestDay(exercisesCards)
   }
+
   daySplitDoc.date = date
   daySplitDoc.schedule = splitsCalendar
   const exercisesList = daySplitDoc.exercises
@@ -36,13 +37,14 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
       populateExercisePlan(exercise)
     })
   });
+
   let firstExercise = document.getElementById('exerc0')
   firstExercise.click()
   if (exercisesList[0].name == '') {
     document.getElementsByClassName('sets')[0].innerHTML = ''
   }
+  hendleExerciseDescription(daySplitDoc)
 }
-
 function printExercisesList(exercise, i, exercisesCards) {
   let index = exercise.index
   let name = exercise.name
@@ -87,7 +89,6 @@ function printExercisesList(exercise, i, exercisesCards) {
     `
   exercisesCards.innerHTML += exerciseHtmlCode
 }
-
 function printRestDay(exercisesCards) {
   const code = `
   <h2 style="font-size: 2.5em; font-weight: 400; text-align: center">REST DAY!!!</h2>
@@ -96,6 +97,36 @@ function printRestDay(exercisesCards) {
   let form = document.getElementById('add-exercise')
   form.style.display = 'none'
   document.getElementsByClassName('sets')[0].innerHTML = ''
+}
+function hendleExerciseDescription(daySplitDoc) {
+  console.log(daySplitDoc.exercises)
+  let exercisesList = daySplitDoc.exercises
+  exercisesList.forEach((exercise, index) => {
+    let exerciseDescription = `
+      <div id="exerc${index}-descriptionCard" class="exercise-card description-card hide">
+          <p id="dic${index}">${exercise.disc}</p>
+      </div>
+    `
+    let descriptionBtn = document.getElementById(`exerc${index}-disc`)
+    let exerciseNameCard = document.getElementById(`exerc${index}-name`)
+    exerciseNameCard.innerHTML += exerciseDescription
+    setTimeout(() => {
+      let descriptionCard = document.getElementById(`exerc${index}-descriptionCard`)
+      descriptionBtn.onclick = (event) => {
+        let descriptionCards = Array.from(document.getElementsByClassName('description-card'))
+        descriptionCards.forEach(descriptionCard => {
+          if (!descriptionCard.classList.contains('hide')) {
+            let index = event.target.id.charAt(5)
+            let element = document.getElementById(`exerc${index}-descriptionCard`)
+            if (element.id !== descriptionCard.id) {
+              descriptionCard.classList.toggle('hide')
+            }
+          }
+        });
+        descriptionCard.classList.toggle('hide')
+      }
+    }, 200);
+  });
 }
 
 /*  -------------- FORMULÁRIO DE ADIÇÃO DE EXERCÍCIOS ------------- */
