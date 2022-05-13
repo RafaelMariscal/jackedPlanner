@@ -9,6 +9,10 @@
   transition: all 200ms ease-in-out !important;
 }
 
+.card-area {
+  position: relative;
+}
+
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
@@ -124,12 +128,23 @@
   fill: var(--orange);
 }
 
-#edit {
-  display: none;
+.edit {
+  max-width: 20px;
 }
 
-#remove {
-  max-width: 20px;
+.remove-btn svg {
+  width: 100%;
+  height: 60%;
+  transform: translate(-25%, 25%);
+  cursor: pointer;
+}
+
+.remove-btn {
+  cursor: pointer;
+}
+
+.remove-btn:hover * {
+  fill: red;
 }
 
 .exercises *:hover {

@@ -11,15 +11,14 @@ function populateExercisePlan(exercise) {
       <form id="set${i + 1}" action="#" class="sets-area">
         <p class="set">SET ${i + 1}</p>
         <p class="weight">${setsWeight[i]} ${weightUnd}</p>
-        <input required type="text" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="${setsWeight[i]} ${weightUnd}">
-        <input required type="text" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="${setsWeight[i]} ${weightUnd}">
+        <input required type="text" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="W8 ${weightUnd}">
+        <input required type="text" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="Reps">
         <button class="exercise-card done-btn" type="submit">DONE</button>
        </form>
     `
     setsCards.innerHTML += exercisePlanHtml
   }
 }
-
 
 const addSetBtn = document.getElementById('add-set-btn')
 const addSetForm = document.getElementById('add-set')
