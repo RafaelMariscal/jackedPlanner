@@ -1,4 +1,4 @@
-import { firebaseConfig, db, auth } from "./database/userManager.js";
+import { deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
 import { populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
@@ -10,7 +10,6 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   if (daySplitDoc == 'rest') {
     return printRestDay(exercisesCards)
   }
-
   daySplitDoc.date = date
   daySplitDoc.schedule = splitsCalendar
   const exercisesList = daySplitDoc.exercises
@@ -21,18 +20,16 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   if (firstElement.innerText == '') {
     document.getElementById('exerc0').style.display = 'none'
   }
-  let form = document.getElementById('add-exercise')
-  form.style.display = 'flex'
-
-  exerciseSelectorFeature(exercisesList)
-  exercisesCRUDFeature(exercisesList)
-
   let firstExercise = document.getElementById('exerc0')
   firstExercise.click()
   if (exercisesList[0].name == '') {
     document.getElementsByClassName('sets')[0].innerHTML = ''
   }
+  let form = document.getElementById('add-exercise')
+  form.style.display = 'flex'
   hendleExerciseDescription(daySplitDoc)
+  exerciseSelectorFeature(exercisesList)
+  exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar)
 }
 function printExercisesList(exercise, i, exercisesCards) {
   let index = exercise.index
@@ -123,16 +120,25 @@ function exerciseSelectorFeature(exercisesList) {
 }
 /* ----------- exercises CRUD ------------ */
 
-async function exercisesCRUDFeature(exercisesList) {
+async function exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar) {
   const editBtns = Array.from(document.getElementsByClassName('edit-exercise'))
   editBtns.forEach((editBtn) => {
     editBtn.onclick = () => {
       let number = editBtn.id.charAt(editBtn.id.length - 1)
       toggleExerciseEditForm().then(() => {
         populateExerciseEditForm(number, exercisesList)
-
-        /* getting input values and register at db */
-
+        const confirmEditExerciseBtn = document.getElementById('confirm-edit-btn')
+        confirmEditExerciseBtn.onclick = () => {
+          if (confirm('Confirm exercise editign?')) {
+            updateExerciseDb(planner, number, daySplitDoc)
+          }
+        }
+        const deleteExerciseBtn = document.getElementById('delete-exercise')
+        deleteExerciseBtn.onclick = () => {
+          if (confirm('Do you want to delete this exercise?')) {
+            deleteExerciseDb(planner, number, daySplitDoc)
+          }
+        }
       })
     }
   })

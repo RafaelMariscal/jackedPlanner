@@ -399,7 +399,6 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
       documentPlanner.split[key].title = plannerEditedSplitsName[key]
     }
   }
-
   documentPlanner.startDate = plannerEditedStartDate
 
   var uid = auth.currentUser.uid
@@ -411,4 +410,78 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
   })
 }
 
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb }
+function updateExerciseDb(planner, exerciseIndex, DaySplit) {
+  var uid = auth.currentUser.uid
+  let userDoc = db.collection('users').doc(uid)
+  userDoc.get().then((doc) => {
+    if (doc.exists) {
+      let docData = doc.data()
+      let userPlanners = docData.planners
+      let currentPlanner = ''
+      for (let key in userPlanners) {
+        if (userPlanners[key].name == planner.name) {
+          currentPlanner = key
+        }
+      }
+      let plannerToBeUpdated = userPlanners[currentPlanner]
+      let currentSplit = ''
+      for (let key in plannerToBeUpdated.split) {
+        if (plannerToBeUpdated.split[key].title == DaySplit.title) {
+          currentSplit = key
+        }
+      }
+      const exerciseIndexNumber = document.getElementById('edit-exercise-index').value
+      const exerciseName = document.getElementById('edit-exercise-name').value
+      const exerciseSets = document.getElementById('edit-exercise-sets').value
+      const exerciseReps = document.getElementById('edit-exercise-reps').value
+      const exerciseDesc = document.getElementById('edit-exercise-description').value
+      let exerciseToBeUpdated = plannerToBeUpdated.split[currentSplit].exercises[exerciseIndex]
+      exerciseToBeUpdated.index = exerciseIndexNumber
+      exerciseToBeUpdated.name = exerciseName
+      exerciseToBeUpdated.sets = exerciseSets
+      exerciseToBeUpdated.reps = exerciseReps
+      exerciseToBeUpdated.disc = exerciseDesc
+
+      db.collection('users').doc(uid).update(docData).then(() => {
+        console.log('Document updated successfully')
+        /* document.location.reload() */
+      }).catch(err => {
+        console.error(err)
+      })
+    } else {
+      console.log('no such document.')
+    }
+  })
+}
+function deleteExerciseDb(planner, exerciseIndex, DaySplit) {
+  var uid = auth.currentUser.uid
+  let userDoc = db.collection('users').doc(uid)
+  userDoc.get().then((doc) => {
+    if (doc.exists) {
+      let docData = doc.data()
+      let userPlanners = docData.planners
+      let currentPlanner = ''
+      for (let key in userPlanners) {
+        if (userPlanners[key].name == planner.name) {
+          currentPlanner = key
+        }
+      }
+      let plannerToBeUpdated = userPlanners[currentPlanner]
+      let currentSplit = ''
+      for (let key in plannerToBeUpdated.split) {
+        if (plannerToBeUpdated.split[key].title == DaySplit.title) {
+          currentSplit = key
+        }
+      }
+      let exerciseToBeDeleted = plannerToBeUpdated.split[currentSplit].exercises[exerciseIndex]
+
+      /* logic to delete de exercise */
+
+      console.log(exerciseToBeDeleted)
+
+    } else {
+      console.log('no such document.')
+    }
+  })
+}
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, updateExerciseDb, deleteExerciseDb }
