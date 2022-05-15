@@ -528,12 +528,22 @@ function addNewExercise(planner, formValues, DaySplit) {
           }
         }
         console.log(exercises)
-        exercises.splice(Number(newExercise.index) - 1, 0, newExercise)
-        exercises.forEach((exercise, index) => {
-          if (index > Number(newExercise.index) - 1) {
-            ++exercise.index
-          }
-        });
+        if (Number(newExercise.index) == exercises.length) {
+          exercises.push(newExercise)
+          return db.collection('users').doc(uid).update(docData).then(() => {
+            console.log('Document updated successfully')
+            document.location.reload()
+          }).catch(err => {
+            console.error(err)
+          })
+        } else {
+          exercises.splice(Number(newExercise.index) - 1, 0, newExercise)
+          exercises.forEach((exercise, index) => {
+            if (index > Number(newExercise.index) - 1) {
+              ++exercise.index
+            }
+          });
+        }
         db.collection('users').doc(uid).update(docData).then(() => {
           console.log('Document updated successfully')
           document.location.reload()

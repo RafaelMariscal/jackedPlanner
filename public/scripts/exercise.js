@@ -183,19 +183,4 @@ function populateExerciseEditForm(index, exercisesList) {
   console.log(exercise)
 }
 
-/*  -------------- FORMULÁRIO DE ADIÇÃO DE EXERCÍCIOS ------------- */
-
-const form = Array.from(document.getElementById('add-exercise').children)
-const formValues = { index: '', name: '', sets: '', reps: '', discription: '' }
-form.forEach((element) => {
-  element.onchange = () => {
-    formValues[element.name] = element.value
-  }
-})
-const addBtn = document.getElementById('exerc-add')
-addBtn.onclick = () => {
-  addNewExercise(formValues)
-}
-
-
 export { handleExercisesList }
