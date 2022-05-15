@@ -1,4 +1,4 @@
-import { deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
+import { addNewExercise, deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
 import { populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
@@ -121,15 +121,29 @@ function exerciseSelectorFeature(exercisesList) {
 /* ----------- exercises CRUD ------------ */
 
 async function exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar) {
+  const form = Array.from(document.getElementById('add-exercise').children)
+  const formValues = { index: '', name: '', sets: '', reps: '', disc: '' }
+  form.forEach((element) => {
+    element.onchange = () => {
+      formValues[element.name] = element.value
+    }
+  })
+  const addBtn = document.getElementById('exerc-add')
+  addBtn.onclick = () => {
+    if (confirm('This action wiil add a new exercise to this split.')) {
+      addNewExercise(planner, formValues, daySplitDoc)
+    }
+  }
   const editBtns = Array.from(document.getElementsByClassName('edit-exercise'))
   editBtns.forEach((editBtn) => {
     editBtn.onclick = () => {
       let number = editBtn.id.charAt(editBtn.id.length - 1)
       toggleExerciseEditForm().then(() => {
         populateExerciseEditForm(number, exercisesList)
+
         const confirmEditExerciseBtn = document.getElementById('confirm-edit-btn')
         confirmEditExerciseBtn.onclick = () => {
-          if (confirm('Confirm exercise editign?')) {
+          if (confirm('Confirm exercise editing?')) {
             updateExerciseDb(planner, number, daySplitDoc)
           }
         }
@@ -142,6 +156,7 @@ async function exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, s
       })
     }
   })
+
 }
 async function toggleExerciseEditForm() {
   const closeEditExerciseForm = document.getElementById('close-edit-exercise-form')
@@ -178,7 +193,9 @@ form.forEach((element) => {
   }
 })
 const addBtn = document.getElementById('exerc-add')
-addBtn.onclick = () => { }
+addBtn.onclick = () => {
+  addNewExercise(formValues)
+}
 
 
 export { handleExercisesList }

@@ -444,7 +444,7 @@ function updateExerciseDb(planner, exerciseIndex, DaySplit) {
 
       db.collection('users').doc(uid).update(docData).then(() => {
         console.log('Document updated successfully')
-        /* document.location.reload() */
+        document.location.reload()
       }).catch(err => {
         console.error(err)
       })
@@ -473,15 +473,77 @@ function deleteExerciseDb(planner, exerciseIndex, DaySplit) {
           currentSplit = key
         }
       }
-      let exerciseToBeDeleted = plannerToBeUpdated.split[currentSplit].exercises[exerciseIndex]
-
-      /* logic to delete de exercise */
-
-      console.log(exerciseToBeDeleted)
-
+      let exercises = plannerToBeUpdated.split[currentSplit].exercises
+      exercises.forEach((exercise, index) => {
+        if (index > exerciseIndex) {
+          --exercise.index
+        }
+      });
+      let newExerciseList = exercises.filter((exercise, index) => index !== Number(exerciseIndex))
+      plannerToBeUpdated.split[currentSplit].exercises = newExerciseList
+      db.collection('users').doc(uid).update(docData).then(() => {
+        console.log('Document updated successfully')
+        document.location.reload()
+      }).catch(err => {
+        console.error(err)
+      })
     } else {
       console.log('no such document.')
     }
   })
 }
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, updateExerciseDb, deleteExerciseDb }
+function addNewExercise(planner, formValues, DaySplit) {
+  let noEmptyValues = true
+  for (let key in formValues) {
+    if (formValues[key] == '') {
+      noEmptyValues = false
+      return alert('Add exercise form needs to be fully filled.')
+    }
+  }
+  if (noEmptyValues) {
+    var uid = auth.currentUser.uid
+    let userDoc = db.collection('users').doc(uid)
+    userDoc.get().then((doc) => {
+      if (doc.exists) {
+        let docData = doc.data()
+        let userPlanners = docData.planners
+        let currentPlanner = ''
+        for (let key in userPlanners) {
+          if (userPlanners[key].name == planner.name) {
+            currentPlanner = key
+          }
+        }
+        let plannerToBeUpdated = userPlanners[currentPlanner]
+        let currentSplit = ''
+        for (let key in plannerToBeUpdated.split) {
+          if (plannerToBeUpdated.split[key].title == DaySplit.title) {
+            currentSplit = key
+          }
+        }
+        let exercises = plannerToBeUpdated.split[currentSplit].exercises
+        let newExercise = createExerciseStructure()
+        for (let key in newExercise) {
+          if (formValues[key]) {
+            newExercise[key] = formValues[key]
+          }
+        }
+        console.log(exercises)
+        exercises.splice(Number(newExercise.index) - 1, 0, newExercise)
+        exercises.forEach((exercise, index) => {
+          if (index > Number(newExercise.index) - 1) {
+            ++exercise.index
+          }
+        });
+        db.collection('users').doc(uid).update(docData).then(() => {
+          console.log('Document updated successfully')
+          document.location.reload()
+        }).catch(err => {
+          console.error(err)
+        })
+      } else {
+        console.log('no such document.')
+      }
+    })
+  }
+}
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb }
