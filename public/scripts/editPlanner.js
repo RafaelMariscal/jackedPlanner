@@ -196,7 +196,6 @@ function testInputs(name, splitsNames, startDate) {
   return obj
 }
 
-
 /* -----------------  FOR EDIT FORM  ------------------- */
 async function generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames, doc) {
   let splits = Object.keys(planner.split).sort()

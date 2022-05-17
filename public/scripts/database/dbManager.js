@@ -556,4 +556,46 @@ function addNewExercise(planner, formValues, DaySplit) {
     })
   }
 }
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb }
+function updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, DaySplit, exercise) {
+  var uid = auth.currentUser.uid
+  let userDoc = db.collection('users').doc(uid)
+  userDoc.get().then((doc) => {
+    if (doc.exists) {
+      let docData = doc.data()
+      let userPlanners = docData.planners
+      let currentPlanner = ''
+      for (let key in userPlanners) {
+        if (userPlanners[key].name == planner.name) {
+          currentPlanner = key
+        }
+      }
+      let plannerToBeUpdated = userPlanners[currentPlanner]
+      let currentSplit = ''
+      for (let key in plannerToBeUpdated.split) {
+        if (plannerToBeUpdated.split[key].title == DaySplit.title) {
+          currentSplit = key
+        }
+      }
+      let exercises = plannerToBeUpdated.split[currentSplit].exercises
+      let exerciseIndex = 0
+      exercises.forEach((exerciseObj, index) => {
+        if (exerciseObj.name == exercise.name) {
+          exerciseIndex = index
+        }
+      })
+      docData.planners[currentPlanner].split[currentSplit].exercises[exerciseIndex].weightUnd = newSetsWeightUnd
+      docData.planners[currentPlanner].split[currentSplit].exercises[exerciseIndex].setsWeight = newSetsWeight
+      docData.planners[currentPlanner].split[currentSplit].exercises[exerciseIndex].sets = newSetsWeight.length
+      db.collection('users').doc(uid).update(docData).then(() => {
+        console.log('Document updated successfully')
+        document.location.reload()
+      }).catch(err => {
+        console.error(err)
+      })
+    } else {
+      console.log('no such document.')
+    }
+  })
+}
+
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight }

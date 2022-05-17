@@ -118,6 +118,22 @@
         </form>
       </div>
 
+      <div id="exercisePlanFormContainer" class="hide">
+        <form id="edit-exercisePlan-form" action="#" method="get">
+          <span id="close-edit-exercisePlan-form">x</span>
+          <fieldset class="card">
+            <legend>Edit Exercise Plan</legend>
+            <div id="exerciseSetsPlan"></div>
+
+            <button type="button" id="addNewSetBtn" class="pro-btn">Add a new set</button>
+            <div style="display: flex; justify-content: space-between; gap: 2em; margin-top: 1em;">
+              <button type="button" id="editSetsConfirmBtn" class="pro-btn">Confirm</button>
+              <button type="reset" id="editSetsResetBtn" class="pro-btn">Reset</button>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+
       <aside id="menu-area">
 
         <svg id="nav-selector" width="20" height="30" viewBox="0 0 14 34" fill="none"
@@ -391,7 +407,7 @@
 
           <div class=" right">
             <div id="workout-sec">
-              <span>Workout Section:</span><span id="w-day">CHEST / SHOULDER</span>
+              <span>Workout Section:</span><span id="w-day"></span>
               <div class="card card-area">
                 <div id="exercise-form-container" class="hide">
                   <form id="edit-exercise-form" action="#" method="get">
@@ -530,24 +546,27 @@
                   <p>Used:</p>
                   <p>Reps:</p>
                 </div>
-
                 <div class="sets"></div>
-
-                <button id="add-set-btn" type="button">+</button>
-                <form id="add-set" action="#" class="sets-area hide">
-                  <p class="set">New Set</p>
-                  <input type="text" name="WeightUnit" id="WeightUnit" class="weight" placeholder="und" required>
-                  <input type="text" name="newSetWeight" id="newSetWeight" class="weight" placeholder="Weight" required>
-                  <button class="exercise-card add-btn" type="submit">ADD</button>
-                </form>
-
+                <div id="editSets" class="edit-exercise hide">
+                  <svg id="editSetsBtn" class="edit" width="30" height="30" viewBox="0 0 800 800" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M52.9742 59.7678H456.991V115.352H53.9031V745.203H686.399V345.759H743.983V745.203C743.983 757.966 739.724 774.071 727.598 786.46C715.162 799.165 703.047 803.716 685.47 803.716H53.9031C40.8826 803.716 27.4521 798.082 16.1522 786.46C5.26196 775.259 0.0341072 759.4 0.0341797 749.847C0.0360599 502.061 0.0356056 363.138 0.0341797 115.352C0.034092 100.105 3.66029 89.73 13.9856 78.1462C25.1861 65.5806 38.1945 59.7678 52.9742 59.7678Z"
+                      fill="black" />
+                    <path
+                      d="M196.964 602.284L240.434 468.011C239.79 458.673 241.014 437.583 251.06 427.923C253.428 425.646 253.428 423.112 253.428 422.041C275.614 441.24 305.459 472.807 315.326 483.922C326.439 493.788 358.008 523.634 377.208 545.82C376.137 545.82 373.603 545.82 371.326 548.189C361.666 558.235 340.575 559.459 331.237 558.814L196.964 602.284Z"
+                      fill="black" />
+                    <path d="M418.925 500.84L298.297 380.212L579.762 102.836L699.027 222.101L418.925 500.84Z"
+                      fill="black" />
+                    <path
+                      d="M743.326 177.803L622.125 56.6016C622.125 56.6016 646.589 32.2608 662.225 16.6246C670.273 8.57729 682.793 1.42598 698.085 0.814765C714.915 0.142077 729.285 7.69499 738.214 16.6246L789.669 68.0789C796.676 75.0865 799.131 86.3669 799.298 99.021C799.471 112.234 796.923 124.205 789.669 131.46L743.326 177.803Z"
+                      fill="black" />
+                  </svg>
+                </div>
               </div>
 
             </div>
-
-
           </div>
-
         </section>
 
         <section id="sec-bottom" class="cards-area">

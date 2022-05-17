@@ -1,5 +1,6 @@
 #planners-form-container,
-#exercise-form-container {
+#exercise-form-container,
+#exercisePlanFormContainer {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -65,22 +66,27 @@
   text-indent: .5em;
 }
 
-
 #planners-form {
   max-height: 90%;
 }
 
 #planners-form-container form,
-#exercise-form-container form {
+#exercise-form-container form,
+#exercisePlanFormContainer form {
   position: relative;
   animation: apear 350ms ease-in-out;
 }
 
 #planners-form-container legend,
-#exercise-form-container legend {
+#exercise-form-container legend,
+#exercisePlanFormContainer legend {
   font-size: 1.25em;
   padding: 0 1em;
   color: var(--orange);
+}
+
+#exercisePlanFormContainer legend {
+  font-size: 1.5em;
 }
 
 #planners-form-container fieldset {
@@ -92,8 +98,15 @@
 }
 
 #planners-form-container label,
-#planners-form-splits .content-card {
+#planners-form-splits .content-card,
+#edit-exercisePlan-form label {
   font-size: 1.25em;
+}
+
+#addNewSetBtn {
+  font-size: 1.25em;
+  border: 0.2em solid var(--blue);
+  box-shadow: 0 0 6px var(--blue);
 }
 
 #planners-form-container button {
@@ -148,7 +161,8 @@
 }
 
 #close-planners-form,
-#close-edit-exercise-form {
+#close-edit-exercise-form,
+#close-edit-exercisePlan-form {
   font-size: 2em;
   position: absolute;
   top: -1.5em;

@@ -43,6 +43,25 @@
   animation: apear 150ms ease-in-out;
 }
 
+#editSets {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: apear 150ms ease-in-out;
+}
+
+#editSets .edit {
+  margin-bottom: 1em;
+  cursor: pointer;
+  overflow: visible !important;
+}
+
+#editSets .edit:hover * {
+  fill: var(--blue);
+  animation: shake 300ms ease-in-out;
+}
+
+
 .set,
 .weight,
 .used {

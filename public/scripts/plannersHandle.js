@@ -91,6 +91,7 @@ async function plannerSelector(i, planner) {
       })
       switch (content) {
         case i[0].name:
+          editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[0]
           createSplitsCalendar(planner).then((object) => {
@@ -104,6 +105,7 @@ async function plannerSelector(i, planner) {
           }, 100);
           return splitsCalendar
         case i[1].name:
+          editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[1]
           createSplitsCalendar(planner).then((object) => {
@@ -117,6 +119,7 @@ async function plannerSelector(i, planner) {
           }, 100);
           return splitsCalendar
         case i[2].name:
+          editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[2]
           console.log(planner)
@@ -131,6 +134,7 @@ async function plannerSelector(i, planner) {
           }, 100);
           return splitsCalendar
         default:
+          editSets.classList.value = 'hide'
           const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
           document.getElementById('exercises-list').innerHTML = addPlannerText
           element.classList.add('selected-planner')

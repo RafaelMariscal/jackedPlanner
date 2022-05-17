@@ -28,7 +28,7 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   let form = document.getElementById('add-exercise')
   form.style.display = 'flex'
   hendleExerciseDescription(daySplitDoc)
-  exerciseSelectorFeature(exercisesList)
+  exerciseSelectorFeature(exercisesList, planner, daySplitDoc)
   exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar)
 }
 function printExercisesList(exercise, i, exercisesCards) {
@@ -103,7 +103,7 @@ function hendleExerciseDescription(daySplitDoc) {
     }, 200);
   });
 }
-function exerciseSelectorFeature(exercisesList) {
+function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
   const exercisesPrinted = Array.from(document.getElementById('exercises-list').children)
   exercisesPrinted.forEach(exerciseCard => {
     exerciseCard.addEventListener('click', () => {
@@ -111,10 +111,12 @@ function exerciseSelectorFeature(exercisesList) {
         exerciseCard.classList = 'exercises'
       })
       exerciseCard.classList.add('selected-exercise')
+      editSets.classList.remove('hide')
+
       let elementId = exerciseCard.id
       let positionInArray = elementId.substring(elementId.length - 1)
       let exercise = exercisesList[positionInArray]
-      populateExercisePlan(exercise)
+      populateExercisePlan(exercise, planner, daySplitDoc)
     })
   });
 }
