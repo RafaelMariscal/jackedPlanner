@@ -117,6 +117,29 @@ input[type=number] {
   display: none;
 }
 
+.done {
+  background-color: var(--light) !important;
+  color: var(--dark) !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+.done:first-child,
+.done:last-child {
+  background-color: var(--blue) !important;
+}
+
+.exercise-done>*:not(strong, .edit-exercise) {
+  background-color: var(--blue) !important;
+  color: var(--dark) !important;
+  font-weight: 600 !important;
+  box-shadow: inset 0 0 0 0.15em var(--blue), 0 2px 5px black !important;
+}
+
+.exercise-done .edit-exercise * {
+  fill: var(--blue) !important;
+}
+
 .hide {
   display: none !important;
 }

@@ -1,4 +1,4 @@
-import { addNewExercise, deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
+import { addNewExercise, deleteExerciseDb, updateExerciseDb, updateExerciseLiftedKeysDb } from "./database/dbManager.js";
 import { populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
@@ -8,6 +8,7 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
     return console.log('no planner')
   }
   if (daySplitDoc == 'rest') {
+    editSets.classList = 'hide'
     return printRestDay(exercisesCards)
   }
   daySplitDoc.date = date
@@ -28,7 +29,9 @@ function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   let form = document.getElementById('add-exercise')
   form.style.display = 'flex'
   hendleExerciseDescription(daySplitDoc)
-  exerciseSelectorFeature(exercisesList, planner, daySplitDoc)
+  exerciseSelectorFeature(exercisesList, planner, daySplitDoc).then(() => {
+    exerc0.click()
+  })
   exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar)
 }
 function printExercisesList(exercise, i, exercisesCards) {
@@ -43,8 +46,8 @@ function printExercisesList(exercise, i, exercisesCards) {
       <button id="exerc${i}-sets" class="exercise-card">${sets}</button>
       <strong>X</strong>
       <button id="exerc${i}-reps" class="exercise-card">${reps}</button>
-      <button id="exerc${i}-disc" class="exercise-card">Discrip.</button>
-      <button id="exerc${i}-done" class="exercise-card done-btn">DONE</button>
+      <button id="exerc${i}-disc" class="exercise-card">Descrip.</button>
+      <button id="exerc${i}-done" class="exercise-card done-exercise-btn">To Do</button>
       <div id="edit${i}" class="edit-exercise">
         <svg class="edit" width="30" height="30" viewBox="0 0 800 800" fill="none"
           xmlns="http://www.w3.org/2000/svg">
@@ -103,7 +106,7 @@ function hendleExerciseDescription(daySplitDoc) {
     }, 200);
   });
 }
-function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
+async function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
   const exercisesPrinted = Array.from(document.getElementById('exercises-list').children)
   exercisesPrinted.forEach(exerciseCard => {
     exerciseCard.addEventListener('click', () => {
@@ -112,13 +115,48 @@ function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
       })
       exerciseCard.classList.add('selected-exercise')
       editSets.classList.remove('hide')
-
       let elementId = exerciseCard.id
       let positionInArray = elementId.substring(elementId.length - 1)
       let exercise = exercisesList[positionInArray]
-      populateExercisePlan(exercise, planner, daySplitDoc)
+      populateExercisePlan(exercise, planner, daySplitDoc).then(() => {
+        let setsDoneBtns = Array.from(document.getElementsByClassName('done-btn'))
+        setsDoneBtns.forEach((doneBtn, index) => {
+          doneBtn.onclick = () => {
+            let test = 0
+            let weightLifted = document.getElementById(`weightLiftedSet${index + 1}`).value
+            let repsLifted = document.getElementById(`repsLiftedSet${index + 1}`).value
+            if (weightLifted == '' || repsLifted == '') {
+              return alert('The sets weight form needs to be fully filled!')
+            }
+            tagItAsDone(index)
+            checkIfAllSetsAreDone(setsDoneBtns, exercise, test)
+            updateExerciseLiftedKeysDb(weightLifted, repsLifted, index, exercise, planner, daySplitDoc)
+          }
+        })
+      })
     })
   });
+}
+function tagItAsDone(number) {
+  let setChildrens = Array.from(document.getElementById(`set${number + 1}`).children)
+  setChildrens.forEach(element => {
+    element.classList.toggle('done')
+  })
+}
+function checkIfAllSetsAreDone(setsDoneBtns, exercise, test) {
+  setsDoneBtns.forEach(btn => {
+    btn.classList.contains(`done`) ? test++ : test--
+  })
+  let exerciseCards = document.getElementsByClassName('selected-exercise')[0]
+  let exerciseIndex = String(exerciseCards.id).charAt(exerciseCards.id.length - 1)
+  if (test == exercise.sets) {
+    exerciseCards.classList.toggle(`exercise-done`)
+    document.getElementById(`exerc${exerciseIndex}-done`).textContent = 'DONE!'
+  } else {
+    document.getElementsByClassName('selected-exercise')[0].classList.remove(`exercise-done`)
+    document.getElementById(`exerc${exerciseIndex}-done`).textContent = 'To Do'
+
+  }
 }
 /* ----------- exercises CRUD ------------ */
 

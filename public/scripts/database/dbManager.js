@@ -9,7 +9,6 @@ function createPlannerStructure() {
     }
   }
 }
-
 function createSplitStructure() {
   return {
     title: '',
@@ -27,7 +26,6 @@ function createSplitStructure() {
     date: ''
   }
 }
-
 function createExerciseStructure() {
   return {
     index: 0,
@@ -370,7 +368,6 @@ function dbStructure(uid) {
     console.log(err)
   })
 }
-
 function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}
@@ -409,7 +406,6 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
     console.error(err)
   })
 }
-
 function updateExerciseDb(planner, exerciseIndex, DaySplit) {
   var uid = auth.currentUser.uid
   let userDoc = db.collection('users').doc(uid)
@@ -597,5 +593,13 @@ function updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, DayS
     }
   })
 }
+function updateExerciseLiftedKeysDb(weightLifted, repsLifted, index, exercise, planner, DaySplit) {
+  console.log(weightLifted)
+  console.log(repsLifted)
+  console.log(index)
+  console.log(exercise)
+  console.log(planner)
+  console.log(DaySplit)
+}
 
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight }
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight, updateExerciseLiftedKeysDb }
