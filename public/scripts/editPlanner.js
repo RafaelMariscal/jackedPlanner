@@ -18,7 +18,7 @@ async function editPlanner(doc, element, splitsCalendar) {
   togglePlannersForm()
   let position = element.substr(element.length - 1);
   let plannerSelected = doc.planners[`planner${position}`]
-  await buildPlannerForm(plannerSelected, doc, position)
+  buildPlannerForm(plannerSelected, doc, position)
 }
 function togglePlannersForm() {
   formContainer.classList.toggle('hide')
@@ -36,13 +36,14 @@ async function buildPlannerForm(planner, doc, position) {
     newSplitsNames.innerHTML = ''
     plannerName.value = planner.name
     await generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames, doc).then(() => {
+      generateSplitsInputList(planner)
       inputValuesRegister(planner, doc, position)
-      removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
+      removeSplitFeature(planner, doc, position)
       let addButton = document.getElementById('addFormSplitsButtom')
       addButton.onclick = () => {
         addANewSplitOnForm(splitsContainer, plannerSchedule, planner, newSplitsNames).then(() => {
           inputValuesRegister(planner, doc, position)
-          removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc)
+          removeSplitFeature(planner, doc, position)
         })
       }
     })
@@ -231,13 +232,14 @@ async function generateEditInputs(splitsContainer, plannerSchedule, planner, new
   newSplitsNames.innerHTML += `
   <button type="button" id="addFormSplitsButtom" class="pro-btn" style="border: 0.2em solid var(--blue); box-shadow: 0 0 6px var(--blue); margin-bottom: 1em">+ Add new split</button>
   `
-  generateSplitsInputList(planner)
 }
 function generateSplitsInputList(planner) {
+  console.log(planner)
   let scheduleList = planner.schedule.split(/\s*,\s*/)
   let restDays = scheduleList.filter(rest => rest == 'rest').length
   plannerRestDays.value = restDays
   plannerSchedule.innerHTML = ''
+  console.log(scheduleList)
   scheduleList.forEach((split, index) => {
     plannerSchedule.innerHTML += `
       <div style="display: grid;place-items: center;">
@@ -309,23 +311,28 @@ async function addANewSplitOnForm(splitsContainer, plannerSchedule, planner, new
   newSchedule.push(nextTag)
   planner.schedule = newSchedule.join(',')
   await generateEditInputs(splitsContainer, plannerSchedule, planner, newSplitsNames).then(() => {
+    generateSplitsInputList(planner)
     let addButton = document.getElementById('addFormSplitsButtom')
     addButton.onclick = () => {
       addANewSplitOnForm(splitsContainer, plannerSchedule, planner, newSplitsNames)
     }
   })
 }
-function removeSplitFeature(splitsContainer, plannerSchedule, planner, newSplitsNames, doc) {
+
+function removeSplitFeature(planner, doc, position) {
   let removeBtn = document.getElementById('remove-split')
   removeBtn.onclick = () => {
     if (confirm('Are you sure you want to delete this split?')) {
       let elementId = removeBtn.parentElement.parentElement.firstElementChild.id
       let splitTag = elementId.slice(-1)
       delete planner.split[splitTag]
-      buildPlannerForm(planner, doc)
+      let newSchedule = planner.schedule.split(',').filter(i => i !== splitTag)
+      planner.schedule = newSchedule.join(',')
+      buildPlannerForm(planner, doc, position)
     }
   }
 }
+
 function inputValuesRegister(planner, doc, position) {
   let allInputs = []
   submitPlannerBtn.onclick = (event) => {
