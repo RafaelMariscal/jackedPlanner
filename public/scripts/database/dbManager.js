@@ -378,7 +378,6 @@ function dbStructure(uid) {
     console.log(err)
   })
 }
-
 function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}
@@ -417,7 +416,6 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
     console.error(err)
   })
 }
-
 function updateExerciseDb(planner, exerciseIndex, DaySplit) {
   var uid = auth.currentUser.uid
   let userDoc = db.collection('users').doc(uid)

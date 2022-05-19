@@ -2,14 +2,19 @@ import { addNewExercise, deleteExerciseDb, updateExerciseDb } from "./database/d
 import { populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
+  console.log(daySplitDoc)
+  let splitTitle = document.getElementById('w-day')
   const exercisesCards = document.getElementById('exercises-list')
   exercisesCards.innerHTML = ''
   if (!planner) {
+    splitTitle.textContent = ''
     return console.log('no planner')
   }
   if (daySplitDoc == 'rest') {
+    splitTitle.textContent = 'REST DAY'
     return printRestDay(exercisesCards)
   }
+  splitTitle.textContent = daySplitDoc.title
   daySplitDoc.date = date
   daySplitDoc.schedule = splitsCalendar
   const exercisesList = daySplitDoc.exercises
@@ -144,7 +149,6 @@ async function exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, s
       let number = editBtn.id.charAt(editBtn.id.length - 1)
       toggleExerciseEditForm().then(() => {
         populateExerciseEditForm(number, exercisesList)
-
         const confirmEditExerciseBtn = document.getElementById('confirm-edit-btn')
         confirmEditExerciseBtn.onclick = () => {
           if (confirm('Confirm exercise editing?')) {

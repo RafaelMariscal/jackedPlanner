@@ -173,15 +173,8 @@ async function createSplitsCalendar(planner) {
   return { splitsSchedule, curr_month, curr_year }
 }
 function getSplitsLists(planner, tags) {
-  let splitsListInput = document.getElementById('splitsSchedule')  /* scheduleInput */
-  if (!splitsListInput) {
-    tags.push('rest')
-    splitsListInput = tags.join(',')
-  }
-  if (planner.name == 'PUSH PULL LEGS by Jeff') {
-    splitsListInput = 'a,b,c,rest,d,c,rest'
-    db
-  }
+  console.log(planner)
+  let splitsListInput = planner.schedule
   let treatData = splitsListInput.replace(/\s+/g, '')
   let splitsList = treatData.split(',')
   let trainingDays = []

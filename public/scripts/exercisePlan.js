@@ -40,7 +40,7 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
     }
   }
 }
-function fillUpExercisePlanFormValues(exercise) {
+function fillUpExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
   for (let i = 0; i < exercise.sets; i++) {
     const input1 = document.getElementById(`weightLiftedSet${i + 1}`)
     const input2 = document.getElementById(`repsLiftedSet${i + 1}`)
