@@ -291,7 +291,8 @@ function populateOptions(schedule) {
 }
 function hendleStartDate(planner, startDate) {
   let fullStartDate = new Date(Date(planner.startDate.seconds))
-  let day = fullStartDate.getDate() - fullStartDate.getDay() + 1  /* Firs Monday  */
+  let day = null
+  planner.name == "PUSH PULL LEGS by Jeff" ? day = fullStartDate.getDate() - fullStartDate.getDay() + 1 : day = fullStartDate.getDate()
   let month = fullStartDate.getMonth()
   let year = fullStartDate.getFullYear()
   let dateValue = []
@@ -318,7 +319,6 @@ async function addANewSplitOnForm(splitsContainer, plannerSchedule, planner, new
     }
   })
 }
-
 function removeSplitFeature(planner, doc, position) {
   let removeBtn = document.getElementById('remove-split')
   removeBtn.onclick = () => {
@@ -332,7 +332,6 @@ function removeSplitFeature(planner, doc, position) {
     }
   }
 }
-
 function inputValuesRegister(planner, doc, position) {
   let allInputs = []
   submitPlannerBtn.onclick = (event) => {
