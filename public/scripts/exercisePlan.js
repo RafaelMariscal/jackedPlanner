@@ -39,6 +39,25 @@ async function populateExercisePlan(exercise, planner, daySplitDoc) {
     }
   }
 }
+function fillUpExercisePlanFormValues(exercise) {
+  for (let i = 0; i < exercise.sets; i++) {
+    const input1 = document.getElementById(`weightLiftedSet${i + 1}`)
+    const input2 = document.getElementById(`repsLiftedSet${i + 1}`)
+    if (exercise.liftedWeight[i] == undefined) exercise.liftedWeight[i] = ""
+    if (exercise.liftedReps[i] == undefined) exercise.liftedReps[i] = ""
+    input1.value = exercise.liftedWeight[i]
+    input2.value = exercise.liftedReps[i]
+    if (input2.value != 0) {
+      setTimeout(() => {
+        let btn = document.getElementById(`set${i + 1}DoneBtn`)
+        console.log(btn)
+        btn.click()
+      }, 200);
+    }
+  }
+  /* CREATE LOGIC TO FILL UP */
+
+}
 function toggleEditSetsForm() {
   exercisePlanFormContainer.classList.toggle('hide')
   const closeBtn = document.getElementById('close-edit-exercisePlan-form')
@@ -113,4 +132,4 @@ function getEditSetsWeightInputsValues(exercise, planner, daySplitDoc) {
   updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, daySplitDoc, exercise)
 }
 
-export { populateExercisePlan }
+export { populateExercisePlan, fillUpExercisePlanFormValues }

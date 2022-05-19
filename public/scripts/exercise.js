@@ -1,5 +1,5 @@
 import { addNewExercise, deleteExerciseDb, updateExerciseDb, updateExerciseLiftedKeysDb } from "./database/dbManager.js";
-import { populateExercisePlan } from "./exercisePlan.js";
+import { fillUpExercisePlanFormValues, populateExercisePlan } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   const exercisesCards = document.getElementById('exercises-list')
@@ -111,7 +111,9 @@ async function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
   exercisesPrinted.forEach(exerciseCard => {
     exerciseCard.addEventListener('click', () => {
       exercisesPrinted.forEach(exerciseCard => {
-        exerciseCard.classList = 'exercises'
+        if (exerciseCard.classList.contains('selected-exercise')) {
+          exerciseCard.classList.remove('selected-exercise')
+        }
       })
       exerciseCard.classList.add('selected-exercise')
       editSets.classList.remove('hide')
@@ -119,29 +121,40 @@ async function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
       let positionInArray = elementId.substring(elementId.length - 1)
       let exercise = exercisesList[positionInArray]
       populateExercisePlan(exercise, planner, daySplitDoc).then(() => {
+        fillUpExercisePlanFormValues(exercise)
         let setsDoneBtns = Array.from(document.getElementsByClassName('done-btn'))
         setsDoneBtns.forEach((doneBtn, index) => {
           doneBtn.onclick = () => {
             let test = 0
-            let weightLifted = document.getElementById(`weightLiftedSet${index + 1}`).value
-            let repsLifted = document.getElementById(`repsLiftedSet${index + 1}`).value
-            if (weightLifted == '' || repsLifted == '') {
-              return alert('The sets weight form needs to be fully filled!')
+            let weightLifted = document.getElementById(`weightLiftedSet${index + 1}`)
+            let repsLifted = document.getElementById(`repsLiftedSet${index + 1}`)
+            let weightLiftedValue = weightLifted.value
+            let repsLiftedValue = repsLifted.value
+            if (weightLiftedValue == '' || repsLiftedValue == '' || repsLiftedValue == 0) {
+              return alert('The sets weight form needs to be fully filled and Reps different of ZERO!')
             }
-            tagItAsDone(index)
+            tagItAsDone(index, weightLifted, repsLifted)
             checkIfAllSetsAreDone(setsDoneBtns, exercise, test)
-            updateExerciseLiftedKeysDb(weightLifted, repsLifted, index, exercise, planner, daySplitDoc)
+            updateExerciseLiftedKeysDb(weightLiftedValue, repsLiftedValue, index, exercise, planner, daySplitDoc)
           }
         })
       })
     })
   });
 }
-function tagItAsDone(number) {
+function tagItAsDone(number, weightLifted, repsLifted) {
   let setChildrens = Array.from(document.getElementById(`set${number + 1}`).children)
   setChildrens.forEach(element => {
     element.classList.toggle('done')
+    if (element.classList.contains('done')) {
+      weightLifted.disabled = true
+      repsLifted.disabled = true
+    } else {
+      weightLifted.disabled = false
+      repsLifted.disabled = false
+    }
   })
+
 }
 function checkIfAllSetsAreDone(setsDoneBtns, exercise, test) {
   setsDoneBtns.forEach(btn => {
@@ -153,9 +166,8 @@ function checkIfAllSetsAreDone(setsDoneBtns, exercise, test) {
     exerciseCards.classList.toggle(`exercise-done`)
     document.getElementById(`exerc${exerciseIndex}-done`).textContent = 'DONE!'
   } else {
-    document.getElementsByClassName('selected-exercise')[0].classList.remove(`exercise-done`)
+    document.getElementsByClassName('selected-exercise')[0].classList.contains(`exercise-done`) ?? document.getElementsByClassName('selected-exercise')[0].classList.remove(`exercise-done`)
     document.getElementById(`exerc${exerciseIndex}-done`).textContent = 'To Do'
-
   }
 }
 /* ----------- exercises CRUD ------------ */
