@@ -9,7 +9,6 @@ function createPlannerStructure() {
     }
   }
 }
-
 function createSplitStructure() {
   return {
     title: '',
@@ -27,7 +26,6 @@ function createSplitStructure() {
     date: ''
   }
 }
-
 function createExerciseStructure() {
   return {
     done: false,
@@ -378,6 +376,8 @@ function dbStructure(uid) {
     console.log(err)
   })
 }
+
+
 function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}
@@ -411,7 +411,7 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
   var uid = auth.currentUser.uid
   db.collection('users').doc(uid).update(doc).then(() => {
     console.log('Document updated successfully')
-    /* document.location.reload() */
+    document.location.reload()
   }).catch(err => {
     console.error(err)
   })
@@ -533,7 +533,10 @@ function addNewExercise(planner, formValues, DaySplit) {
             newExercise[key] = formValues[key]
           }
         }
-        console.log(exercises)
+        for (let i = 0; i < Number(newExercise.sets); i++) {
+          newExercise.setsWeight.push(0)
+        }
+        console.log(newExercise)
         if (Number(newExercise.index) == exercises.length) {
           exercises.push(newExercise)
           return db.collection('users').doc(uid).update(docData).then(() => {

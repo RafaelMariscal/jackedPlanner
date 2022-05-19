@@ -6,8 +6,6 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
   console.log(sets)
   let setsWeight = exercise.setsWeight      /* aray */
   let weightUnd = exercise.weightUnd        /* string */
-  let liftedReps = exercise.liftedReps      /* input aray */
-  let liftedWeight = exercise.LiftedWeight  /* input aray */
   const setsCards = document.getElementsByClassName('sets')[0]
   setsCards.innerHTML = ''
   for (let i = 0; i < sets; i++) {
