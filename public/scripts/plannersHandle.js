@@ -161,9 +161,9 @@ async function createSplitsCalendar(planner) {
   }
   let splitsList = getSplitsLists(planner, tags)
   let splitsSchedule = {}
-  let firstDay = getFirstMonday(planner).startDay
-  let curr_month = getFirstMonday(planner).curr_month
-  let curr_year = getFirstMonday(planner).curr_year
+  let firstDay = getFirstDay(planner).startDay
+  let curr_month = getFirstDay(planner).curr_month
+  let curr_year = getFirstDay(planner).curr_year
   for (let day = 0; day < splitsList.length; day++) {
     let date = new Date()
     let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
@@ -185,13 +185,16 @@ function getSplitsLists(planner, tags) {
   }
   return trainingDays
 }
-function getFirstMonday(planner) {
+function getFirstDay(planner) {
   let startDate = new Date(Date(planner.startDate.seconds))
-  let firstMonday = startDate.getDate() - startDate.getDay() + 1
+  let firstDay = startDate.getDate()
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()
-  let startDay = new Date(curr_year, curr_month, firstMonday)
-
+  let startDay = new Date(curr_year, curr_month, firstDay)
+  if (planner.name == "PUSH PULL LEGS by Jeff") {
+    let firstMonday = startDate.getDate() - startDate.getDay() + 1
+    startDay = new Date(curr_year, curr_month, firstMonday)
+  }
   let currDate = new Date()
   curr_month = { value: currDate.getMonth() }
   curr_year = { value: currDate.getFullYear() }
