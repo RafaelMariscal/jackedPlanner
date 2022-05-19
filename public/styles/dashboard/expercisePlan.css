@@ -58,7 +58,9 @@
 
 #editSets .edit:hover * {
   fill: var(--blue);
+  animation: shake 300ms ease-in-out;
 }
+
 
 .set,
 .weight,

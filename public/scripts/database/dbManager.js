@@ -9,6 +9,7 @@ function createPlannerStructure() {
     }
   }
 }
+
 function createSplitStructure() {
   return {
     title: '',
@@ -26,6 +27,7 @@ function createSplitStructure() {
     date: ''
   }
 }
+
 function createExerciseStructure() {
   return {
     done: false,
@@ -376,6 +378,7 @@ function dbStructure(uid) {
     console.log(err)
   })
 }
+
 function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}
@@ -414,6 +417,7 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
     console.error(err)
   })
 }
+
 function updateExerciseDb(planner, exerciseIndex, DaySplit) {
   var uid = auth.currentUser.uid
   let userDoc = db.collection('users').doc(uid)
@@ -601,49 +605,5 @@ function updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, DayS
     }
   })
 }
-function updateExerciseLiftedKeysDb(weightLifted, repsLifted, index, exercise, planner, DaySplit) {
-  var uid = auth.currentUser.uid
-  let userDoc = db.collection('users').doc(uid)
-  userDoc.get().then((doc) => {
-    if (doc.exists) {
-      let docData = doc.data()
-      let userPlanners = docData.planners
-      let currentPlanner = ''
-      for (let key in userPlanners) {
-        if (userPlanners[key].name == planner.name) {
-          currentPlanner = key
-        }
-      }
-      let plannerToBeUpdated = userPlanners[currentPlanner]
-      let currentSplit = ''
-      for (let key in plannerToBeUpdated.split) {
-        if (plannerToBeUpdated.split[key].title == DaySplit.title) {
-          currentSplit = key
-        }
-      }
-      let exercises = plannerToBeUpdated.split[currentSplit].exercises
-      let currentExerciseIndex = ''
-      exercises.forEach((exerciseObj, exercIndex) => {
-        if (exerciseObj.name == exercise.name) { currentExerciseIndex = exercIndex }
-      })
-      let currentExercise = exercises[currentExerciseIndex]
-      currentExercise.done = true
-      currentExercise.createSetsLiftedStructure = createSetsLiftedStructure
-      if (currentExercise.liftedWeight.length == 0 || currentExercise.liftedReps.length == 0) {
-        currentExercise.createSetsLiftedStructure()
-      }
-      delete currentExercise.createSetsLiftedStructure
-      currentExercise.liftedWeight[index] = Number(weightLifted)
-      currentExercise.liftedReps[index] = Number(repsLifted)
-      db.collection('users').doc(uid).update(docData).then(() => {
-        console.log('Document updated successfully')
-      }).catch(err => {
-        console.error(err)
-      })
-    } else {
-      console.log('no such document.')
-    }
-  })
-}
 
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight, updateExerciseLiftedKeysDb }
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight }

@@ -1,8 +1,9 @@
 import { updateExerciseSetsWeight } from "./database/dbManager.js"
 
-async function populateExercisePlan(exercise, planner, daySplitDoc) {
+function populateExercisePlan(exercise, planner, daySplitDoc) {
   console.log(exercise)
   let sets = exercise.sets
+  console.log(sets)
   let setsWeight = exercise.setsWeight      /* aray */
   let weightUnd = exercise.weightUnd        /* string */
   let liftedReps = exercise.liftedReps      /* input aray */
@@ -14,9 +15,9 @@ async function populateExercisePlan(exercise, planner, daySplitDoc) {
       <form id="set${i + 1}" action="#" class="sets-area">
         <p class="set">SET ${i + 1}</p>       
         <p class="weight">${setsWeight[i]} ${weightUnd}</p>
-        <input required type="text" name="w8Lifted-set${i + 1}" id="weightLiftedSet${i + 1}" class="used" placeholder="W8 ${weightUnd}">
-        <input required type="text" name="repsDone-set${i + 1}" id="repsLiftedSet${i + 1}" class="used" placeholder="Reps">
-        <button id=set${i + 1}DoneBtn class="exercise-card done-btn" type="button">DONE</button>
+        <input required type="text" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="W8 ${weightUnd}">
+        <input required type="text" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="Reps">
+        <button class="exercise-card done-btn" type="submit">DONE</button>
        </form>
     `
     setsCards.innerHTML += exercisePlanHtml

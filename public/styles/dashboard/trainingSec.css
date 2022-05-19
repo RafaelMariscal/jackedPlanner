@@ -121,17 +121,16 @@
   margin-left: 10px;
   border: none !important;
   min-width: 20px;
-  max-width: 20px;
+  max-width: 30px;
 }
 
 .edit * {
   fill: var(--orange);
 }
 
-.edit:hover {
-  animation: shake 300ms ease-in-out;
+.edit {
+  max-width: 20px;
 }
-
 
 .remove-btn svg {
   width: 100%;
