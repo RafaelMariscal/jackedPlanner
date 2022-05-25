@@ -77,5 +77,4 @@ document.querySelector('#next-year').onclick = () => {
   generateCalendar(curr_month.value, curr_year.value)
 }
 
-
 export { generateCalendar }

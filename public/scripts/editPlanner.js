@@ -234,12 +234,10 @@ async function generateEditInputs(splitsContainer, plannerSchedule, planner, new
   `
 }
 function generateSplitsInputList(planner) {
-  console.log(planner)
   let scheduleList = planner.schedule.split(/\s*,\s*/)
   let restDays = scheduleList.filter(rest => rest == 'rest').length
   plannerRestDays.value = restDays
   plannerSchedule.innerHTML = ''
-  console.log(scheduleList)
   scheduleList.forEach((split, index) => {
     plannerSchedule.innerHTML += `
       <div style="display: grid;place-items: center;">
@@ -293,7 +291,7 @@ function hendleStartDate(planner, startDate) {
   let fullStartDate = new Date(Date(planner.startDate.seconds))
   let day = null
   planner.name == "PUSH PULL LEGS by Jeff" ? day = fullStartDate.getDate() - fullStartDate.getDay() + 1 : day = fullStartDate.getDate()
-  let month = fullStartDate.getMonth()
+  let month = fullStartDate.getMonth() + 1
   let year = fullStartDate.getFullYear()
   let dateValue = []
   let array = [year, month, day]

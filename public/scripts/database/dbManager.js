@@ -411,7 +411,9 @@ function updatePlannerDb(planner, inputsArray, doc, position) {
   var uid = auth.currentUser.uid
   db.collection('users').doc(uid).update(doc).then(() => {
     console.log('Document updated successfully')
-    document.location.reload()
+    setTimeout(() => {
+      document.location.reload()
+    }, 200);
   }).catch(err => {
     console.error(err)
   })

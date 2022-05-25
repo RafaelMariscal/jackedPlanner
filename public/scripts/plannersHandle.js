@@ -122,7 +122,6 @@ async function plannerSelector(i, planner) {
           editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[2]
-          console.log(planner)
           createSplitsCalendar(planner).then((object) => {
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
@@ -161,9 +160,9 @@ async function createSplitsCalendar(planner) {
   }
   let splitsList = getSplitsLists(planner, tags)
   let splitsSchedule = {}
-  let firstDay = getFirstDay(planner).startDay
-  let curr_month = getFirstDay(planner).curr_month
   let curr_year = getFirstDay(planner).curr_year
+  let curr_month = getFirstDay(planner).curr_month
+  let firstDay = getFirstDay(planner).startDay
   for (let day = 0; day < splitsList.length; day++) {
     let date = new Date()
     let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
@@ -186,13 +185,23 @@ function getSplitsLists(planner, tags) {
   return trainingDays
 }
 function getFirstDay(planner) {
-  let startDate = new Date(Date(planner.startDate.seconds))
+  let plannerStartDate = null
+  let startDate = null
+  if (typeof planner.startDate == 'object') {
+    startDate = new Date(Date(planner.startDate.seconds))
+  } else {
+    plannerStartDate = planner.startDate.split('-')
+    startDate = new Date(plannerStartDate[0], plannerStartDate[1], plannerStartDate[2])
+  }
+
+
   let firstDay = startDate.getDate()
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()
   let startDay = new Date(curr_year, curr_month, firstDay)
   if (planner.name == "PUSH PULL LEGS by Jeff") {
-    let firstMonday = startDate.getDate() - startDate.getDay() + 1
+    let curr_date = new Date()
+    let firstMonday = curr_date.getDate() - curr_date.getDay() + 1
     startDay = new Date(curr_year, curr_month, firstMonday)
   }
   let currDate = new Date()
