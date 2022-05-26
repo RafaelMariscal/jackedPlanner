@@ -48,7 +48,7 @@ function printExercisesList(exercise, i, exercisesCards) {
       <strong>X</strong>
       <button id="exerc${i}-reps" class="exercise-card">${reps}</button>
       <button id="exerc${i}-disc" class="exercise-card">Discrip.</button>
-      <button id="exerc${i}-done" class="exercise-card done-btn">DONE</button>
+      <button id="exerc${i}-done" class="exercise-card">To Do</button>
       <div id="edit${i}" class="edit-exercise">
         <svg class="edit" width="30" height="30" viewBox="0 0 800 800" fill="none"
           xmlns="http://www.w3.org/2000/svg">

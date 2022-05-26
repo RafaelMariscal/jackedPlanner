@@ -288,9 +288,17 @@ function populateOptions(schedule) {
   });
 }
 function hendleStartDate(planner, startDate) {
-  let fullStartDate = new Date(Date(planner.startDate.seconds))
+  let fullStartDate = null
   let day = null
-  planner.name == "PUSH PULL LEGS by Jeff" ? day = fullStartDate.getDate() - fullStartDate.getDay() + 1 : day = fullStartDate.getDate()
+  if (typeof planner.startDate == 'object') {
+    fullStartDate = new Date(Date(planner.startDate.seconds))
+    day = fullStartDate.getDate() - fullStartDate.getDay() + 1
+  } else {
+    let plannerStartDate = planner.startDate.split('-')
+    console.log(plannerStartDate)
+    fullStartDate = new Date(plannerStartDate[0], plannerStartDate[1], plannerStartDate[2])
+    day = fullStartDate.getDate()
+  }
   let month = fullStartDate.getMonth() + 1
   let year = fullStartDate.getFullYear()
   let dateValue = []
@@ -334,7 +342,6 @@ function inputValuesRegister(planner, doc, position) {
   let allInputs = []
   submitPlannerBtn.onclick = (event) => {
     if (confirm('Confirm changes?')) {
-      let abc = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"]
       let splitNames = []
       Array.from(splitsContainer.children).forEach(element => {
         if (element.lastElementChild.value !== undefined) {

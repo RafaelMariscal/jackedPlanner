@@ -194,7 +194,6 @@ function getFirstDay(planner) {
     startDate = new Date(plannerStartDate[0], plannerStartDate[1], plannerStartDate[2])
   }
 
-
   let firstDay = startDate.getDate()
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()

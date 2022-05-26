@@ -3,9 +3,8 @@ import { updateExerciseSetsWeight } from "./database/dbManager.js"
 function populateExercisePlan(exercise, planner, daySplitDoc) {
   console.log(exercise)
   let sets = exercise.sets
-  console.log(sets)
-  let setsWeight = exercise.setsWeight      /* aray */
-  let weightUnd = exercise.weightUnd        /* string */
+  let setsWeight = exercise.setsWeight
+  let weightUnd = exercise.weightUnd
   const setsCards = document.getElementsByClassName('sets')[0]
   setsCards.innerHTML = ''
   for (let i = 0; i < sets; i++) {
@@ -13,13 +12,16 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
       <form id="set${i + 1}" action="#" class="sets-area">
         <p class="set">SET ${i + 1}</p>       
         <p class="weight">${setsWeight[i]} ${weightUnd}</p>
-        <input required type="text" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="W8 ${weightUnd}">
-        <input required type="text" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="Reps">
-        <button class="exercise-card done-btn" type="submit">DONE</button>
+        <input required type="number" name="w8Lifted-set${i + 1}" id="wl-set${i + 1}" class="used" placeholder="W8 ${weightUnd}">
+        <input required type="number" name="repsDone-set${i + 1}" id="rd-set${i + 1}" class="used" placeholder="Reps">
+        <button id="doneBtnForSet${i + 1}" class="exercise-card done-btn" type="button">DONE</button>
        </form>
     `
     setsCards.innerHTML += exercisePlanHtml
   }
+
+  setsDoneState(exercise)
+
   editSetsBtn.onclick = () => {
     toggleEditSetsForm()
     populateExercisePlanEditForm(exercise)
@@ -31,6 +33,7 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
       }
     }))
   }
+
   addNewSetBtn.onclick = addNewSetBtnFeature
   editSetsConfirmBtn.onclick = () => {
     if (confirm('Confirm Sets Weight updates?')) {
@@ -38,6 +41,28 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
     }
   }
 }
+function setsDoneState(exercise) {
+  let doneBtns = Array.from(document.getElementsByClassName('done-btn'))
+  doneBtns.forEach(btn => {
+    btn.onclick = () => {
+      let index = btn.id.charAt(btn.id.length - 1)
+      let set = document.getElementById(`set${index}`)
+      let setChilds = Array.from(set.children)
+      if (setChilds[2].value == '' || setChilds[3].value == '' || setChilds[3].value <= 0) {
+        return alert("The Set's inputs needs to be filled and Reps greater then 0")
+      }
+      if (setChilds[4].classList.contains('done')) {
+        setChilds[2].disabled = false
+        setChilds[3].disabled = false
+      } else {
+        setChilds[2].disabled = true
+        setChilds[3].disabled = true
+      }
+      setChilds.forEach(element => element.classList.toggle('done'))
+    }
+  })
+}
+
 function fillUpExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
   for (let i = 0; i < exercise.sets; i++) {
     const input1 = document.getElementById(`weightLiftedSet${i + 1}`)

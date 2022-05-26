@@ -22,8 +22,7 @@ function createSplitStructure() {
       },
       rate: '',
       notesTake: ''
-    },
-    date: ''
+    }
   }
 }
 function createExerciseStructure() {
@@ -143,8 +142,7 @@ function dbStructure(uid) {
               },
               rate: '',
               notesTake: ''
-            },
-            date: ''
+            }
           },
           b: {
             title: 'Back',
@@ -212,8 +210,7 @@ function dbStructure(uid) {
               },
               rate: '',
               notesTake: ''
-            },
-            date: ''
+            }
           },
           c: {
             title: 'Legs',
@@ -281,8 +278,7 @@ function dbStructure(uid) {
               },
               rate: '',
               notesTake: ''
-            },
-            date: ''
+            }
           },
           d: {
             title: 'Arms / Shoulders',
@@ -361,10 +357,8 @@ function dbStructure(uid) {
               },
               rate: '',
               notesTake: ''
-            },
-            date: ''
+            }
           },
-
         }
       },
       planner2: {},
@@ -376,8 +370,6 @@ function dbStructure(uid) {
     console.log(err)
   })
 }
-
-
 function updatePlannerDb(planner, inputsArray, doc, position) {
   let plannerEditedName = inputsArray[0]
   let plannerEditedSplitsName = {}

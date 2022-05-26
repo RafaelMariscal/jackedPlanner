@@ -117,6 +117,19 @@ input[type=number] {
   display: none;
 }
 
+.done:nth-child(1),
+.done:nth-child(5) {
+  background-color: var(--blue) !important;
+}
+
+.done:nth-child(3),
+.done:nth-child(4) {
+  background-color: var(--light);
+  color: var(--dark);
+  font-weight: 700;
+  border: none;
+}
+
 .hide {
   display: none !important;
 }
