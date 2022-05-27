@@ -1,5 +1,5 @@
 import { addNewExercise, deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
-import { populateExercisePlan } from "./exercisePlan.js";
+import { generateExercisePlanSets, populateExercisePlanFormValues } from "./exercisePlan.js";
 
 function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   let splitTitle = document.getElementById('w-day')
@@ -122,7 +122,8 @@ function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
       let elementId = exerciseCard.id
       let positionInArray = elementId.substring(elementId.length - 1)
       let exercise = exercisesList[positionInArray]
-      populateExercisePlan(exercise, planner, daySplitDoc)
+      generateExercisePlanSets(exercise, planner, daySplitDoc)
+      populateExercisePlanFormValues(exercise)
     })
   });
 }

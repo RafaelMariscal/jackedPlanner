@@ -1,6 +1,6 @@
 import { updateExerciseSetsWeight } from "./database/dbManager.js"
 
-function populateExercisePlan(exercise, planner, daySplitDoc) {
+function generateExercisePlanSets(exercise, planner, daySplitDoc) {
   console.log(exercise)
   let sets = exercise.sets
   let setsWeight = exercise.setsWeight
@@ -20,7 +20,7 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
     setsCards.innerHTML += exercisePlanHtml
   }
 
-  setsDoneState(exercise)
+  setsDoneState(daySplitDoc, exercise)
 
   editSetsBtn.onclick = () => {
     toggleEditSetsForm()
@@ -41,10 +41,11 @@ function populateExercisePlan(exercise, planner, daySplitDoc) {
     }
   }
 }
-function setsDoneState(exercise) {
+function setsDoneState(daySplitDoc, exercise) {
   let doneBtns = Array.from(document.getElementsByClassName('done-btn'))
   doneBtns.forEach(btn => {
     btn.onclick = () => {
+      let test = 0
       let index = btn.id.charAt(btn.id.length - 1)
       let set = document.getElementById(`set${index}`)
       let setChilds = Array.from(set.children)
@@ -54,26 +55,46 @@ function setsDoneState(exercise) {
       if (setChilds[4].classList.contains('done')) {
         setChilds[2].disabled = false
         setChilds[3].disabled = false
+        testIfAllSetsAreDone(test, daySplitDoc, exercise)
       } else {
         setChilds[2].disabled = true
         setChilds[3].disabled = true
+        testIfAllSetsAreDone(test, daySplitDoc, exercise)
+      }
+      function testIfAllSetsAreDone(test, daySplitDoc, exercise) {
+        doneBtns.forEach(btn => {
+          setTimeout(() => {
+            if (btn.classList.contains('done')) ++test
+            let currentExerciseId = document.getElementsByClassName('selected-exercise')[0].id
+            let index = currentExerciseId.charAt(currentExerciseId.length - 1)
+            let exercise = document.getElementById(`exerc${index}`)
+            if (test == doneBtns.length) {
+              if (!exercise.classList.contains('exerciseDone')) exercise.classList.add('exerciseDone')
+              console.log('exercise Done!!')
+            } else {
+              if (exercise.classList.contains('exerciseDone')) exercise.classList.remove('exerciseDone')
+              console.log('exercise still Not Done!!')
+            }
+          }, 100);
+        })
       }
       setChilds.forEach(element => element.classList.toggle('done'))
     }
+
   })
 }
 
-function fillUpExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
+function populateExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
   for (let i = 0; i < exercise.sets; i++) {
-    const input1 = document.getElementById(`weightLiftedSet${i + 1}`)
-    const input2 = document.getElementById(`repsLiftedSet${i + 1}`)
+    const input1 = document.getElementById(`wl-set${i + 1}`)
+    const input2 = document.getElementById(`rd-set${i + 1}`)
     if (exercise.liftedWeight[i] == undefined) exercise.liftedWeight[i] = ""
     if (exercise.liftedReps[i] == undefined) exercise.liftedReps[i] = ""
     input1.value = exercise.liftedWeight[i]
     input2.value = exercise.liftedReps[i]
     if (input2.value != 0) {
       setTimeout(() => {
-        let btn = document.getElementById(`set${i + 1}DoneBtn`)
+        let btn = document.getElementById(`doneBtnForSet${i + 1}`)
         console.log(btn)
         btn.click()
       }, 200);
@@ -156,4 +177,4 @@ function getEditSetsWeightInputsValues(exercise, planner, daySplitDoc) {
   updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, daySplitDoc, exercise)
 }
 
-export { populateExercisePlan, fillUpExercisePlanFormValues }
+export { generateExercisePlanSets, populateExercisePlanFormValues }
