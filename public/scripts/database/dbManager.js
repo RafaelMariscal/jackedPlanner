@@ -16,10 +16,7 @@ function createSplitStructure() {
       createExerciseStructure()
     ],
     notes: {
-      cardio: {
-        dist: 0,
-        time: 0,
-      },
+      cardio: [{}],
       rate: '',
       notesTake: ''
     }
@@ -136,10 +133,10 @@ function dbStructure(uid) {
               }
             ],
             notes: {
-              cardio: {
+              cardio: [{
                 dist: 4,
                 time: 45,
-              },
+              }],
               rate: '',
               notesTake: ''
             }
@@ -204,10 +201,10 @@ function dbStructure(uid) {
               },
             ],
             notes: {
-              cardio: {
+              cardio: [{
                 dist: 4,
                 time: 45,
-              },
+              }],
               rate: '',
               notesTake: ''
             }
@@ -272,10 +269,10 @@ function dbStructure(uid) {
               },
             ],
             notes: {
-              cardio: {
+              cardio: [{
                 dist: 4,
                 time: 45,
-              },
+              }],
               rate: '',
               notesTake: ''
             }
@@ -351,10 +348,10 @@ function dbStructure(uid) {
               }
             ],
             notes: {
-              cardio: {
+              cardio: [{
                 dist: 4,
                 time: 45,
-              },
+              }],
               rate: '',
               notesTake: ''
             }

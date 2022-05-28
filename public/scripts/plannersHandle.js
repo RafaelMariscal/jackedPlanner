@@ -2,6 +2,7 @@ import { db } from "./database/userManager.js";
 import { generateCalendar } from "./calendar.js";
 import { handleExercisesList } from "./exercise.js";
 import { editPlanner } from "./editPlanner.js";
+import { handlePersonalNotes } from "./personalNotes.js";
 var userData = null
 var splitsCalendar = undefined
 var daySplit = null
@@ -270,6 +271,7 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
           let daySplitDoc = null
           daySplit == 'rest' ? daySplitDoc = 'rest' : daySplitDoc = planner.split[daySplit]
           handleExercisesList(planner, splitsCalendar, daySplitDoc, date)
+          handlePersonalNotes(planner, splitsCalendar, daySplitDoc, date)
         }
       })
       if (!daySplit) {

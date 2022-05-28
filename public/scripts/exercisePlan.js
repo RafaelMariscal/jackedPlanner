@@ -19,7 +19,6 @@ function generateExercisePlanSets(exercise, planner, daySplitDoc) {
     `
     setsCards.innerHTML += exercisePlanHtml
   }
-
   setsDoneState(daySplitDoc, exercise)
 
   editSetsBtn.onclick = () => {
@@ -59,30 +58,36 @@ function setsDoneState(daySplitDoc, exercise) {
       } else {
         setChilds[2].disabled = true
         setChilds[3].disabled = true
-        testIfAllSetsAreDone(test, daySplitDoc, exercise)
+        testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise)
       }
-      function testIfAllSetsAreDone(test, daySplitDoc, exercise) {
-        doneBtns.forEach(btn => {
-          setTimeout(() => {
-            if (btn.classList.contains('done')) ++test
-            let currentExerciseId = document.getElementsByClassName('selected-exercise')[0].id
-            let index = currentExerciseId.charAt(currentExerciseId.length - 1)
-            let exercise = document.getElementById(`exerc${index}`)
-            if (test == doneBtns.length) {
-              if (!exercise.classList.contains('exerciseDone')) exercise.classList.add('exerciseDone')
-              console.log('exercise Done!!')
-            } else {
-              if (exercise.classList.contains('exerciseDone')) exercise.classList.remove('exerciseDone')
-              console.log('exercise still Not Done!!')
-            }
-          }, 100);
-        })
-      }
+
       setChilds.forEach(element => element.classList.toggle('done'))
     }
-
   })
 }
+function testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise) {
+  doneBtns.forEach(btn => {
+    setTimeout(() => {
+      if (btn.classList.contains('done')) ++test
+      let currentExerciseId = document.getElementsByClassName('selected-exercise')[0].id
+      let index = currentExerciseId.charAt(currentExerciseId.length - 1)
+      let exercise = document.getElementById(`exerc${index}`)
+      if (test == doneBtns.length) {
+        if (!exercise.classList.contains('exerciseDone')) exercise.classList.add('exerciseDone')
+        console.log('exercise Done!!')
+      } else {
+        if (exercise.classList.contains('exerciseDone')) exercise.classList.remove('exerciseDone')
+        console.log('exercise still Not Done!!')
+
+        /* update DB for lifted weight and reps */
+
+      }
+    }, 100);
+  })
+}
+
+
+
 
 function populateExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
   for (let i = 0; i < exercise.sets; i++) {

@@ -44,8 +44,8 @@ label[for='notes'] {
   cursor: pointer;
 }
 
-.cardio {
-  cursor: pointer;
+.cardioDoneBtn {
+  margin-top: -.5em !important;
 }
 
 #personal-notes form button {
