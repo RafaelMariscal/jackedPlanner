@@ -1,7 +1,7 @@
 import { addNewExercise, deleteExerciseDb, updateExerciseDb } from "./database/dbManager.js";
 import { generateExercisePlanSets, populateExercisePlanFormValues } from "./exercisePlan.js";
 
-function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
+async function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   let splitTitle = document.getElementById('w-day')
   const exercisesCards = document.getElementById('exercises-list')
   exercisesCards.innerHTML = ''

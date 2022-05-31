@@ -270,8 +270,9 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
           daySplit = splitsCalendar[key]
           let daySplitDoc = null
           daySplit == 'rest' ? daySplitDoc = 'rest' : daySplitDoc = planner.split[daySplit]
-          handleExercisesList(planner, splitsCalendar, daySplitDoc, date)
-          handlePersonalNotes(planner, splitsCalendar, daySplitDoc, date)
+          handleExercisesList(planner, splitsCalendar, daySplitDoc, date).then(() => {
+            handlePersonalNotes(planner, splitsCalendar, daySplitDoc)
+          })
         }
       })
       if (!daySplit) {

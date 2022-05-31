@@ -33,15 +33,17 @@ label[for='notes'] {
   margin-top: 10px;
 }
 
-#add-cardio {
-  max-width: max-content;
-  border-radius: .5em;
-  box-shadow: inset 0 0 0 .2em var(--blue),
-    0 0 .2em var(--blue);
-  background-color: rgba(0, 0, 0, 0);
-  color: var(--light);
-  font-weight: 300;
-  cursor: pointer;
+#personalNotesEditFormCardios input {
+  max-width: 3em;
+  border-radius: 0.2em;
+  border: none;
+  text-align: center;
+  color: var(--dark);
+}
+
+#personalNotesEditFormCardios input::placeholder {
+  color: #a0a0a0;
+  text-align: center;
 }
 
 .cardioDoneBtn {

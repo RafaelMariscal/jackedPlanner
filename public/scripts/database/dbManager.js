@@ -597,5 +597,31 @@ function updateExerciseSetsWeight(newSetsWeight, newSetsWeightUnd, planner, DayS
     }
   })
 }
+async function updateSplitCardios(plannerIndex, splitTitle, newCardios) {
+  var uid = auth.currentUser.uid
+  let userDoc = db.collection('users').doc(uid)
+  userDoc.get().then((doc) => {
+    if (doc.exists) {
+      let docData = doc.data()
+      let plannerKey = `planner${plannerIndex}`
+      let plannerToBeUpdated = docData.planners[plannerKey]
+      let currentSplit = ''
+      for (let key in plannerToBeUpdated.split) {
+        if (plannerToBeUpdated.split[key].title == splitTitle) {
+          currentSplit = key
+        }
+      }
+      plannerToBeUpdated.split[currentSplit].notes.cardio = newCardios
+      db.collection('users').doc(uid).update(docData).then(() => {
+        console.log('Document updated successfully')
+        document.location.reload()
+      }).catch(err => {
+        console.error(err)
+      })
+    } else {
+      console.log('no such document.')
+    }
+  })
+}
 
-export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight }
+export { dbStructure, createPlannerStructure, createSplitStructure, createExerciseStructure, updatePlannerDb, addNewExercise, updateExerciseDb, deleteExerciseDb, updateExerciseSetsWeight, updateSplitCardios }
