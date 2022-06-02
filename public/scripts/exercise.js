@@ -36,13 +36,13 @@ async function handleExercisesList(planner, splitsCalendar, daySplitDoc, date) {
   exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar)
 }
 function printExercisesList(exercise, i, exercisesCards) {
-  let index = exercise.index
+  let exerciseIndex = exercise.index
   let name = exercise.name
   let sets = exercise.sets
   let reps = exercise.reps
   const exerciseHtmlCode = `
     <div id="exerc${i}" class="exercises">
-      <button id="exerc${i}-index" class="exercise-card">${index}</button>
+      <button id="exerc${i}-index" class="exercise-card">${exerciseIndex}</button>
       <button id="exerc${i}-name" class="exercise-card">${name}</button>
       <button id="exerc${i}-sets" class="exercise-card">${sets}</button>
       <strong>X</strong>
@@ -111,21 +111,27 @@ function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
   const exercisesPrinted = Array.from(document.getElementById('exercises-list').children)
   exercisesPrinted.forEach(exerciseCard => {
     exerciseCard.addEventListener('click', () => {
-      exercisesPrinted.forEach(exerciseCard => {
-        if (exerciseCard.classList.contains('selected-exercise')) {
-          exerciseCard.classList.remove('selected-exercise')
-        }
-      })
-      exerciseCard.classList.add('selected-exercise')
-      editSets.classList.remove('hide')
+      if (!exerciseCard.classList.contains('selected-exercise')) {
+        clearExerciseSelector(exercisesPrinted)
+        exerciseCard.classList.add('selected-exercise')
+        editSets.classList.remove('hide')
 
-      let elementId = exerciseCard.id
-      let positionInArray = elementId.substring(elementId.length - 1)
-      let exercise = exercisesList[positionInArray]
-      generateExercisePlanSets(exercise, planner, daySplitDoc)
-      populateExercisePlanFormValues(exercise)
+        let elementId = exerciseCard.id
+        let positionInArray = elementId.substring(elementId.length - 1)
+        let exercise = exercisesList[positionInArray]
+
+        generateExercisePlanSets(exercise, planner, daySplitDoc)
+        populateExercisePlanFormValues(exercise)
+      }
     })
   });
+}
+function clearExerciseSelector(exercisesPrinted) {
+  exercisesPrinted.forEach(exerciseCard => {
+    if (exerciseCard.classList.contains('selected-exercise')) {
+      exerciseCard.classList.remove('selected-exercise')
+    }
+  })
 }
 /* ----------- exercises CRUD ------------ */
 

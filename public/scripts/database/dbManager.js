@@ -527,7 +527,6 @@ function addNewExercise(planner, formValues, DaySplit) {
         for (let i = 0; i < Number(newExercise.sets); i++) {
           newExercise.setsWeight.push(0)
         }
-        console.log(newExercise)
         if (Number(newExercise.index) == exercises.length) {
           exercises.push(newExercise)
           return db.collection('users').doc(uid).update(docData).then(() => {

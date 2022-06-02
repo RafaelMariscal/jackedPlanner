@@ -194,7 +194,6 @@ function getFirstDay(planner) {
   } else {
     plannerStartDate = planner.startDate.split('-')
     startDate = new Date(plannerStartDate[0], plannerStartDate[1] - 1, plannerStartDate[2])
-    console.log(startDate)
   }
 
   let firstDay = startDate.getDate()
@@ -287,6 +286,11 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
           })
         }
       })
+      setTimeout(() => {
+        let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
+        firstElement.click()
+        console.log(firstElement)
+      }, 200);
       if (!daySplit) {
         return console.log('no day split found')
       }

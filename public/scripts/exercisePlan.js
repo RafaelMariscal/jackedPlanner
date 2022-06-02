@@ -54,13 +54,12 @@ function setsDoneState(daySplitDoc, exercise) {
       if (setChilds[4].classList.contains('done')) {
         setChilds[2].disabled = false
         setChilds[3].disabled = false
-        testIfAllSetsAreDone(test, daySplitDoc, exercise)
+        testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise)
       } else {
         setChilds[2].disabled = true
         setChilds[3].disabled = true
         testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise)
       }
-
       setChilds.forEach(element => element.classList.toggle('done'))
     }
   })
@@ -77,7 +76,6 @@ function testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise) {
         console.log('exercise Done!!')
       } else {
         if (exercise.classList.contains('exerciseDone')) exercise.classList.remove('exerciseDone')
-        console.log('exercise still Not Done!!')
 
         /* update DB for lifted weight and reps */
 
@@ -86,10 +84,7 @@ function testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise) {
   })
 }
 
-
-
-
-function populateExercisePlanFormValues(exercise) {                      /* -------------------------------------------------------------------------- */
+function populateExercisePlanFormValues(exercise) {
   for (let i = 0; i < exercise.sets; i++) {
     const input1 = document.getElementById(`wl-set${i + 1}`)
     const input2 = document.getElementById(`rd-set${i + 1}`)
@@ -105,6 +100,7 @@ function populateExercisePlanFormValues(exercise) {                      /* ----
       }, 200);
     }
   }
+
   /* CREATE LOGIC TO FILL UP */
 
 }
