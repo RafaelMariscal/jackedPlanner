@@ -12,39 +12,14 @@ const create = document.getElementById(`create`)
 const createMsg = document.getElementById('create-msg')
 
 create.onclick = () => newUserBox.classList.toggle('hide')
-const newUserNameInput = document.getElementById('userName')
-var userName = ''
-newUserNameInput.oninput = () => {
-  userName = newUserNameInput.value
-}
-const newUserEmailInput = document.getElementById('userEmail')
-var userEmail = ''
-newUserEmailInput.oninput = () => {
-  userEmail = newUserEmailInput.value
-}
-const newUserPasswordInput = document.getElementById('userPassword')
-var userPassword = ''
-newUserPasswordInput.oninput = () => {
-  userPassword = newUserPasswordInput.value
-}
-const newUserPasswordConfirmInput = document.getElementById('userPasswordConfirm')
-var userPasswordConfirm = ''
-newUserPasswordConfirmInput.oninput = () => {
-  userPasswordConfirm = newUserPasswordConfirmInput.value
-}
-
-createForm.onsubmit = (event) => {
+createForm.addEventListener('submit', (event) => {
   event.preventDefault()
-  if (userPassword != userPasswordConfirm) {
+  if (userPassword.value != userPasswordConfirm.value) {
     return alert('Password confirmation has no match!')
   }
   createMsg.classList.toggle('hide')
-  setTimeout(() => {
-    createMsg.classList.toggle('hide')
-    newUserBox.classList.toggle('hide')
-    createNewAccount(userEmail, userPassword, userName)  /* using firebase auth */
-  }, 1500);
-}
+  createNewAccount(userEmail.value, userPassword.value, userName.value, createMsg)
+}, true)
 
 const forgotBox = document.getElementById('forgot-box')
 const forgotForm = document.getElementById('forgot-form')

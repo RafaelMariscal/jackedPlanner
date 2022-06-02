@@ -25,7 +25,7 @@ function login(x, y, form) {
   }).catch(err => console.log(err))
 }
 
-function createNewAccount(x, y, z) {
+async function createNewAccount(x, y, z, msg) {
   auth.createUserWithEmailAndPassword(x, y).then(cred => {
     db.collection('users').doc(cred.user.uid).set({
       userEmail: x,
@@ -34,8 +34,10 @@ function createNewAccount(x, y, z) {
     dbStructure(cred.user.uid)
   }).then(() => {
     console.log('new user created')
+    alert('Usuário criado com sucesso!')
   }).catch(err => {
     console.log(err)
+    msg.innerText = err.message
   })
 }
 
