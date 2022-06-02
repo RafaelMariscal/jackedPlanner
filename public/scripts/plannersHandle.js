@@ -193,7 +193,8 @@ function getFirstDay(planner) {
     startDate = new Date(Date(planner.startDate.seconds))
   } else {
     plannerStartDate = planner.startDate.split('-')
-    startDate = new Date(plannerStartDate[0], plannerStartDate[1], plannerStartDate[2])
+    startDate = new Date(plannerStartDate[0], plannerStartDate[1] - 1, plannerStartDate[2])
+    console.log(startDate)
   }
 
   let firstDay = startDate.getDate()

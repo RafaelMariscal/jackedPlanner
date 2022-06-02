@@ -300,13 +300,13 @@ function hendleStartDate(planner, startDate) {
       day = monthDays + day
     }
     month = fullStartDate.getMonth()
-
   } else {
     let plannerStartDate = planner.startDate.split('-')
     console.log(plannerStartDate)
     fullStartDate = new Date(plannerStartDate[0], plannerStartDate[1] - 1, plannerStartDate[2])
     day = fullStartDate.getDate()
     month = fullStartDate.getMonth() + 1
+    console.log('esse caso')
 
   }
   let year = fullStartDate.getFullYear()
