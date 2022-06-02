@@ -96,6 +96,7 @@ async function plannerSelector(i, planner) {
           element.classList.add('selected-item')
           planner = i[0]
           createSplitsCalendar(planner).then((object) => {
+            console.log(object)
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
             let curr_year = object.curr_year.value
@@ -164,10 +165,28 @@ async function createSplitsCalendar(planner) {
   let curr_year = getFirstDay(planner).curr_year
   let curr_month = getFirstDay(planner).curr_month
   let firstDay = getFirstDay(planner).startDay
+
+  /*
+    se o first day está a um mes atrás, deve-se reduzir o curr_month em 1ss
+  */
+  let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
+  console.log(date)
+  console.log(firstDay.getMonth())
+  console.log(date.getMonth())
+  let dateAfter = new Date(date.setDate(firstDay.getDate() + 0))
+  let month = dateAfter.getMonth()
+  let nextDate = new Date(dateAfter.getFullYear(), month, dateAfter.getDate())
+  console.log(firstDay)
+  console.log(dateAfter)
+  console.log(nextDate)
+  console.log(firstDay > dateAfter)
+
   for (let day = 0; day < splitsList.length; day++) {
-    let date = new Date()
+    let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
     let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
     let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
+
+
     splitsSchedule[nextDate] = splitsList[day]
   }
   return { splitsSchedule, curr_month, curr_year }
@@ -199,11 +218,21 @@ function getFirstDay(planner) {
   let curr_month = startDate.getMonth()
   let curr_year = startDate.getFullYear()
   let startDay = new Date(curr_year, curr_month, firstDay)
+
   if (planner.name == "PUSH PULL LEGS by Jeff") {
     let curr_date = new Date()
     let firstMonday = curr_date.getDate() - curr_date.getDay() + 1
-    startDay = new Date(curr_year, curr_month, firstMonday)
+    if (firstMonday < 0) {
+      let curr_week_day = curr_date.getDay()
+      let daysInMonth = new Date(curr_year, curr_month, 0).getDate()
+      firstMonday = daysInMonth - curr_week_day + curr_date.getDate() + 1
+      --curr_month
+      startDay = new Date(curr_year, curr_month, firstMonday)
+    } else {
+      startDay = new Date(curr_year, curr_month, firstMonday)
+    }
   }
+
   let currDate = new Date()
   curr_month = { value: currDate.getMonth() }
   curr_year = { value: currDate.getFullYear() }

@@ -296,7 +296,7 @@ function hendleStartDate(planner, startDate) {
   } else {
     let plannerStartDate = planner.startDate.split('-')
     console.log(plannerStartDate)
-    fullStartDate = new Date(plannerStartDate[0], plannerStartDate[1], plannerStartDate[2])
+    fullStartDate = new Date(plannerStartDate[0], plannerStartDate[1] - 1, plannerStartDate[2])
     day = fullStartDate.getDate()
   }
   let month = fullStartDate.getMonth() + 1
