@@ -165,28 +165,10 @@ async function createSplitsCalendar(planner) {
   let curr_year = getFirstDay(planner).curr_year
   let curr_month = getFirstDay(planner).curr_month
   let firstDay = getFirstDay(planner).startDay
-
-  /*
-    se o first day está a um mes atrás, deve-se reduzir o curr_month em 1ss
-  */
-  let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
-  console.log(date)
-  console.log(firstDay.getMonth())
-  console.log(date.getMonth())
-  let dateAfter = new Date(date.setDate(firstDay.getDate() + 0))
-  let month = dateAfter.getMonth()
-  let nextDate = new Date(dateAfter.getFullYear(), month, dateAfter.getDate())
-  console.log(firstDay)
-  console.log(dateAfter)
-  console.log(nextDate)
-  console.log(firstDay > dateAfter)
-
   for (let day = 0; day < splitsList.length; day++) {
     let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
     let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
     let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
-
-
     splitsSchedule[nextDate] = splitsList[day]
   }
   return { splitsSchedule, curr_month, curr_year }

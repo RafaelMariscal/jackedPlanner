@@ -21,7 +21,7 @@ function handlePersonalNotes(planner, splitsCalendar, daySplitDoc) {
     `
     cardioCards.innerHTML = CardioCardForRestDay
     if (!editCardio.classList.contains('hide')) editCardio.classList.add('hide')
-    return console.log('Rest Day. Do your fucking Cardios!!')
+    return
   }
 
   let personalNotes = daySplitDoc.notes

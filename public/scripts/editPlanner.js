@@ -290,16 +290,25 @@ function populateOptions(schedule) {
 function hendleStartDate(planner, startDate) {
   let fullStartDate = null
   let day = null
+  let month = null
+
   if (typeof planner.startDate == 'object') {
     fullStartDate = new Date(Date(planner.startDate.seconds))
     day = fullStartDate.getDate() - fullStartDate.getDay() + 1
+    if (day < 0) {
+      let monthDays = new Date(fullStartDate.getFullYear(), fullStartDate.getMonth(), 0).getDate()
+      day = monthDays + day
+    }
+    month = fullStartDate.getMonth()
+
   } else {
     let plannerStartDate = planner.startDate.split('-')
     console.log(plannerStartDate)
     fullStartDate = new Date(plannerStartDate[0], plannerStartDate[1] - 1, plannerStartDate[2])
     day = fullStartDate.getDate()
+    month = fullStartDate.getMonth() + 1
+
   }
-  let month = fullStartDate.getMonth() + 1
   let year = fullStartDate.getFullYear()
   let dateValue = []
   let array = [year, month, day]
