@@ -530,7 +530,7 @@
                     <p>Rate Workout:</p>
                     <div id="radio-list" style="display: flex; gap: 10px;">
                       <label for="bad" class="content-card">
-                        <input type="radio" id="bad" name="workoutRate" value=" bad"
+                        <input type="radio" id="bad" name="workoutRate" value="bad"
                           style="position: absolute; opacity: 0;">
                         BAD
                       </label>
@@ -546,7 +546,7 @@
                       </label>
                       <label for="great" class="content-card">
                         <input type="radio" id="great" name="workoutRate" value="great"
-                          style="position: absolute; opacity: 0;">
+                          style="position: absolute; opacity: 0;" required>
                         GREAT
                       </label>
                     </div>
@@ -554,9 +554,9 @@
 
                   <div style="flex-grow: 1;display: flex;flex-direction: column;">
                     <label for="notes">Notes:</label>
-                    <textarea name="notes" id="notes" class="content-card" required
+                    <textarea name="notes" id="notesText" class="content-card" required
                       placeholder="Take notes here!"></textarea>
-                    <button type="submit" class="content-card">Send</button>
+                    <button id="SendNotesBtn" type="button" class="content-card">Send Notes</button>
                   </div>
                 </form>
               </div>

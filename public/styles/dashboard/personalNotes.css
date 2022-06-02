@@ -17,7 +17,7 @@
 }
 
 .radio-selected {
-  background-color: var(--orange);
+  background-color: var(--blue);
   font-weight: 900;
   color: var(--dark) !important;
 }
@@ -48,6 +48,10 @@ label[for='notes'] {
 
 .cardioDoneBtn {
   margin-top: -.5em !important;
+}
+
+.cardioDoneState * {
+  background-color: var(--blue) !important;
 }
 
 #personal-notes form button {

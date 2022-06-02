@@ -27,8 +27,9 @@ function handlePersonalNotes(planner, splitsCalendar, daySplitDoc) {
   let personalNotes = daySplitDoc.notes
   let cardios = personalNotes.cardio
   printCardiosCards(cardioCards, cardios)
-}
 
+  submitPersonalNotes()
+}
 
 function printCardiosCards(cardioCards, cardios) {
   if (editCardio.classList.contains('hide')) editCardio.classList.remove('hide')
@@ -42,16 +43,17 @@ function printCardiosCards(cardioCards, cardios) {
   }
   cardios.forEach((cardio, index) => {
     const cardioCard = `
-        <div id="cadio${index + 1}">
+        <div id="cardio${index + 1}">
           <label for="cardio${index + 1}">
             <input type="radio" id="DoneCardio${index + 1}" name="cardios" value="DoneCardio${index + 1}" style="position: absolute; opacity: 0;">
             <div class="content-card cardio" id="cadio${index + 1}-content">${cardio.dist} km / ${cardio.time} min</div>
           </label>
-          <button id="doneBtnForCadio${index + 1}" class="exercise-card cardioDoneBtn" type="button">DONE</button>
+          <button id="doneBtnForCardio${index + 1}" class="exercise-card cardioDoneBtn" type="button">TO DO</button>
         </div>
       `
     cardioCards.innerHTML += cardioCard
   })
+
   if (editCardio.classList.contains('hide')) editCardio.classList.remove('hide')
   editCardio.onclick = () => {
     personalNotesEditForm.classList.toggle('hide')
@@ -77,9 +79,10 @@ function printCardiosCards(cardioCards, cardios) {
       }
     }
   }
-  rateWorkout(radioList)
-}
 
+  cardioDoneState()
+  rateWorkoutSelectedStyle(radioList)
+}
 function generatePlannerNotesForm(cardios) {
   personalNotesEditFormCardios.innerHTML = ''
   cardios.forEach((cardio, index) => {
@@ -194,9 +197,18 @@ function getCardiosInputsValues(cardiosElements) {
   return cardiosList.filter(n => n)
 }
 
-
-
-function rateWorkout(radioList) {
+function cardioDoneState() {
+  let cardioDoneBtns = Array.from(document.getElementsByClassName('cardioDoneBtn'))
+  cardioDoneBtns.forEach(btn => {
+    btn.onclick = () => {
+      let i = btn.id.charAt(btn.id.length - 1)
+      let cardioSelected = document.getElementById(`cardio${i}`)
+      cardioSelected.classList.toggle('cardioDoneState')
+      cardioSelected.classList.contains('cardioDoneState') ? btn.innerText = 'DONE' : btn.innerText = 'TO DO'
+    }
+  })
+}
+function rateWorkoutSelectedStyle(radioList) {
   removeRadioSelected(radioList)
   radioList.forEach(ratioCard => {
     ratioCard.addEventListener('click', () => {
@@ -212,6 +224,18 @@ function removeRadioSelected(radioList) {
   radioList.forEach((element) => {
     element.classList = ['content-card']
   })
+}
+
+function submitPersonalNotes() {
+  SendNotesBtn.onclick = () => {
+    const workoutRate = document.querySelector('input[name="workoutRate"]:checked').value
+    const workoutNotes = notesText.value
+    if (confirm('Confirm Personal Notes?')) {
+      console.log(workoutRate)
+      console.log(workoutNotes)
+      return alert('Notes made successfully!')
+    }
+  }
 }
 
 export { handlePersonalNotes }
