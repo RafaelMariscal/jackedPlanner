@@ -13,11 +13,15 @@ firebase.initializeApp(firebaseConfig)
 const db = firebase.firestore()
 const auth = firebase.auth()
 
-function login(x, y) {
+function login(x, y, form) {
   return auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
     auth.signInWithEmailAndPassword(x, y).then(() => {
       console.log(`user logged in: ${auth.currentUser}`)
-    }).catch(err => console.log(err))
+      form.submit()
+    }).catch(err => {
+      console.log(err)
+      alert(err.code)
+    })
   }).catch(err => console.log(err))
 }
 

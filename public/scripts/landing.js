@@ -1,23 +1,10 @@
 import { createNewAccount, login, ifUserLogged } from "./database/userManager.js";
 
 const loginForm = document.getElementById('loginForm')
-const userInput = document.getElementById('user')
-const passwordInput = document.getElementById('password')
-var user = ''
-userInput.oninput = () => user = userInput.value
-var password = ''
-passwordInput.oninput = () => password = passwordInput.value
-loginForm.onsubmit = (event) => {
+loginForm.addEventListener('submit', (event) => {
   event.preventDefault()
-  login(user, password)
-  if (login(user, password)) {
-    setTimeout(() => {
-      loginForm.submit()
-    }, 2000)
-  } else (
-    alert('usuário não cadastrado.')
-  )
-}
+  login(user.value, password.value, loginForm)
+}, true)
 
 const newUserBox = document.getElementById('create-box')
 const createForm = document.getElementById('create-form')
