@@ -130,6 +130,10 @@ input[type=number] {
   border: none;
 }
 
+.done:disabled {
+  background-color: var(--light) !important;
+}
+
 .exerciseDone *:not(strong, .edit, .edit-exercise) {
   font-weight: 600 !important;
   background-color: var(--blue) !important;

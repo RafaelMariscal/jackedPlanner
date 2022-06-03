@@ -208,6 +208,7 @@
   #google {
     color: black;
     font-weight: 600;
+    background-color: var(--light);
   }
 
   #facebook {
