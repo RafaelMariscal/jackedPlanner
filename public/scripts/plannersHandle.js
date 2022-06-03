@@ -138,6 +138,7 @@ async function plannerSelector(i, planner) {
           editSets.classList.value = 'hide'
           const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
           document.getElementById('exercises-list').innerHTML = addPlannerText
+          cardiosNoPlannerSelected()
           element.classList.add('selected-planner')
           planner = null
           let setsCards = document.getElementsByClassName('sets')[0]
@@ -289,13 +290,17 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
       setTimeout(() => {
         let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
         firstElement.click()
-        console.log(firstElement)
       }, 200);
       if (!daySplit) {
         return console.log('no day split found')
       }
     })
   })
+}
+function cardiosNoPlannerSelected() {
+  const addNewPlanner = '<div><div class="content-card cardio">Add a new planner</div></div>'
+  cardios.innerHTML = addNewPlanner
+  editCardio.classList.add('hide')
 }
 
 export { getData, populatePlannersList }

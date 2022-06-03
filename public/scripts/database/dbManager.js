@@ -36,13 +36,6 @@ function createExerciseStructure() {
     liftedReps: [],
   }
 }
-function createSetsLiftedStructure() {
-  let sets = this.sets
-  for (let i = 0; i < sets; i++) {
-    this.liftedWeight.push(0);
-    this.liftedReps.push(0);
-  }
-}
 function dbStructure(uid) {
   return db.collection('users').doc(uid).update({
     planners: {
@@ -338,11 +331,11 @@ function dbStructure(uid) {
               {
                 index: 5,
                 name: 'Incline Dumbell Curl',
-                sets: 4,
+                sets: 3,
                 reps: 12,
                 disc: 'With the bench at 110°, simultaneously and with supination, curl it till the arms reach slughtly less then 90°.',
-                weightUnd: 'plt',
-                setsWeight: [6, 8, 8],
+                weightUnd: 'kg',
+                setsWeight: [10, 10, 8],
                 liftedWeight: [],
                 liftedReps: []
               }
