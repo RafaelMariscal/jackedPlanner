@@ -28,8 +28,6 @@ const forgotMsg = document.getElementById('forgot-msg')
 
 forgot.onclick = () => forgotBox.classList.toggle('hide')
 
-/* read the forgot inputs */
-
 forgotForm.onsubmit = (event) => {
   event.preventDefault()
   forgotMsg.classList.toggle('hide')
