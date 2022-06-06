@@ -90,7 +90,6 @@ function hendleExerciseDescription(daySplitDoc) {
     let exerciseNameCard = document.getElementById(`exerc${index}-name`)
     exerciseNameCard.innerHTML += exerciseDescription
     setTimeout(() => {
-      let descriptionCard = document.getElementById(`exerc${index}-descriptionCard`)
       descriptionBtn.onclick = (event) => {
         let descriptionCards = Array.from(document.getElementsByClassName('description-card'))
         descriptionCards.forEach(descriptionCard => {
@@ -99,20 +98,22 @@ function hendleExerciseDescription(daySplitDoc) {
             let element = document.getElementById(`exerc${index}-descriptionCard`)
             if (element.id !== descriptionCard.id) {
               descriptionCard.classList.toggle('hide')
+              console.log(descriptionCard)
             }
           }
         });
-        descriptionCard.classList.toggle('hide')
       }
     }, 200);
   });
 }
 function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
   const exercisesPrinted = Array.from(document.getElementById('exercises-list').children)
+  const exercisesDescription = Array.from(document.getElementsByClassName('description-card'))
   exercisesPrinted.forEach(exerciseCard => {
     exerciseCard.addEventListener('click', () => {
       if (!exerciseCard.classList.contains('selected-exercise')) {
         clearExerciseSelector(exercisesPrinted)
+        clearExerciseDescription(exercisesDescription)
         exerciseCard.classList.add('selected-exercise')
         editSets.classList.remove('hide')
 
@@ -122,8 +123,13 @@ function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
 
         generateExercisePlanSets(exercise, planner, daySplitDoc)
         populateExercisePlanFormValues(exercise)
+      } else {
+        let index = exerciseCard.id.charAt(exerciseCard.id.length - 1)
+        let descriptionCard = document.getElementById(`exerc${index}-descriptionCard`)
+        descriptionCard.classList.toggle('hide')
       }
     })
+
   });
 }
 function clearExerciseSelector(exercisesPrinted) {
@@ -133,6 +139,12 @@ function clearExerciseSelector(exercisesPrinted) {
     }
   })
 }
+function clearExerciseDescription(exercisesDescription) {
+  exercisesDescription.forEach(desc => {
+    desc.classList = 'exercise-card description-card hide'
+  })
+}
+
 /* ----------- exercises CRUD ------------ */
 
 async function exercisesCRUDFeature(planner, daySplitDoc, exercisesList, date, splitsCalendar) {
