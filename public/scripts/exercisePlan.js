@@ -80,14 +80,15 @@ function testIfAllSetsAreDone(doneBtns, test, daySplitDoc, exercise) {
       let currentExerciseId = document.getElementsByClassName('selected-exercise')[0].id
       let index = currentExerciseId.charAt(currentExerciseId.length - 1)
       let exercise = document.getElementById(`exerc${index}`)
+      let toDoBtn = document.getElementById(`exerc${index}-done`)
       if (test == doneBtns.length) {
         if (!exercise.classList.contains('exerciseDone')) exercise.classList.add('exerciseDone')
+        toDoBtn.textContent = 'Done'
         console.log('exercise Done!!')
       } else {
         if (exercise.classList.contains('exerciseDone')) exercise.classList.remove('exerciseDone')
-
+        toDoBtn.textContent = 'To Do'
         /* update DB for lifted weight and reps */
-
       }
     }, 100);
   })
