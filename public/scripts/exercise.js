@@ -93,13 +93,13 @@ function hendleExerciseDescription(daySplitDoc) {
       descriptionBtn.onclick = (event) => {
         let descriptionCards = Array.from(document.getElementsByClassName('description-card'))
         descriptionCards.forEach(descriptionCard => {
-          if (!descriptionCard.classList.contains('hide')) {
-            let index = event.target.id.charAt(5)
-            let element = document.getElementById(`exerc${index}-descriptionCard`)
-            if (element.id !== descriptionCard.id) {
-              descriptionCard.classList.toggle('hide')
-              console.log(descriptionCard)
-            }
+          let index = event.target.id.charAt(5)
+          let element = document.getElementById(`exerc${index}-descriptionCard`)
+          if (!descriptionCard.classList.contains('hide')
+            && element.id !== descriptionCard.id) {
+            descriptionCard.classList.toggle('hide')
+          } else {
+            if (element.id == descriptionCard.id) descriptionCard.classList.toggle('hide')
           }
         });
       }
@@ -123,13 +123,12 @@ function exerciseSelectorFeature(exercisesList, planner, daySplitDoc) {
 
         generateExercisePlanSets(exercise, planner, daySplitDoc)
         populateExercisePlanFormValues(exercise)
-      } else {
-        let index = exerciseCard.id.charAt(exerciseCard.id.length - 1)
-        let descriptionCard = document.getElementById(`exerc${index}-descriptionCard`)
-        descriptionCard.classList.toggle('hide')
       }
+      let index = exerciseCard.id.charAt(exerciseCard.id.length - 1)
+      let descriptionCard = document.getElementById(`exerc${index}-descriptionCard`)
+      let exerciseNameCard = document.getElementById(`exerc${index}-name`)
+      exerciseNameCard.onclick = () => descriptionCard.classList.toggle('hide')
     })
-
   });
 }
 function clearExerciseSelector(exercisesPrinted) {
