@@ -136,43 +136,65 @@ async function plannerSelector(i, planner) {
           return splitsCalendar
         default:
           editSets.classList.value = 'hide'
+          element.classList.add('selected-planner')
+          planner = {}
+          createSplitsCalendar(planner).then((object) => {
+            splitsCalendar = object.splitsSchedule
+            let curr_month = object.curr_month.value
+            let curr_year = object.curr_year.value
+            handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
+          })
+          setTimeout(() => {
+            currentDate.click()
+          }, 100);
+
           const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
           document.getElementById('exercises-list').innerHTML = addPlannerText
           cardiosNoPlannerSelected()
-          element.classList.add('selected-planner')
-          planner = null
           let setsCards = document.getElementsByClassName('sets')[0]
           setsCards.innerHTML = ''
+          document.getElementById('w-day').textContent = ''
           return splitsCalendar
       }
     }
   });
-  let plan1 = document.getElementById('plan1')
+  plan1.click()
   setTimeout(() => {
-    plan1.click()
-  }, 100);
-
+    let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
+    firstElement.click()
+  }, 200);
   return splitsCalendar
 }
 async function createSplitsCalendar(planner) {
-  const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
-  let splits = planner.split
-  let tags = []
-  for (let i = 0; i < Object.keys(splits).length; i++) {
-    tags.push(abc[i])
+  if (planner.name) {
+    const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+    let splits = planner.split
+    let tags = []
+    if (splits) {
+      for (let i = 0; i < Object.keys(splits).length; i++) {
+        tags.push(abc[i])
+      }
+    }
+    let splitsList = getSplitsLists(planner, tags)
+    let splitsSchedule = {}
+    let curr_year = getFirstDay(planner).curr_year
+    let curr_month = getFirstDay(planner).curr_month
+    let firstDay = getFirstDay(planner).startDay
+    for (let day = 0; day < splitsList.length; day++) {
+      let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
+      let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
+      let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
+      splitsSchedule[nextDate] = splitsList[day]
+    }
+    return { splitsSchedule, curr_month, curr_year }
+  } else {
+    let date = new Date()
+    let splitsSchedule = {}
+    let curr_month = date.getMonth()
+    let curr_year = date.getFullYear()
+    return { splitsSchedule, curr_month, curr_year }
   }
-  let splitsList = getSplitsLists(planner, tags)
-  let splitsSchedule = {}
-  let curr_year = getFirstDay(planner).curr_year
-  let curr_month = getFirstDay(planner).curr_month
-  let firstDay = getFirstDay(planner).startDay
-  for (let day = 0; day < splitsList.length; day++) {
-    let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
-    let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
-    let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
-    splitsSchedule[nextDate] = splitsList[day]
-  }
-  return { splitsSchedule, curr_month, curr_year }
+
 }
 function getSplitsLists(planner, tags) {
   console.log(planner)
@@ -277,6 +299,9 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
       element.classList.add('selected-date')
       let day = element.innerText
       let date = new Date(curr_year, curr_month, day)
+      let exerciseList = document.getElementById('exercises-list')
+      let addExercise = document.getElementById('add-exercise')
+      daySplit = null
       Object.keys(splitsCalendar).forEach((key) => {
         if (key == date) {
           daySplit = splitsCalendar[key]
@@ -285,13 +310,14 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
           handleExercisesList(planner, splitsCalendar, daySplitDoc, date).then(() => {
             handlePersonalNotes(planner, splitsCalendar, daySplitDoc)
           })
+          if (addExercise.classList.contains('hide')) addExercise.classList.remove('hide')
         }
       })
-      setTimeout(() => {
-        let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
-        firstElement.click()
-      }, 200);
+      if (!planner.name) document.getElementById('w-day').textContent = ''
       if (!daySplit) {
+        addExercise.classList.add('hide')
+        const msg = '<p style="font-size: 1.75em">Nothing scheduled for this date.</p>'
+        exerciseList.innerHTML = msg
         return console.log('no day split found')
       }
     })
@@ -302,5 +328,4 @@ function cardiosNoPlannerSelected() {
   cardios.innerHTML = addNewPlanner
   editCardio.classList.add('hide')
 }
-
 export { getData, populatePlannersList }
