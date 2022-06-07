@@ -7,11 +7,6 @@ function handlePersonalNotes(planner, splitsCalendar, daySplitDoc) {
   let splitTitle = document.getElementById('w-day')
   const cardioCards = document.getElementById('cardios')
   cardioCards.innerHTML = ''
-  if (!planner) {
-    splitTitle.textContent = ''
-    if (!editCardio.classList.contains('hide')) editCardio.classList.add('hide')
-    return console.log('no planner')
-  }
   if (daySplitDoc == 'rest') {
     splitTitle.textContent = 'REST DAY'
     const CardioCardForRestDay = `
@@ -27,7 +22,6 @@ function handlePersonalNotes(planner, splitsCalendar, daySplitDoc) {
   let personalNotes = daySplitDoc.notes
   let cardios = personalNotes.cardio
   printCardiosCards(cardioCards, cardios)
-
   submitPersonalNotes()
 }
 

@@ -82,10 +82,10 @@ function populatePlannersList(doc) {
   return plannersList
 }
 async function plannerSelector(i, planner) {
-  let currentDate = document.getElementsByClassName('curr-date')[0]
   let plannersButtons = Array.from(planDisplay.children)
   plannersButtons.forEach(element => {
     element.onclick = () => {
+      removeCalendarClickEvents()
       let content = element.children[1].innerText
       plannersButtons.forEach(element => {
         element.classList = 'content-card'
@@ -96,77 +96,98 @@ async function plannerSelector(i, planner) {
           element.classList.add('selected-item')
           planner = i[0]
           createSplitsCalendar(planner).then((object) => {
-            console.log(object)
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
             let curr_year = object.curr_year.value
             handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
+            appInit()
           })
-          setTimeout(() => {
-            currentDate.click()
-          }, 100);
+
           return splitsCalendar
         case i[1].name:
           editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[1]
+          removeCalendarClickEvents()
           createSplitsCalendar(planner).then((object) => {
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
             let curr_year = object.curr_year.value
             handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
           })
-          setTimeout(() => {
-            currentDate.click()
-          }, 100);
+          appInit()
           return splitsCalendar
         case i[2].name:
           editSets.classList.value = 'hide'
           element.classList.add('selected-item')
           planner = i[2]
+          removeCalendarClickEvents()
           createSplitsCalendar(planner).then((object) => {
             splitsCalendar = object.splitsSchedule
             let curr_month = object.curr_month.value
             let curr_year = object.curr_year.value
             handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
           })
-          setTimeout(() => {
-            currentDate.click()
-          }, 100);
+          appInit()
           return splitsCalendar
         default:
           editSets.classList.value = 'hide'
           element.classList.add('selected-planner')
-          planner = {}
-          createSplitsCalendar(planner).then((object) => {
-            splitsCalendar = object.splitsSchedule
-            let curr_month = object.curr_month.value
-            let curr_year = object.curr_year.value
-            handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, planner)
-          })
-          setTimeout(() => {
-            currentDate.click()
-          }, 100);
-
-          const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
-          document.getElementById('exercises-list').innerHTML = addPlannerText
-          cardiosNoPlannerSelected()
-          let setsCards = document.getElementsByClassName('sets')[0]
-          setsCards.innerHTML = ''
-          document.getElementById('w-day').textContent = ''
+          planner = 'add a new planner'
+          removeCalendarClickEvents()
+          noPlannerSelected()
           return splitsCalendar
       }
     }
   });
   plan1.click()
+  return splitsCalendar
+}
+function removeCalendarClickEvents() {
+  const calendarDays = Array.from(document.getElementsByClassName('calendar-day-hover'))
+  calendarDays.forEach(dayInMonth => {
+    let newCalendarDayElement = dayInMonth.cloneNode(true)
+    dayInMonth.parentNode.replaceChild(newCalendarDayElement, dayInMonth)
+  })
+}
+function appInit() {
+  setTimeout(() => {
+    let currentDate = document.getElementsByClassName('curr-date')[0]
+    currentDate.click()
+  }, 100);
   setTimeout(() => {
     let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
     firstElement.click()
   }, 200);
-  return splitsCalendar
 }
+function noPlannerSelected() {
+  const addPlannerText = '<p style="font-size:2em; text-align:center;">Add a new Planner!!</p>'
+  const noPlannerCardioCard = `<div><div class="content-card cardio">Add a new Planner</div></div>`
+  document.getElementById('w-day').textContent = ''
+  document.getElementById('exercises-list').innerHTML = addPlannerText
+  cardios.innerHTML = noPlannerCardioCard
+  document.querySelector('.sets').innerHTML = ''
+  editSets.classList.value = 'hide'
+  editCardioBtn.classList.add('hide')
+}
+
 async function createSplitsCalendar(planner) {
-  if (planner.name) {
+  if (planner == 'add a new planner') {
+    let date = new Date()
+    date.setDate(1)
+    let splitsSchedule = {}
+    let curr_month = date.getMonth()
+    let curr_year = date.getFullYear()
+    let firstDay = date
+    let totalDaysinMonth = new Date(curr_year, curr_month + 1, 0).getDate()
+    for (let day = 0; day < totalDaysinMonth; day++) {
+      let date = new Date(firstDay.getFullYear(), firstDay.getMonth(), firstDay.getDate())
+      let dateAfter = new Date(date.setDate(firstDay.getDate() + day))
+      let nextDate = new Date(dateAfter.getFullYear(), dateAfter.getMonth(), dateAfter.getDate())
+      splitsSchedule[nextDate] = ''
+    }
+    return { splitsSchedule, curr_month, curr_year }
+  } else {
     const abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
     let splits = planner.split
     let tags = []
@@ -187,12 +208,7 @@ async function createSplitsCalendar(planner) {
       splitsSchedule[nextDate] = splitsList[day]
     }
     return { splitsSchedule, curr_month, curr_year }
-  } else {
-    let date = new Date()
-    let splitsSchedule = {}
-    let curr_month = date.getMonth()
-    let curr_year = date.getFullYear()
-    return { splitsSchedule, curr_month, curr_year }
+
   }
 
 }
@@ -289,7 +305,7 @@ async function handleMonthsDaysEvent(splitsCalendar, curr_year, curr_month, plan
 async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
   let calendar = Array.from(document.getElementsByClassName('calendar-day-hover'))
   calendar.forEach(element => {
-    element.addEventListener('click', () => {
+    element.addEventListener('click', function calendarDaysEvent() {
       calendar.forEach(element => {
         if (element.classList.value != 'calendar-day-hover curr-date'
           && element.classList.value != 'calendar-day-hover curr-date selected-date') {
@@ -302,17 +318,21 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
       let exerciseList = document.getElementById('exercises-list')
       let addExercise = document.getElementById('add-exercise')
       daySplit = null
-      Object.keys(splitsCalendar).forEach((key) => {
-        if (key == date) {
-          daySplit = splitsCalendar[key]
-          let daySplitDoc = null
-          daySplit == 'rest' ? daySplitDoc = 'rest' : daySplitDoc = planner.split[daySplit]
-          handleExercisesList(planner, splitsCalendar, daySplitDoc, date).then(() => {
-            handlePersonalNotes(planner, splitsCalendar, daySplitDoc)
-          })
-          if (addExercise.classList.contains('hide')) addExercise.classList.remove('hide')
-        }
-      })
+      if (splitsCalendar[date]) {
+        Object.keys(splitsCalendar).forEach((key) => {
+          if (key == date) {
+            daySplit = splitsCalendar[key]
+            let daySplitDoc = null
+            daySplit == 'rest' ? daySplitDoc = 'rest' : daySplitDoc = planner.split[daySplit]
+            handleExercisesList(planner, splitsCalendar, daySplitDoc, date).then(() => {
+              handlePersonalNotes(planner, splitsCalendar, daySplitDoc)
+            })
+            if (addExercise.classList.contains('hide')) addExercise.classList.remove('hide')
+          }
+        })
+      } else {
+        console.log('aqui?')
+      }
       if (!planner.name) document.getElementById('w-day').textContent = ''
       if (!daySplit) {
         addExercise.classList.add('hide')
@@ -320,12 +340,7 @@ async function clickEvent(splitsCalendar, curr_year, curr_month, planner) {
         exerciseList.innerHTML = msg
         return console.log('no day split found')
       }
-    })
+    }, true)
   })
-}
-function cardiosNoPlannerSelected() {
-  const addNewPlanner = '<div><div class="content-card cardio">Add a new planner</div></div>'
-  cardios.innerHTML = addNewPlanner
-  editCardio.classList.add('hide')
 }
 export { getData, populatePlannersList }
