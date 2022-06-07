@@ -158,6 +158,7 @@ function appInit() {
   setTimeout(() => {
     let firstElement = Array.from(document.getElementById('exercises-list').children)[0]
     firstElement.click()
+    if (editCardioBtn.classList.contains('hide')) editCardioBtn.classList.remove('hide')
   }, 200);
 }
 function noPlannerSelected() {
