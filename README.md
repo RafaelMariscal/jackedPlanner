@@ -26,7 +26,7 @@ _"Organize all training data into a simple dashboard, focusing on maximizing fit
 **PS:** All the code insede this app can be reused for any application. So you can reuse everything at this repo!
 
 
-<h2 id="Why">Why this project?</h2>
+<h2 id="Why">Why this Project?</h2>
 
 This project is part of my personal portfolio, so, I'll be happy if you could provide me any feedback about the project, code, structure or anything that you can report that could make me a better developer!
 
@@ -37,7 +37,7 @@ Connect with me at [LinkedIn](https://www.linkedin.com/in/rafael-mariscal/).
 Also, you can use this Project as you wish! It's free!
 
 
-<h2 id="Observations">Some Observations about this application</h2>
+<h2 id="Observations">Some Observations About This Project</h2>
 
 1 - The app design was created by me =D So let me know if you liked it, and also feel free to send me your feedback or even to contribute with this project. 
 
@@ -57,7 +57,7 @@ Also, you can use this Project as you wish! It's free!
   - Login Form
   - Create Account form
   - Forgot Password form
-  - Aplication Description (CSS Animations)
+  - Aplication Description (CSS + JS Animations)
   - Pro user call (For Sales) ** Only for UI matters. 
   - 'Scroll to Top' button
  
@@ -128,7 +128,7 @@ $ cd jackedPlanner
 $ npm install
 ```
 
-<h3>Conecting with a firebase</h3>
+<h3>Conecting with a Firebase Project</h3>
 
 - After create a Firebase Project, set up the Firebase Hosting feature <a href="https://console.firebase.google.com/u/0/project/jackedplanner/hosting/">here</a>
 
