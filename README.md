@@ -11,7 +11,7 @@
 
 <h1 align="center">Jacked Planner</h1> 
 
-<h3 align="center">if you want to take a look, just follow the link: </br> 
+<h3 align="center">if you want to take a look, just follow the link: </br></br> 
 >> <a href="https://jackedplanner.web.app">https://jackedplanner.web.app</a> << </h3>
 
 ![Preview-Screens](https://github.com/RafaelMariscal/jackedPlanner/blob/master/public/assets/screenShots/ScreenShots1.png.png)
@@ -47,7 +47,7 @@ Also, you can use this Project as you wish! It's free!
 
 4 - This is a personal project for portfolio reasons. Thus, the main focus is to put into practice some Javascript, HTML, CSS and Firebase skills to reproduce a random idea for a web application and understand the main difficulties and challenges to make it work properly.
 
-<h3>if you want to take a look, just follow the link: >> <a href="https://jackedplanner.web.app">https://jackedplanner.web.app</a> << </h3>
+<h3>Follow the link bellow to access the application: >> <a href="https://jackedplanner.web.app">https://jackedplanner.web.app</a> << </h3>
 </br>
 
 <h2 id="Functionalities">Functionalities</h2>
@@ -64,15 +64,40 @@ Also, you can use this Project as you wish! It's free!
 - Dashboard Page:
   - Greeting user with the custom User Name.
   - Planner Controller
-    - The standard version comes with the possibitie to create at maximum 3 different planners
-    - Every user recieve a demonstration planner called "PUSH PULL LEGS by JEFF" (Ref. to Jeff Nippard)
+    - The standard version comes with the possibitie to create at maximum 3 different planners.
+    - Every user recieve a demonstration planner called "PUSH PULL LEGS by JEFF" (Ref. to Jeff Nippard).
+    - Planners CRUD > There is a custom form for both situations, create and edit Planner.
+    - It can be diffined the Planner Name, at max 10 splits and rest days, a split schedule and the start date.
   - Calendar
+    - Not just to show the current date, but also a controller for the splits exercises.
+    - By clicking into a date, the exercise list for the split scheduled for this date will be printed.
+    - it has a month controler at the arrows, increasing or deacreasign the months.
+    - Also, a quick month menu by clicking at the calendar date title. 
   - Workout Section
+    - The split name for the date selected will be printed aside the workout section title.
+    - The exercises with the same index, means a superset of theses two exercises.
+    - By selecting an exercise, all it sets will be printed at the Sets Wheight section.
+    - If an exercise is selected, its description can be shown by clicking at descip. card, and also by clicking at exercise name card.
+    - A 'To do' tag for the exercises not fully finished. If all the exercise's sets are done, the tag will recive a Done value.
+    - Exercise CRUD > a form to add an exercise to the list and an edit exercise form shown when the edit icon is clicked.
+    - It can be deffined the Exercise Index, Name, Sets, Reps and Description.
   - Sets Weight
+    - For each set, a form its shown with the set index, set weight + unit, two inputs (Weight used and Reps lifted) and a set's done button.
+    - Each set has a "done state", marking with a blueish collor. With all the sets done, the exercise recieve the same "done state".
+    - Sets CRUD > a form to set the weight unit, and also add, remove and update sets.
   - Personal Notes
+    - A form with Cardios section, Workout Rate, and the split day Notes
+    - The split day cardio section will show the distance and time deffined for each cadio.
+    - Also, each cardio section has a "done state", just like the exercises and sets.
+    - Cardios CRUD > A form to add, remove and update cardios, setting the time(min) and distance(km) for each section.
   - Menu
+    - A menu with 5 sections.
+    - Home, Notes, PRO, Shop, Configs and logout.
+    - At the momment, these sections are only for UI matters. The only section active is "Home"
   - Jacked Planner PRO call
+    - Section to call a fictitious sale **IT'S NOT A REAL SALE SECTION!**
   - Weight History 
+    - Only for UI matters, but it is an idea for PRO users to track their training progress.
 
 
 <h2 id="GettingStarted">Getting Started</h2>
