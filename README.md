@@ -1,4 +1,4 @@
-
+</br>
 
 <p align="center">
   <a href="#About">About this Project</a> |
@@ -25,6 +25,15 @@ _"Organize all training data into a simple dashboard, focusing on maximizing fit
 
 **PS:** All the code insede this app can be reused for any application. So you can reuse everything at this repo!
 
+**Tecnologies used**:</br>
+<p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML5</a> | 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS3</a> | 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">Javascript</a> | 
+    <a href="https://firebase.google.com/docs/auth?authuser=0&hl=en">Firestore Database</a> | 
+    <a href="https://firebase.google.com/docs/hosting?authuser=0&hl=en">Firebase Authentication</a> | 
+    <a href="https://firebase.google.com/docs/firestore?authuser=0&hl=en">Firebase Hosting</a>
+</p>
 
 <h2 id="Why">Why this Project?</h2>
 
@@ -104,12 +113,12 @@ Also, you can use this Project as you wish! It's free!
 
 <h3>Prerequisites</h3>
 
-- To run this project in the development mode, you'll need to have a basic environment to run a Firebase 8 App, that can be found [here](https://firebase.google.com/docs/web/setup?authuser=0&%3Bhl=pt&hl=pt)
+- To run this project in the development mode, you'll need to have a basic environment to run a Firebase 8 App, that can be found [here](https://firebase.google.com/docs/web/setup?authuser=0&%3Bhl=pt&hl=en)
 
 - Also, you'll need to install:
-    - Firebase Authentication, that can be found [here](https://firebase.google.com/docs/auth?authuser=0&hl=pt)
-    - Firebase Hosting, that can be found [here](https://firebase.google.com/docs/hosting?authuser=0&hl=pt)
-    - Cloud Firestore, that can be found [here](https://firebase.google.com/docs/firestore?authuser=0&hl=pt)
+    - Firebase Authentication, that can be found [here](https://firebase.google.com/docs/auth?authuser=0&hl=en)
+    - Firebase Hosting, that can be found [here](https://firebase.google.com/docs/hosting?authuser=0&hl=en)
+    - Cloud Firestore, that can be found [here](https://firebase.google.com/docs/firestore?authuser=0&hl=en)
 
 **PS:** By these links, you can access all the docmunentation necessary to make any changes that you want. Fell free to it!
 
@@ -130,9 +139,9 @@ $ npm install
 
 <h3>Conecting with a Firebase Project</h3>
 
-- After create a Firebase Project, set up the Firebase Hosting feature <a href="https://console.firebase.google.com/u/0/project/jackedplanner/hosting/">here</a>
+- After create a Firebase Project, set up the Firebase Hosting feature <a href="https://firebase.google.com/docs/hosting?authuser=0&hl=en">here</a>
 
-- At <a href="https://console.firebase.google.com/u/0/?hl=pt">Firebase Console</a>, access the project configuration hub and look for SDK configuration. There you will find a code painel with an object 'firebaseConfig'. That object contains the all the information necessary to link an application  to your project.
+- At <a href="https://console.firebase.google.com/u/0/?hl=en">Firebase Console</a>, access the project configuration hub and look for SDK configuration. There you will find a code painel with an object 'firebaseConfig'. That object contains the all the information necessary to link an application  to your project.
 
 - To connect this application to your Firebase Project, just replace the firebaseConfig object in _public/scripts/database/**userManager.js**_ with the one found at the SDK configuration.
 
